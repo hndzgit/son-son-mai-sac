@@ -20,7 +20,7 @@ import sys
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_ROOT = BASE_DIR
 RSC_DIR = os.path.join(BASE_DIR, 'rsc_payloads')
-LIVE_FALLBACK_URL = "https://sonsonmaisat.site"
+LIVE_FALLBACK_URL = "https://sonsonmaisac.site"
 
 # MIME types chuẩn
 mimetypes.add_type('model/gltf-binary', '.glb')
