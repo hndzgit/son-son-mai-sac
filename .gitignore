@@ -4,6 +4,18 @@
 .vercel
 *.log
 
-# Temporary test artifacts
+# Temporary test artifacts & screenshots
 scratch/
 scripts/*.png
+scripts/*.webp
+kiem_tra_*/trinh_duyet/*.png
+kiem_tra_*/trinh_duyet/*.jpg
+
+# Temporary & backup files
+*.__q_*
+*.bak
+*.backup
+*.backup.*
+*.tmp
+*~
+*.swp
