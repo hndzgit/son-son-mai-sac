@@ -12,3 +12,6 @@ ma_nguon_css_js
 _next-live
 index_dashboard_backup.html
 scratch_K.js
+
+server.py
+*.log
