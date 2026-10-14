@@ -1470,40 +1470,177 @@
   margin: 32px auto 40px auto !important;
 }
 
-/* 6. Section 3: Giới thiệu các lớp sơn (#gioi-thieu) */
-.core-v4-concept,
-.coreIntroduction_layersSection__G7C0S {
-  padding: clamp(60px, 7vw, 100px) clamp(20px, 3.5vw, 48px) !important;
-  max-width: 1440px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-  scroll-margin-top: 96px !important;
+/* 6. Section 3: Giới thiệu các lớp sơn (#gioi-thieu) - BẢN TO RỘNG ĐẸP NHƯ GỐC */
+@media (min-width: 901px) {
+  .core-v4-concept,
+  .coreIntroduction_layersSection__G7C0S {
+    display: grid !important;
+    grid-template-columns: minmax(320px, 0.75fr) minmax(720px, 2.1fr) !important;
+    gap: clamp(28px, 4vw, 56px) !important;
+    max-width: 1440px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: clamp(70px, 8vw, 110px) clamp(20px, 3.5vw, 48px) !important;
+    box-sizing: border-box !important;
+    scroll-margin-top: 96px !important;
+  }
+
+  .core-v4-concept .materialGallery_cards__zJgmU,
+  .coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 650px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: stretch !important;
+    margin: 0 !important;
+    isolation: isolate !important;
+  }
+
+  .core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f,
+  .coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f {
+    flex: 1 1 0px !important;
+    min-width: 115px !important;
+    height: calc(560px - var(--distance) * 20px) !important;
+    margin-left: -10px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 18px 30px rgba(53, 32, 16, 0.25) !important;
+    transition: flex 0.45s cubic-bezier(0.2, 0.75, 0.25, 1), height 0.45s cubic-bezier(0.2, 0.75, 0.25, 1), transform 0.45s cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 0.35s !important;
+  }
+
+  .core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f:first-child,
+  .coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f:first-child {
+    margin-left: 0 !important;
+  }
+
+  .core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f[data-active="true"],
+  .coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f[aria-pressed="true"] {
+    flex: 2.8 1 0px !important;
+    min-width: 280px !important;
+    height: 570px !important;
+    transform: translateY(-16px) !important;
+    box-shadow: 0 32px 55px rgba(25, 10, 5, 0.55) !important;
+  }
+
+  .materialGallery_cardCopy__NBeRZ {
+    bottom: 28px !important;
+    left: 20px !important;
+    right: 18px !important;
+    gap: 12px !important;
+  }
+
+  .materialGallery_cardCopy__NBeRZ strong {
+    font-size: clamp(20px, 1.6vw, 28px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardCopy__NBeRZ strong {
+    font-size: clamp(34px, 2.7vw, 46px) !important;
+  }
+
+  .materialGallery_cardCopy__NBeRZ > span {
+    font-size: clamp(12px, 0.95vw, 15px) !important;
+    line-height: 1.55 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardCopy__NBeRZ > span {
+    -webkit-line-clamp: 6 !important;
+    font-size: clamp(13.5px, 1.05vw, 16px) !important;
+    line-height: 1.6 !important;
+  }
+
+  .materialGallery_cardNumber__SI1t_ {
+    top: 26px !important;
+    left: 20px !important;
+    font-size: 30px !important;
+    font-weight: 500 !important;
+  }
 }
 
-/* Thẻ chất liệu Section 3: luôn trải rộng 100% cột grid, không bị co rút */
-.core-v4-concept .materialGallery_cards__zJgmU,
-.coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  justify-self: stretch !important;
-  display: flex !important;
-  align-items: center !important;
-}
+@media (max-width: 900px) {
+  .core-v4-concept,
+  .coreIntroduction_layersSection__G7C0S {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    padding: 48px 18px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    scroll-margin-top: 96px !important;
+  }
 
-.core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f,
-.coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f {
-  flex: 1 1 0px !important;
-  min-width: 60px !important;
-}
+  .coreIntroduction_layersLead__acYPE {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 
-.core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f[data-active="true"],
-.coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f[aria-pressed="true"] {
-  flex: 1.8 1 0px !important;
-  min-width: 150px !important;
+  .materialGallery_cards__zJgmU {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    min-height: 0 !important;
+    padding: 16px 10px 32px 10px !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: thin !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    gap: 14px !important;
+  }
+
+  .materialGallery_card__sP88f {
+    flex: 0 0 190px !important;
+    min-width: 190px !important;
+    width: 190px !important;
+    height: 420px !important;
+    margin-left: 0 !important;
+    scroll-snap-align: center !important;
+    border-radius: 8px !important;
+  }
+
+  .materialGallery_card__sP88f:first-child {
+    margin-left: 0 !important;
+  }
+
+  .materialGallery_card__sP88f[data-active="true"] {
+    flex: 0 0 260px !important;
+    min-width: 260px !important;
+    width: 260px !important;
+    height: 440px !important;
+    transform: translateY(-4px) !important;
+  }
+
+  .materialGallery_cardCopy__NBeRZ {
+    bottom: 22px !important;
+    left: 16px !important;
+    right: 14px !important;
+    gap: 8px !important;
+  }
+
+  .materialGallery_cardCopy__NBeRZ strong {
+    font-size: 22px !important;
+  }
+
+  .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardCopy__NBeRZ strong {
+    font-size: 28px !important;
+  }
+
+  .materialGallery_cardCopy__NBeRZ > span {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  .materialGallery_cardNumber__SI1t_ {
+    top: 20px !important;
+    left: 16px !important;
+    font-size: 24px !important;
+  }
 }
 
 /* 7. Section 4: Chạm vào lớp sắc (#cham-vao-lop-sac) */
