@@ -7,7 +7,7 @@
 
 ## 1. Thông Tin Chung
 - **Tên dự án:** Sơn Son Mài Sắc
-- **Trang web chính thức:** [https://sonsonmaisat.site/](https://sonsonmaisat.site/)
+- **Trang web chính thức:** [https://son-son-mai-sac-orpin.vercel.app/](https://son-son-mai-sac-orpin.vercel.app/)
 - **Hosting dự phòng:** [https://son-son-mai-sac-storytelling.vercel.app/](https://son-son-mai-sac-storytelling.vercel.app/)
 - **Địa điểm thực hiện:** Trường Đại học FPT - Phân hiệu Hà Nội (Khu CNC Hòa Lạc, Thạch Thất, Hà Nội)
 - **Email liên hệ:** [Sonsonmaisac.contact@gmail.com](mailto:Sonsonmaisac.contact@gmail.com)

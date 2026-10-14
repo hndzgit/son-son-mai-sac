@@ -43,7 +43,7 @@ async function testLive() {
     await send('Page.enable');
     await send('Runtime.enable');
 
-    await send('Page.navigate', { url: 'https://sonsonmaisac.site/tin-tuc-su-kien' });
+    await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/tin-tuc-su-kien' });
     await new Promise(r => setTimeout(r, 3500));
 
     const evalResult = await send('Runtime.evaluate', {

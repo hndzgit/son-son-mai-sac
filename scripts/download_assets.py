@@ -3,7 +3,7 @@ import re
 import os
 import urllib.parse
 
-BASE_URL = 'https://sonsonmaisat.site'
+BASE_URL = 'https://son-son-mai-sac-orpin.vercel.app'
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
 
 def extract_asset_urls():

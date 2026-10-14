@@ -1,5 +1,5 @@
 {
-  "url": "https://sonsonmaisat.site/",
+  "url": "https://son-son-mai-sac-orpin.vercel.app/",
   "text_nodes": [
     "Sơn Son Mài Sắc | Chạm vào di sản",
     "Bỏ qua điều hướng",
@@ -402,7 +402,7 @@
       "tag": "meta",
       "attributes": {
         "property": "og:image",
-        "content": "https://sonsonmaisat.site/opengraph-image?b3ef42082ae9ba70"
+        "content": "https://son-son-mai-sac-orpin.vercel.app/opengraph-image?b3ef42082ae9ba70"
       }
     },
     {
@@ -451,7 +451,7 @@
       "tag": "meta",
       "attributes": {
         "name": "twitter:image",
-        "content": "https://sonsonmaisat.site/opengraph-image"
+        "content": "https://son-son-mai-sac-orpin.vercel.app/opengraph-image"
       }
     },
     {

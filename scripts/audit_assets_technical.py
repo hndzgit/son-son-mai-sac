@@ -265,7 +265,7 @@ for item in manifest:
 asset_by_path={x['path']:x for x in assets}
 box=[]
 for p in sorted((ROOT/'hinh_anh_assets/story-assets').glob('box-*.jpg')):
-    original=asset_by_path[rel(p)]; url='https://sonsonmaisat.site/story-assets/'+p.name
+    original=asset_by_path[rel(p)]; url='https://son-son-mai-sac-orpin.vercel.app/story-assets/'+p.name
     live=next((x for x in manifest if x['url']==url),None)
     box.append({'filename':p.name,'original':{k:original.get(k) for k in ['path','bytes','sha256','format','width','height','valid','validation','matches_initial_inventory_sha256']},'live_request':{k:live.get(k) for k in ['url','status','content_type','bytes','sha256','local_path','fetched_at']} if live else None})
 fav=[]

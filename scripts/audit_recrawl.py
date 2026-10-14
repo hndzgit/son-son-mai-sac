@@ -12,7 +12,7 @@ import requests,json,re,hashlib,datetime,subprocess,sys,time
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/'kiem_tra_2026-10-12'
 RAW=OUT/'ban_chup_goc'
-BASE='https://sonsonmaisat.site'
+BASE='https://son-son-mai-sac-orpin.vercel.app'
 HOST=urlsplit(BASE).netloc
 EXT=re.compile(r'\.(?:js|css|png|jpe?g|webp|svg|gif|ico|avif|ttf|otf|woff2?|glb|gltf|bin|hdr|exr|mp[34]|wav|ogg|webm|pdf|json|xml|txt|map)(?:\?|$)',re.I)
 MANIFEST=OUT/'manifest.json'

@@ -30,7 +30,7 @@ async function main() {
 
     await send('Page.enable');
     await send('Runtime.enable');
-    await send('Page.navigate', { url: 'https://sonsonmaisac.site/' });
+    await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/' });
 
     // Check at 400ms
     await new Promise(r => setTimeout(r, 1200));

@@ -1,7 +1,7 @@
 import urllib.request
 import os
 
-BASE_URL = 'https://sonsonmaisat.site'
+BASE_URL = 'https://son-son-mai-sac-orpin.vercel.app'
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
 
 css_files = [

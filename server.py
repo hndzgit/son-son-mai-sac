@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 MÁY CHỦ PHỤC VỤ NGUYÊN BẢN 1:1 SƠN SON MÀI SẮC
-Bản sao chuẩn xác 100% từ https://sonsonmaisat.site/
+Bản sao chuẩn xác 100% từ https://son-son-mai-sac-orpin.vercel.app/
 Hỗ trợ đầy đủ:
 - Tương tác 3D WebGL / Three.js Canvas
 - Hiệu ứng hoạt ảnh cuộn trang (Scroll Reveal data-reveal)
@@ -20,7 +20,7 @@ import sys
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_ROOT = BASE_DIR
 RSC_DIR = os.path.join(BASE_DIR, 'rsc_payloads')
-LIVE_FALLBACK_URL = "https://sonsonmaisac.site"
+LIVE_FALLBACK_URL = "https://son-son-mai-sac-orpin.vercel.app"
 
 # MIME types chuẩn
 mimetypes.add_type('model/gltf-binary', '.glb')

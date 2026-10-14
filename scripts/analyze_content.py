@@ -5,7 +5,7 @@ import json
 headers = {'User-Agent': 'Mozilla/5.0'}
 
 def analyze_chunk(name, path):
-    u = f'https://sonsonmaisat.site{path}'
+    u = f'https://son-son-mai-sac-orpin.vercel.app{path}'
     content = urllib.request.urlopen(urllib.request.Request(u, headers=headers)).read().decode('utf-8', errors='ignore')
     print(f"\n==================== {name} ({len(content)} bytes) ====================")
     # Search for vietnamese text or array definitions

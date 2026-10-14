@@ -5,7 +5,7 @@ routes = ['/ve-du-an', '/san-pham', '/tin-tuc-su-kien', '/cau-chuyen-son-mai', '
 headers = {'User-Agent': 'Mozilla/5.0'}
 
 for r in routes:
-    u = f'https://sonsonmaisat.site{r}'
+    u = f'https://son-son-mai-sac-orpin.vercel.app{r}'
     req = urllib.request.Request(u, headers=headers)
     html = urllib.request.urlopen(req).read().decode('utf-8', errors='ignore')
     # strip tags

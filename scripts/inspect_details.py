@@ -2,9 +2,9 @@ import urllib.request
 import re
 
 urls = [
-    'https://sonsonmaisat.site/_next/static/chunks/app/trai-nghiem/page-4cfd64a621149b8e.js',
-    'https://sonsonmaisat.site/_next/static/chunks/app/trai-nghiem/hanh-trinh/page-2c74554e92ef9036.js',
-    'https://sonsonmaisat.site/_next/static/chunks/app/tu-chinh/page-ad741d4479a4d65b.js'
+    'https://son-son-mai-sac-orpin.vercel.app/_next/static/chunks/app/trai-nghiem/page-4cfd64a621149b8e.js',
+    'https://son-son-mai-sac-orpin.vercel.app/_next/static/chunks/app/trai-nghiem/hanh-trinh/page-2c74554e92ef9036.js',
+    'https://son-son-mai-sac-orpin.vercel.app/_next/static/chunks/app/tu-chinh/page-ad741d4479a4d65b.js'
 ]
 
 headers = {'User-Agent': 'Mozilla/5.0'}

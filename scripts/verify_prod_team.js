@@ -44,7 +44,7 @@ async function capture() {
     await send('Page.enable');
     await send('Runtime.enable');
 
-    await send('Page.navigate', { url: 'https://sonsonmaisac.site/ve-du-an' });
+    await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/ve-du-an' });
     await new Promise(r => setTimeout(r, 3000));
 
     await send('Runtime.evaluate', {

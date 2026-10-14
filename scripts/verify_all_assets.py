@@ -4,7 +4,7 @@ import urllib.request
 import urllib.parse
 
 ROOT_DIR = os.path.abspath('kiem_tra_2026-10-12/ban_chup_goc')
-LIVE_BASE = 'https://sonsonmaisat.site'
+LIVE_BASE = 'https://son-son-mai-sac-orpin.vercel.app'
 
 assets_found = set()
 

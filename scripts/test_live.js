@@ -54,8 +54,8 @@ async function run() {
     await send('Runtime.enable');
     await send('Network.enable');
 
-    console.log('Navigating to https://sonsonmaisat.site/ ...');
-    await send('Page.navigate', { url: 'https://sonsonmaisat.site/' });
+    console.log('Navigating to https://son-son-mai-sac-orpin.vercel.app/ ...');
+    await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/' });
     await new Promise(r => setTimeout(r, 4000));
 
     await send('Runtime.evaluate', { expression: 'window.scrollTo(0, 1000)' });
@@ -84,8 +84,8 @@ async function run() {
     fs.writeFileSync(path.join(__dirname, 'screenshot_live_root.png'), Buffer.from(shot.data, 'base64'));
     console.log('Screenshot saved to screenshot_live_root.png');
 
-    console.log('\nNavigating to https://sonsonmaisat.site/trai-nghiem ...');
-    await send('Page.navigate', { url: 'https://sonsonmaisat.site/trai-nghiem' });
+    console.log('\nNavigating to https://son-son-mai-sac-orpin.vercel.app/trai-nghiem ...');
+    await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/trai-nghiem' });
     await new Promise(r => setTimeout(r, 4000));
 
     const tnResult = await send('Runtime.evaluate', {

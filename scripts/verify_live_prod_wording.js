@@ -39,7 +39,7 @@ async function run() {
       mobile: true
     });
 
-    await send('Page.navigate', { url: 'https://sonsonmaisac.site/kham-pha' });
+    await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/kham-pha' });
     await new Promise(r => setTimeout(r, 3500));
 
     // Scroll directly to the process section heading

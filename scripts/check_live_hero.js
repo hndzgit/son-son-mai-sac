@@ -43,7 +43,7 @@ async function checkLiveHero() {
   await send('Page.enable');
   await send('Runtime.enable');
 
-  await send('Page.navigate', { url: 'https://sonsonmaisac.site/ve-du-an#son-son-mai-sac' });
+  await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/ve-du-an#son-son-mai-sac' });
   await new Promise(r => setTimeout(r, 3000));
 
   const check = await send('Runtime.evaluate', {

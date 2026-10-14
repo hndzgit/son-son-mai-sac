@@ -10,7 +10,7 @@ tech_deep_dive = {
         "framework": "Next.js 14+ (App Router)",
         "runtime": "React 18 / Node.js Vercel Edge Runtime",
         "hosting": "Vercel Deployment (dpl_6jQJ65uT65LPuzwTmJiqFs1xmLmA)",
-        "ten_mien_chinh": "https://sonsonmaisat.site/",
+        "ten_mien_chinh": "https://son-son-mai-sac-orpin.vercel.app/",
         "ten_mien_phu": "https://son-son-mai-sac-storytelling.vercel.app/",
         "thu_vien_do_hoa": ["Three.js (r128+)", "HTML5 Canvas 2D Dual-Buffer", "SVG Vector Filtering", "CSS Sub-pixel Animation"],
         "quan_ly_trang_thai": ["React Hooks (useState, useEffect, useRef, useMemo)", "HTML5 LocalStorage API", "HTML5 Custom Event Dispatcher"],

@@ -40,8 +40,8 @@ async function run() {
     await send('Page.navigate', { url: 'http://localhost:3000/cau-chuyen-son-mai' });
     await new Promise(r => setTimeout(r, 4000));
 
-    console.log('\nNow checking live https://sonsonmaisat.site/cau-chuyen-son-mai ...');
-    await send('Page.navigate', { url: 'https://sonsonmaisat.site/cau-chuyen-son-mai' });
+    console.log('\nNow checking live https://son-son-mai-sac-orpin.vercel.app/cau-chuyen-son-mai ...');
+    await send('Page.navigate', { url: 'https://son-son-mai-sac-orpin.vercel.app/cau-chuyen-son-mai' });
     await new Promise(r => setTimeout(r, 4000));
 
   } finally {

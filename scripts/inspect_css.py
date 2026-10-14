@@ -17,7 +17,7 @@ headers = {'User-Agent': 'Mozilla/5.0'}
 urls_in_css = set()
 
 for c in css_files:
-    u = f'https://sonsonmaisat.site{c}'
+    u = f'https://son-son-mai-sac-orpin.vercel.app{c}'
     try:
         req = urllib.request.Request(u, headers=headers)
         content = urllib.request.urlopen(req).read().decode('utf-8', errors='ignore')
