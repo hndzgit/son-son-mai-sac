@@ -1688,44 +1688,83 @@ html {
   }
 }
 
-/* Nút gộp ở dưới 5 chặng: Căn giữa 100% */
+/* Nút gộp ở dưới 5 chặng: Căn giữa 100% với khoảng cách dưới hợp lý */
 .coreIntroduction_processMoreWrap {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   width: 100% !important;
   max-width: 1440px !important;
-  margin: 32px auto 0 auto !important;
+  margin: 32px auto 40px auto !important;
 }
 
 /* 6. Section 3: Giới thiệu các lớp sơn (#gioi-thieu) */
 .core-v4-concept,
 .coreIntroduction_layersSection__G7C0S {
-  padding: clamp(50px, 6vw, 90px) clamp(20px, 3.5vw, 48px) !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.core-v4-concept > div,
-.coreIntroduction_layersSection__G7C0S > div {
+  padding: clamp(60px, 7vw, 100px) clamp(20px, 3.5vw, 48px) !important;
   max-width: 1440px !important;
   margin-left: auto !important;
   margin-right: auto !important;
   box-sizing: border-box !important;
+  scroll-margin-top: 96px !important;
+}
+
+/* Thẻ chất liệu Section 3: luôn trải rộng 100% cột grid, không bị co rút */
+.core-v4-concept .materialGallery_cards__zJgmU,
+.coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  justify-self: stretch !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f,
+.coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f {
+  flex: 1 1 0px !important;
+  min-width: 60px !important;
+}
+
+.core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f[data-active="true"],
+.coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f[aria-pressed="true"] {
+  flex: 1.8 1 0px !important;
+  min-width: 150px !important;
 }
 
 /* 7. Section 4: Chạm vào lớp sắc (#cham-vao-lop-sac) */
 .homeSurfaceExperience_section__TQv2Q {
-  padding: 48px clamp(20px, 3.5vw, 48px) !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.homeSurfaceExperience_section__TQv2Q > * {
+  padding: 60px clamp(20px, 3.5vw, 48px) !important;
   max-width: 1440px !important;
   margin-left: auto !important;
   margin-right: auto !important;
   box-sizing: border-box !important;
+  scroll-margin-top: 96px !important;
+}
+
+.homeSurfaceExperience_section__TQv2Q > * {
+  max-width: 100% !important;
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  justify-self: stretch !important;
+}
+
+.homeSurfaceExperience_viewer__Afl_z {
+  width: 100% !important;
+  min-width: 0 !important;
+  position: relative !important;
+}
+
+.homeSurfaceExperience_viewer__Afl_z .lacquer-surface-live {
+  width: 100% !important;
+}
+
+.homeSurfaceExperience_viewer__Afl_z canvas {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* 8. Footer: Căn giữa đối xứng chuẩn 1440px */
