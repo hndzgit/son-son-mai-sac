@@ -1,0 +1,1 @@
+#define gl_FragDepthEXT gl_FragDepth

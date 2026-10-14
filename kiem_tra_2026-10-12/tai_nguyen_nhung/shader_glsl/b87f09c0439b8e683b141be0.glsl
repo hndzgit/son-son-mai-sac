@@ -1,0 +1,1 @@
+#ifdef USE_INSTANCING_COLOR

@@ -1,0 +1,30 @@
+{
+  "tieu_de": "Chuyên Luận Nghiên Cứu Văn Hóa: Lịch Sử, Kỹ Nghệ Và Triết Lý Thẩm Mỹ Sơn Mài Việt Nam",
+  "cay_son_ta": {
+    "ten_khoa_hoc": "Toxicodendron succedaneum (trước đây là Rhus succedanea)",
+    "vung_trong": "Vùng gò đồi trung du tỉnh Phú Thọ (Tam Nông, Cẩm Khê, Thanh Ba)",
+    "co_che_dong_ket_hoa_hoc": "Nhựa sơn ta không khô bằng cách bay hơi dung môi như sơn công nghiệp. Nó đóng rắn nhờ quá trình polyme hóa sinh hóa do enzyme laccase kích hoạt trong điều kiện độ ẩm cao (75–85% RH) và nhiệt độ 25–30°C. Đây là lý do người thợ phải 'ủ sơn' trong buồng kín ẩm."
+  },
+  "lang_nghe_ha_thai": {
+    "vi_tri": "Xã Duyên Thái, huyện Thường Tín, TP. Hà Nội",
+    "lich_su": "Làng nghề thủ công hơn 200 năm tuổi, ban đầu chuyên sơn son thếp vàng cho tượng phật, hoành phi câu đối đình chùa, sau trở thành cái nôi kỹ thuật cung cấp nghệ nhân và vóc cho các họa sĩ trường Mỹ thuật Đông Dương."
+  },
+  "buoc_ngoat_my_thuat_dong_duong_1925": {
+    "su_kien": "Năm 1925, Trường Mỹ thuật Đông Dương được thành lập tại Hà Nội dưới sự dẫn dắt của Victor Tardieu và Joseph Inguimberty.",
+    "dot_pha": "Họa sĩ Inguimberty khuyến khích sinh viên Việt Nam đưa chất liệu sơn ta vào hội họa giá vẽ. Các họa sĩ như Trần Văn Cẩn, Phạm Hậu, Nguyễn Khang và đặc biệt là Nguyễn Gia Trí đã phát minh ra kỹ thuật 'mài nước', biến chất liệu trang trí thủ công thành ngôn ngữ hội họa sơn mài độc nhất vô nhị trên thế giới."
+  },
+  "cac_tac_pham_kinh_dien": [
+    {
+      "tac_pham": "Phong cảnh chùa cổ ở Bắc Bộ (1934)",
+      "tac_gia": "Nguyễn Gia Trí",
+      "quy_mo": "Bộ 6 tấm vóc liên hoàn (104cm x 34cm mỗi tấm)",
+      "gia_tri": "Tác phẩm đặt nền móng khẳng định sơn mài có thể diễn tả chiều sâu không gian, ánh sáng và tâm linh không thua kém sơn dầu phương Tây."
+    },
+    {
+      "tac_pham": "Vườn xuân Trung Nam Bắc",
+      "tac_gia": "Nguyễn Gia Trí",
+      "gia_tri": "Bảo vật quốc gia Việt Nam, kết tinh hơn 20 năm lao động nghệ thuật với hàng trăm lớp màu, vàng quỳ, vỏ trứng được mài đan xen tinh diệu."
+    }
+  ],
+  "triet_ly_mai": "Phủ lên để rồi mài đi. Trong hội họa phương Tây, họa sĩ vẽ thêm nét vào tranh. Trong sơn mài Việt Nam, người nghệ sĩ phủ kín rồi dùng nước mài đi từng chút một. Quá khứ của các lớp sơn bên dưới được hé lộ dần. Đó là vẻ đẹp của sự nhẫn nại, của thời gian và sự kỳ diệu không thể đoán trước hoàn toàn."
+}

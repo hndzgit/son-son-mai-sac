@@ -1,0 +1,1 @@
+THREE.WebGLRenderer: Unsupported uniform value type.

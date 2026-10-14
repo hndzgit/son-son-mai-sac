@@ -1,0 +1,38 @@
+{
+  "id": "son-mai-la-gi",
+  "title": "Sơn mài là gì?",
+  "subtitle": "Một tác phẩm sơn mài được tạo nên từ cả quá trình phủ lên và mài đi.",
+  "intro": "Trong sơn mài, vẻ đẹp không chỉ nằm trên bề mặt mà được hình thành qua nhiều lớp sơn, màu sắc và vật liệu khác nhau. Các lớp ấy được phủ chồng lên nhau, sau đó người làm nghề dùng kỹ thuật mài để từng phần bên dưới dần hiện ra. Chính sự đan xen giữa phủ – mài – hé lộ tạo nên chiều sâu, sắc độ và vẻ đẹp đặc trưng của bề mặt sơn mài.",
+  "artwork": {
+    "title": "Kiệt tác tranh sơn mài truyền thống",
+    "image": "/story-assets/hero-kham-pha-painting.webp",
+    "caption": "Tác phẩm sơn mài kinh điển trong khung son thếp vàng"
+  },
+  "sections": [
+    {
+      "id": "vi-sao-son-mai",
+      "heading": "Vì sao lại là “sơn mài”?",
+      "icon": "brush",
+      "paragraphs": [
+        "Bởi có những thứ chỉ xuất hiện sau khi được mài đi. Trong quá trình tạo tác, màu sắc và vật liệu có thể được đặt ở những độ sâu khác nhau rồi tiếp tục được phủ bằng các lớp sơn phía trên.",
+        "Khi bề mặt đã đạt điều kiện phù hợp, người thợ mài cùng nước, từng chút một. Mài quá ít, lớp bên dưới chưa xuất hiện; mài quá sâu, chi tiết đã tạo trước đó có thể bị ảnh hưởng.",
+        "Qua mỗi lần mài, những lớp từng bị che khuất dần lộ ra: một mảng màu, một ánh vàng, một lớp vỏ trứng hay dấu vết của những công đoạn trước đó. Mài vì thế không chỉ làm phẳng bề mặt. Nó còn tham gia vào việc tạo nên hình ảnh cuối cùng."
+      ],
+      "image": "/story-assets/son-mai-la-gi-1.webp",
+      "imageAlt": "Kỹ thuật mài nước thủ công trong nghệ thuật sơn mài",
+      "source": "artnam"
+    },
+    {
+      "id": "tu-mot-giot-son-ta",
+      "heading": "Từ một giọt sơn ta",
+      "icon": "leaf",
+      "paragraphs": [
+        "Trước khi trở thành một lớp sơn, nó bắt đầu từ nhựa cây. Một trong những chất liệu quan trọng của sơn mài truyền thống Việt Nam là sơn ta – nhựa được khai thác từ cây sơn, một loại cây được trồng lâu đời tại vùng trung du Bắc Bộ, trong đó Phú Thọ là vùng nổi tiếng với nghề trồng và khai thác sơn.",
+        "Sau khi được khai thác và chế biến, sơn ta được sử dụng trong nhiều công đoạn: làm vóc, gắn kết vật liệu, phủ các lớp sơn và hoàn thiện bề mặt. Từ một chất liệu tự nhiên, người thợ tạo nên những lớp sơn có khả năng kết nối với nhau qua cả một quá trình dài."
+      ],
+      "image": "/story-assets/son-mai-la-gi-2.webp",
+      "imageAlt": "Thu hoạch nhựa sơn ta truyền thống tại Phú Thọ",
+      "source": "nongsandienbien"
+    }
+  ]
+}

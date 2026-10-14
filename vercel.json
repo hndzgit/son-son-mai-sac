@@ -1,0 +1,183 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/rsc_payloads/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/x-component; charset=utf-8"
+        },
+        {
+          "key": "Vary",
+          "value": "RSC, Next-Router-State-Tree, Next-Router-Prefetch"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/models/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "model/gltf-binary"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/api/news",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/api/son-mai-la-gi",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/root.rsc"
+    },
+    {
+      "source": "/kham-pha",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/kham-pha.rsc"
+    },
+    {
+      "source": "/cau-chuyen-son-mai",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/cau-chuyen-son-mai.rsc"
+    },
+    {
+      "source": "/cau-chuyen-son-mai/bai-viet",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/cau-chuyen-son-mai.rsc"
+    },
+    {
+      "source": "/cau-chuyen-son-mai/bai-viet/(.*)",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/cau-chuyen-son-mai.rsc"
+    },
+    {
+      "source": "/tin-tuc-su-kien",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/tin-tuc-su-kien.rsc"
+    },
+    {
+      "source": "/ve-du-an",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/ve-du-an.rsc"
+    },
+    {
+      "source": "/san-pham",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/san-pham.rsc"
+    },
+    {
+      "source": "/trai-nghiem",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/trai-nghiem.rsc"
+    },
+    {
+      "source": "/trai-nghiem/hanh-trinh",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/trai-nghiem/hanh-trinh.rsc"
+    },
+    {
+      "source": "/tu-chinh",
+      "has": [
+        {
+          "type": "query",
+          "key": "_rsc"
+        }
+      ],
+      "destination": "/rsc_payloads/tu-chinh.rsc"
+    },
+    {
+      "source": "/son-mai-la-gi",
+      "destination": "/son-mai-la-gi/index.html"
+    },
+    {
+      "source": "/apple-touch-icon-precomposed.png",
+      "destination": "/apple-touch-icon.png"
+    }
+  ]
+}

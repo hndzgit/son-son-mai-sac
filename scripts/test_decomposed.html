@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face {
+  font-family: "Project Display";
+  src: url(/story-assets/PlayfairDisplay-Full.ttf) format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+}
+body { font-family: "Project Display"; font-size: 48px; font-weight: 600; padding: 30px; }
+</style>
+</head>
+<body>
+<div>Precomposed: QUA TỪNG LỚP, VẺ ĐẸP DẦN HIỆN RA.</div>
+<div id="decomp"></div>
+<script>
+document.getElementById('decomp').innerText = "Decomposed: " + "QUA TỪNG LỚP, VẺ ĐẸP DẦN HIỆN RA.".normalize('NFD');
+</script>
+</body>
+</html>

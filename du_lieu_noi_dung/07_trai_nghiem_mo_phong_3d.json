@@ -1,0 +1,131 @@
+{
+  "tieu_de": "Trải Nghiệm Bề Mặt Sơn Mài & Mô Phỏng Tạo Tác 3D",
+  "trang_lien_quan": [
+    "/trai-nghiem",
+    "/trai-nghiem/hanh-trinh",
+    "/tu-chinh"
+  ],
+  "quy_trinh_mo_phong_hanh_trinh": [
+    {
+      "buoc": 1,
+      "ten_buoc": "Chọn cốt",
+      "cac_lua_chon": [
+        {
+          "loai": "Gỗ tự nhiên",
+          "bieu_tuong": "/story-assets/raw-wood-grain-v1.webp"
+        },
+        {
+          "loai": "Tre ép",
+          "bieu_tuong": "/story-assets/core-bamboo.svg"
+        },
+        {
+          "loai": "Gốm sứ",
+          "bieu_tuong": "/story-assets/core-ceramic.svg"
+        },
+        {
+          "loai": "Composite",
+          "bieu_tuong": "/story-assets/core-composite.svg"
+        },
+        {
+          "loai": "MDF",
+          "bieu_tuong": "/story-assets/core-mdf.svg"
+        }
+      ],
+      "y_nghia": "Cốt là khung xương nền tảng tạo hình cho sản phẩm."
+    },
+    {
+      "buoc": 2,
+      "ten_buoc": "Làm vóc & Sơn lót",
+      "thao_tac": "Dán bồi vải màn (cotton scrim), phủ các lớp sơn lót và ủ ẩm",
+      "tai_nguyen": "/story-assets/cotton-scrim.svg"
+    },
+    {
+      "buoc": 3,
+      "ten_buoc": "Phủ sơn nền",
+      "thao_tac": "Lựa chọn tông màu sơn then (đen huyền bí), sơn đỏ son hoặc cánh gián",
+      "tai_nguyen": "/story-assets/mat-pigment.jpg"
+    },
+    {
+      "buoc": 4,
+      "ten_buoc": "Tạo hình và trang trí",
+      "thao_tac": "Áp khuôn họa tiết sen, gắn mảnh vỏ trứng, dán vàng quỳ/bạc quỳ hoặc cẩn xà cừ",
+      "tai_nguyen": [
+        "/story-assets/lotus-inlay-stencil-v6.webp",
+        "/story-assets/journey-lotus-stencil-v8.webp",
+        "/story-assets/geometric-inlay-stencil-v7.webp",
+        "/story-assets/foliage-inlay-stencil-v7.webp",
+        "/textures/eggshell_crackle.svg",
+        "/textures/gold_leaf_texture.svg",
+        "/story-assets/mat-gold.jpg",
+        "/story-assets/mat-silver.jpg",
+        "/story-assets/mat-egg.jpg",
+        "/story-assets/mat-pearl.jpg",
+        "/story-assets/mat-shell.jpg"
+      ]
+    },
+    {
+      "buoc": 5,
+      "ten_buoc": "Phủ sơn bảo vệ & Mài nước lộ lớp",
+      "thao_tac": "Phủ sơn trong suốt bảo vệ, mài nước nhiều cấp độ để lộ các lớp trang trí ẩn giấu và đánh bóng gương"
+    }
+  ],
+  "trinh_chinh_sua_mat_hop_face_engraving": {
+    "ten": "Face Engraving Editor (Trình vẽ & khắc họa tiết mặt hộp)",
+    "chuc_nang": [
+      "Vẽ họa tiết thủ công lên từng mặt phẳng của hộp sơn mài",
+      "Tùy chỉnh chất liệu cọ vẽ: vàng quỳ, vỏ trứng, bạc quỳ",
+      "Điều chỉnh độ dày nét cọ và độ bóng (gloss) của bề mặt",
+      "Áp dụng họa tiết lên các mặt hộp và lưu trạng thái (ssms-applied-faces-v1)",
+      "Xem trước kết quả dưới dạng 3D đa góc xoay"
+    ]
+  },
+  "khuyen_cao_chung": "Mô phỏng tương tác để giải thích nguyên lý · Không thay thế hướng dẫn của nghệ nhân và không phải công thức sản xuất thực tế.",
+  "huong_dan_hanh_trinh": "Chọn nền, chất liệu, bố cục, lớp phủ và mức độ mài để tạo một bề mặt sơn mài minh họa (khoảng 3–5 phút).",
+  "huong_dan_tu_chinh": "Chọn dáng hộp, khay hoặc tranh cùng vật liệu cốt để bắt đầu. Chọn màu nền, hoa văn và chất liệu. Xem mẫu thay đổi trực tiếp rồi lưu lựa chọn ngay trên thiết bị.",
+  "ban_mau_khoi_tao": [
+    {
+      "ten": "Hoa sen · cánh gián",
+      "mo_ta": "Họa tiết hoa sen thanh tao trên nền sơn màu cánh gián truyền thống"
+    },
+    {
+      "ten": "Sóng nước · đen then",
+      "mo_ta": "Họa tiết sóng thủy ba uyển chuyển trên nền sơn then đen sâu thẳm"
+    },
+    {
+      "ten": "Tự do · đỏ son",
+      "mo_ta": "Sáng tạo tự do với sắc đỏ son rực rỡ và các chất liệu khảm"
+    }
+  ],
+  "tien_trinh_xuong_son_mai_5_chang": [
+    {
+      "so": "01",
+      "ten": "CHUẨN BỊ CỐT",
+      "mo_ta": "Dáng và vật liệu",
+      "ghi_chu": "Chọn dáng hộp, khay hoặc tranh cùng vật liệu chịu lực trước khi tạo các lớp vóc."
+    },
+    {
+      "so": "02",
+      "ten": "LÀM VÓC",
+      "mo_ta": "Gia cố, hom và làm phẳng",
+      "ghi_chu": "Bó hom phù sa, bồi vải màn gia cường và mài phẳng mặt nền."
+    },
+    {
+      "so": "03",
+      "ten": "SƠN NỀN",
+      "mo_ta": "Chọn sắc nền",
+      "ghi_chu": "Phủ lớp sơn nền then đen, đỏ son hoặc cánh gián và ủ ẩm."
+    },
+    {
+      "so": "04",
+      "ten": "TẠO HÌNH VÀ TRANG TRÍ",
+      "mo_ta": "Chọn mặt và đặt họa tiết",
+      "ghi_chu": "Áp khuôn hoa văn, cẩn vỏ trứng, thếp vàng quỳ hoặc vẽ màu."
+    },
+    {
+      "so": "05",
+      "ten": "PHỦ, MÀI VÀ HOÀN THIỆN",
+      "mo_ta": "Phủ lớp, mài, đánh bóng",
+      "ghi_chu": "Phủ sơn bảo vệ, mài nước hé lộ các lớp ẩn và đánh bóng gương."
+    }
+  ]
+}

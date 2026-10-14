@@ -1,0 +1,1 @@
+#define CUBEUV_TEXEL_HEIGHT 

@@ -1,0 +1,2 @@
+
+#define HIGH_PRECISION

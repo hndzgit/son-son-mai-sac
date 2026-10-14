@@ -1,0 +1,1 @@
+#define gl_FragColor pc_fragColor

@@ -1,0 +1,1 @@
+#if defined( USE_COLOR_ALPHA )

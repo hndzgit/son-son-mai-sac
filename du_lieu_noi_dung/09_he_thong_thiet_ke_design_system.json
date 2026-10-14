@@ -1,0 +1,45 @@
+{
+  "tieu_de": "Hệ Thống Thiết Kế (Design System) & Design Tokens Sơn Son Mài Sắc",
+  "bang_mau_tokens": {
+    "son_then_den": {
+      "token": "--color-black-lacquer",
+      "hex": "#0f0000",
+      "y_nghia": "Sắc đen tuyền sâu thẳm của sơn then ủ lâu năm"
+    },
+    "do_son": {
+      "token": "--color-vermilion",
+      "hex": "#912723 / var(--red)",
+      "y_nghia": "Sắc đỏ son cổ truyền trong mỹ thuật đình chùa"
+    },
+    "vang_quy": {
+      "token": "--color-gold",
+      "hex": "#deb85a / #ffbb10",
+      "y_nghia": "Ánh kim ấm áp biến đổi theo góc nhìn của vàng quỳ thếp"
+    },
+    "vo_trung_ran": {
+      "token": "--color-eggshell-white",
+      "hex": "#ebeae9 / #f4e8c6",
+      "y_nghia": "Sắc trắng ngà rạn nứt tự nhiên của vỏ trứng vịt/gà"
+    },
+    "xa_cu_ngu_sac": {
+      "token": "--color-mother-of-pearl",
+      "hex": "#ddbfab",
+      "y_nghia": "Ánh xà cừ óng ánh chuyển sắc theo hướng sáng"
+    },
+    "canh_gian": {
+      "token": "--color-lacquer-brown",
+      "hex": "#6c3b20",
+      "y_nghia": "Màu cánh gián nấu dầu trẩu hổ phách trong suốt"
+    },
+    "nen_the_card": {
+      "token": "--color-surface-card",
+      "hex": "#1a0a0a",
+      "y_nghia": "Nền khối giao diện tối làm nổi bật các tác phẩm nghệ thuật"
+    }
+  },
+  "typography": {
+    "font_tieu_de": "Playfair Display / Noto Serif (Serif truyền thống, sang trọng, mang phong vị di sản mỹ thuật)",
+    "font_noi_dung": "Inter (Sans-serif hiện đại, tối ưu khả năng đọc trên màn hình số độ phân giải cao)"
+  },
+  "hieu_ung_hat_nham_texture_noise": "Sử dụng bộ lọc SVG fractal noise (feTurbulence baseFrequency='.84' numOctaves='3') để tạo bề mặt hạt li ti mô phỏng cấu trúc chất liệu sơn ta truyền thống."
+}

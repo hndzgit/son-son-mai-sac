@@ -1,0 +1,124 @@
+{
+  "tieu_de": "Tìm một tác phẩm sơn mài | Sơn Son Mài Sắc",
+  "loi_dan": "Mang câu chuyện di sản phù hợp với bạn.",
+  "danh_sach_san_pham": [
+    {
+      "id": "box-lotus",
+      "ten": "Hộp hoa sen",
+      "phan_loai": "Hộp",
+      "mau_nen": "Cánh gián",
+      "hoa_van": "Hoa sen",
+      "nghe_nhan": "Chưa có thông tin nghệ nhân",
+      "chat_lieu": [
+        "Vàng",
+        "Vỏ trứng"
+      ],
+      "cong_nang": "Lưu giữ",
+      "hinh_anh": "/story-assets/finder-box-v5.webp",
+      "ghi_chu": "Mẫu hình ảnh · hoa sen trên nền sơn tối",
+      "bo_anh_xoay_360": [
+        "/story-assets/box-1.jpg",
+        "/story-assets/box-5.jpg",
+        "/story-assets/box-6.jpg",
+        "/story-assets/box-7.jpg",
+        "/story-assets/box-8.jpg",
+        "/story-assets/box-12.jpg",
+        "/story-assets/box-14.jpg",
+        "/story-assets/box-15.jpg",
+        "/story-assets/box-16.jpg",
+        "/story-assets/box-17.jpg",
+        "/story-assets/box-18.jpg",
+        "/story-assets/box-19.jpg",
+        "/story-assets/box-20.jpg",
+        "/story-assets/box-21.jpg",
+        "/story-assets/box-22.jpg",
+        "/story-assets/box-23.jpg"
+      ]
+    },
+    {
+      "id": "box-blank",
+      "ten": "Hộp cốt · lớp sơn tối",
+      "phan_loai": "Hộp",
+      "mau_nen": "Đen then",
+      "hoa_van": "Thêm",
+      "nghe_nhan": "Chưa có thông tin nghệ nhân",
+      "chat_lieu": [
+        "Lớp nền"
+      ],
+      "cong_nang": "Lưu giữ",
+      "hinh_anh": "/story-assets/craft-blank-lacquer-generated.webp",
+      "ghi_chu": "Mẫu hình ảnh · bề mặt sơn mài trơn"
+    },
+    {
+      "id": "tray-lotus",
+      "ten": "Khay hoa sen",
+      "phan_loai": "Khay",
+      "mau_nen": "Đỏ son",
+      "hoa_van": "Hoa sen",
+      "nghe_nhan": "Chưa có thông tin nghệ nhân",
+      "chat_lieu": [
+        "Vàng",
+        "Vỏ trứng"
+      ],
+      "cong_nang": "Bày vật phẩm",
+      "hinh_anh": "/story-assets/hero-objects-generated.webp",
+      "ghi_chu": "Mẫu minh họa · khay hoa sen"
+    },
+    {
+      "id": "picture-lotus",
+      "ten": "Tranh hoa sen",
+      "phan_loai": "Tranh",
+      "mau_nen": "Đỏ son",
+      "hoa_van": "Hoa sen",
+      "nghe_nhan": "Chưa có thông tin nghệ nhân",
+      "chat_lieu": [
+        "Vàng",
+        "Vỏ trứng"
+      ],
+      "cong_nang": "Trưng bày",
+      "hinh_anh": "/story-assets/hero-objects-generated.webp",
+      "ghi_chu": "Mẫu minh họa · tranh hoa sen"
+    }
+  ],
+  "tuy_bien_ban_phoi_ca_nhan": {
+    "mau_nen_chon": [
+      "Đỏ son",
+      "Cánh gián",
+      "Đen then (#1a1010)"
+    ],
+    "hoa_van_chon": [
+      "Hoa sen",
+      "Hoa lá",
+      "Kỷ hà",
+      "Thêm (vẽ tự do)"
+    ],
+    "chat_lieu_can_chon": [
+      "Vỏ trứng",
+      "Vàng quỳ",
+      "Xà cừ",
+      "Lớp nền"
+    ],
+    "kich_co": [
+      "Nhỏ",
+      "Trung",
+      "Lớn"
+    ],
+    "kieu_vien": [
+      "Viền kép",
+      "Viền kỷ hà",
+      "Viền chấm",
+      "Không viền"
+    ],
+    "khac_ten_chu": {
+      "gioi_han": "Tối đa 18 ký tự",
+      "vi_tri": [
+        "Mặt hộp (top)",
+        "Trung tâm (center)"
+      ]
+    },
+    "xuat_ban_phoi": "Tải ảnh bản phối về thiết bị (lop-sac-cua-ban.png) và lưu trữ cục bộ (ssms-custom-design-v1)"
+  },
+  "huong_dan_xem": "Kéo trên mô hình hoặc dùng phím mũi tên để xem nhiều góc. Đây là mẫu minh họa; thông tin nghệ nhân và chất liệu thực tế chưa được xác nhận.",
+  "khuyen_cao_ban_phoi": "Bản phối là hình mô phỏng theo lựa chọn, chưa phải đơn đặt hàng hay xác nhận chế tác.",
+  "huong_dan_tuong_tac": "Kéo để xoay · Dùng thanh trượt để thu phóng hoặc dùng phím mũi tên."
+}

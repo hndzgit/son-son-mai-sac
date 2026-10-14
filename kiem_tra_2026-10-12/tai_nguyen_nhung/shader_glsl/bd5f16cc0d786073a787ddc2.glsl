@@ -1,0 +1,1 @@
+#define ANISOTROPYMAP_UV 

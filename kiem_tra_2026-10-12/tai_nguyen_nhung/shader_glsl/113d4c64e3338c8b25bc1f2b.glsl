@@ -1,0 +1,1 @@
+	attribute vec2 uv2;

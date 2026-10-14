@@ -1,0 +1,1 @@
+#define SPECULAR_COLORMAP_UV 

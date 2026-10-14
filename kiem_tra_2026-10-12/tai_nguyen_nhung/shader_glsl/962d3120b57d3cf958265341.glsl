@@ -1,0 +1,1 @@
+#define FOG_EXP2

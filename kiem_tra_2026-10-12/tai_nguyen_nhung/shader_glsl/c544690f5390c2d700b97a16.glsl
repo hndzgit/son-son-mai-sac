@@ -1,0 +1,1 @@
+#define SHEEN_COLORMAP_UV 

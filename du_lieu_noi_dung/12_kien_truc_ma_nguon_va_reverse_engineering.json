@@ -1,0 +1,99 @@
+{
+  "tieu_de": "Báo Cáo Reverse Engineering: Bản Đồ Mô-đun, Cấu Trúc Thành Phần React & Cơ Chế Hydration Next.js",
+  "thong_tin_build": {
+    "framework": "Next.js 14+ App Router",
+    "build_id": "_w6excJGTCRbJVHnNuGcc",
+    "deployment_id": "dpl_6jQJ65uT65LPuzwTmJiqFs1xmLmA",
+    "tong_so_chunks_js": 28,
+    "tong_so_stylesheets_css": 9
+  },
+  "danh_sach_chunks_chinh": {
+    "webpack-f57e898f0a30f96c.js": "Webpack Runtime Loader & dynamic chunk resolver (.u mapping)",
+    "main-app-9f81c5509794c70d.js": "App Router Bootstrapper",
+    "polyfills-42372ed130431b0a.js": "ES2022+ Standard Polyfills",
+    "2c7bdfb3.9270a99e55a10c68.js": "Three.js core runtime (544 KB)",
+    "648.013156edff3e7a3c.js": "3D Lacquer Studio Engine, GLSL Shader & Web Audio Synthesizer (46.4 KB)",
+    "761.4f4cbe31c8981f4a.js": "Studio UI Controllers, Audio Toggles & Vector Tools (46.8 KB)",
+    "840-f19fdd306966b2e5.js": "Personalization Page, Product Finder & Face Engraving Editor (63.2 KB)",
+    "369-2063549c42145b16.js": "Materials Atlas Macro Viewer & Home Journey Slider (11.8 KB)",
+    "498-9c99f7a25e206a4c.js": "Client Router Context & Navigation Primitives (26 KB)",
+    "945-9b486e563304ccbb.js": "React DOM Server Hydration Runtime (124 KB)"
+  },
+  "cau_truc_cay_component_reconstructed": {
+    "RootLayout": {
+      "file": "app/layout.tsx",
+      "components": [
+        "HeaderNavigation",
+        "MainContent",
+        "Footer"
+      ]
+    },
+    "HomePage": {
+      "file": "app/page.tsx",
+      "components": [
+        "HeroCover",
+        "LacquerDefinition",
+        "InteractiveMacroMaterials",
+        "FiveStagesOverview",
+        "StoryCallout"
+      ]
+    },
+    "DiscoveryPage": {
+      "file": "app/kham-pha/page.tsx",
+      "components": [
+        "CraftStageSection (1..5)",
+        "SubstrateComparator",
+        "NaturalLacquerBio",
+        "AudioVisualStory"
+      ]
+    },
+    "StoryPage": {
+      "file": "app/cau-chuyen-son-mai/page.tsx",
+      "components": [
+        "TimelineNavigation",
+        "EraDetailsRenderer",
+        "ArtisanInterviews",
+        "HeritageArticlesGrid"
+      ]
+    },
+    "StudioPage": {
+      "file": "app/tu-chinh/page.tsx",
+      "components": [
+        "PersonalizationPage",
+        "FaceEngravingEditor",
+        "Box3DViewer (chunk 648)",
+        "BrushControls",
+        "MaterialSelector"
+      ]
+    },
+    "JourneyPage": {
+      "file": "app/trai-nghiem/hanh-trinh/page.tsx",
+      "components": [
+        "EightStepJourneyStateMachine",
+        "CanvasDualBufferSimulator",
+        "WaterSandingEvaluator",
+        "PolishSlider"
+      ]
+    },
+    "ProductFinderPage": {
+      "file": "app/san-pham/page.tsx",
+      "components": [
+        "ProductFinder",
+        "OpticalRotator360",
+        "MultiFilterBar",
+        "DirectCustomizerLink"
+      ]
+    }
+  },
+  "luoc_do_du_lieu_local_storage": {
+    "key": "ssms-applied-faces-v1",
+    "cau_truc": {
+      "top": "Base64 PNG Artwork",
+      "bottom": "Base64 PNG Artwork",
+      "left": "Base64 PNG Artwork",
+      "right": "Base64 PNG Artwork",
+      "front": "Base64 PNG Artwork",
+      "back": "Base64 PNG Artwork"
+    }
+  }
+}

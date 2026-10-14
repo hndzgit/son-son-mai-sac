@@ -1,0 +1,1 @@
+#define SPECULARMAP_UV 

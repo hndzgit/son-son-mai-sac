@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sơn Son Mài Sắc · Xưởng Mô Phỏng 3D Sơn Mài Tương Tác</title>
+  <style>
+    :root {
+      --bg-dark: #0a0606;
+      --bg-surface: #140b0b;
+      --bg-panel: rgba(26, 14, 14, 0.9);
+      --border-panel: rgba(222, 184, 90, 0.25);
+      --gold: #deb85a;
+      --gold-bright: #ffbb10;
+      --vermilion: #912723;
+      --vermilion-glow: rgba(145, 39, 35, 0.4);
+      --lacquer-brown: #572719;
+      --eggshell: #ebeae9;
+      --text-main: #f5ede6;
+      --text-muted: #a69288;
+      --accent-glow: 0 0 20px rgba(222, 184, 90, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP HEADER */
+    header {
+      height: 64px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(20, 11, 11, 0.98) 0%, rgba(10, 6, 6, 0.88) 100%);
+      border-bottom: 1px solid var(--border-panel);
+      z-index: 20;
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand img {
+      height: 38px;
+      object-fit: contain;
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      background: rgba(222, 184, 90, 0.1);
+      border: 1px solid var(--border-panel);
+      color: var(--gold);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .btn:hover {
+      background: rgba(222, 184, 90, 0.25);
+      border-color: var(--gold);
+      box-shadow: var(--accent-glow);
+    }
+    .btn.active {
+      background: var(--gold);
+      color: #000;
+      font-weight: 600;
+    }
+    .btn-danger {
+      border-color: rgba(145, 39, 35, 0.5);
+      color: #ff7875;
+      background: rgba(145, 39, 35, 0.15);
+    }
+    .btn-danger:hover {
+      background: rgba(145, 39, 35, 0.35);
+      border-color: #ff4d4f;
+    }
+
+    /* MAIN WORKSPACE */
+    .workspace {
+      flex: 1;
+      display: flex;
+      position: relative;
+      height: calc(100vh - 64px);
+    }
+
+    /* 3D VIEWPORT */
+    #viewport-container {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at center, #1f1111 0%, #080404 85%);
+      cursor: grab;
+      overflow: hidden;
+    }
+    #viewport-container:active {
+      cursor: grabbing;
+    }
+    #viewport-container.sanding-mode {
+      cursor: crosshair;
+    }
+    #webgl-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* 360 OPTICAL ROTATOR OVERLAY */
+    #optical-turntable {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #1a0e0e 0%, #050303 90%);
+      z-index: 10;
+      cursor: ew-resize;
+    }
+    #optical-img {
+      max-width: 85%;
+      max-height: 80%;
+      object-fit: contain;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border-radius: 8px;
+      user-select: none;
+      pointer-events: none;
+    }
+    .turntable-hint {
+      position: absolute;
+      bottom: 40px;
+      color: var(--gold);
+      font-size: 0.85rem;
+      background: rgba(0,0,0,0.7);
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-panel);
+    }
+
+    /* VIEWPORT FLOATING CONTROLS */
+    .mode-bar {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      background: var(--bg-panel);
+      padding: 6px 12px;
+      border-radius: 30px;
+      border: 1px solid var(--border-panel);
+      backdrop-filter: blur(12px);
+      z-index: 15;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mode-btn:hover {
+      color: var(--text-main);
+    }
+    .mode-btn.active {
+      background: var(--gold);
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* HUD METRICS */
+    .hud-metrics {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-panel);
+      padding: 12px 18px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      z-index: 15;
+      min-width: 270px;
+      font-size: 0.82rem;
+    }
+    .hud-title {
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hud-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 6px 0 10px;
+    }
+    .hud-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #52c41a, var(--gold));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .hud-alert {
+      color: #ff4d4f;
+      display: none;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* SPLIT SLIDER DIVIDER */
+    #split-slider-container {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      display: none;
+      z-index: 12;
+    }
+    .split-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gold-bright);
+      left: 50%;
+      box-shadow: 0 0 12px var(--gold-bright);
+    }
+    .split-handle {
+      position: absolute;
+      top: 50%; left: -16px;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(255,187,16,0.6);
+      cursor: ew-resize;
+      pointer-events: auto;
+    }
+
+    /* WORKBENCH SIDEBAR */
+    aside {
+      width: 390px;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-panel);
+      display: flex;
+      flex-direction: column;
+      z-index: 20;
+      overflow-y: auto;
+    }
+    .panel-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-panel);
+      background: rgba(20, 11, 11, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .panel-header h2 {
+      font-size: 1.05rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .panel-header p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .panel-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .control-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+    }
+    .chips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .chips-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .chip {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(222, 184, 90, 0.15);
+      color: var(--text-main);
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .chip:hover {
+      background: rgba(222, 184, 90, 0.12);
+      border-color: var(--border-panel);
+    }
+    .chip.active {
+      background: rgba(222, 184, 90, 0.2);
+      border-color: var(--gold);
+      color: var(--gold-bright);
+      font-weight: 600;
+      box-shadow: 0 0 12px rgba(222, 184, 90, 0.15);
+    }
+    .color-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* TEXT ENGRAVING INPUT */
+    .text-input {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-panel);
+      color: var(--gold);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+      width: 100%;
+      font-family: inherit;
+    }
+    .text-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 8px rgba(222, 184, 90, 0.3);
+    }
+
+    /* RANGE SLIDER */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      height: 6px;
+      border-radius: 3px;
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(222,184,90,0.8);
+    }
+
+    /* FOOTER ACTIONS */
+    .panel-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-panel);
+      display: flex;
+      gap: 10px;
+      background: rgba(10, 6, 6, 0.95);
+      position: sticky;
+      bottom: 0;
+      z-index: 5;
+    }
+
+    /* SOUND ANIMATION ICON */
+    .sound-wave {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      height: 14px;
+    }
+    .sound-bar {
+      width: 2px;
+      height: 100%;
+      background: var(--gold);
+      border-radius: 1px;
+      animation: soundPulse 0.8s ease-in-out infinite alternate;
+    }
+    .sound-bar:nth-child(2) { animation-delay: 0.2s; height: 70%; }
+    .sound-bar:nth-child(3) { animation-delay: 0.4s; height: 40%; }
+    @keyframes soundPulse {
+      0% { transform: scaleY(0.3); }
+      100% { transform: scaleY(1); }
+    }
+    .muted .sound-bar {
+      animation: none;
+      height: 3px;
+      background: #777;
+    }
+  </style>
+
+  <!-- Local Standalone Three.js Runtime & Preloaded Binary Model / Textures -->
+  <script src="lib/three.min.js"></script>
+  <script src="lib/GLTFLoader.js"></script>
+  <script src="lib/OrbitControls.js"></script>
+  <script src="lib/model_data.js"></script>
+  <script src="lib/textures_data.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <img src="assets/brand-logo-white.png" alt="Sơn Son Mài Sắc" onerror="this.style.display='none'">
+      <div>
+        <div class="brand-title">Sơn Son Mài Sắc · Xưởng 3D Sơn Mài</div>
+        <div class="brand-sub">Standalone Offline Interactive Workbench</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="audio-toggle" class="btn" title="Bật/Tắt âm thanh ma sát nước DSP">
+        <span class="sound-wave">
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+        </span>
+        <span id="audio-label">Âm Thanh: Bật</span>
+      </button>
+      <button id="reset-btn" class="btn btn-danger" title="Đặt lại trạng thái ban đầu">
+        ↺ Đặt Lại
+      </button>
+    </div>
+  </header>
+
+  <!-- WORKSPACE -->
+  <div class="workspace">
+
+    <!-- 3D VIEWPORT -->
+    <div id="viewport-container">
+      <canvas id="webgl-canvas"></canvas>
+
+      <!-- 360 OPTICAL TURNTABLE -->
+      <div id="optical-turntable">
+        <img id="optical-img" src="assets/story-assets/box-1.jpg" alt="Xoay quang học 360 độ">
+        <div class="turntable-hint">⟵ Kéo chuột sang trái / phải để xoay 360° quang học ⟶</div>
+      </div>
+
+      <!-- MODE SELECTOR BAR -->
+      <div class="mode-bar">
+        <button class="mode-btn active" data-mode="orbit">
+          ⟲ Xoay 3D (Orbit)
+        </button>
+        <button class="mode-btn" data-mode="sand">
+          🖌 Mài Nước (Sand)
+        </button>
+        <button class="mode-btn" data-mode="coat">
+          ✨ Phủ Sơn (Coat)
+        </button>
+        <button class="mode-btn" data-mode="split">
+          ◧ So Sánh (Split)
+        </button>
+        <button class="mode-btn" data-mode="optical">
+          📷 360° Quang Học
+        </button>
+      </div>
+
+      <!-- SPLIT SLIDER OVERLAY -->
+      <div id="split-slider-container">
+        <div class="split-line">
+          <div class="split-handle">⇔</div>
+        </div>
+      </div>
+
+      <!-- HUD METRICS -->
+      <div class="hud-metrics">
+        <div class="hud-title">
+          <span>Tiến Trình Mài Nước</span>
+          <span id="coverage-pct">0%</span>
+        </div>
+        <div class="hud-bar">
+          <div id="hud-progress" class="hud-progress"></div>
+        </div>
+        <div id="hud-status" style="color: var(--text-muted)">
+          Rê chuột trên nắp hộp để mài lộ hoa văn
+        </div>
+        <div id="hud-alert" class="hud-alert">
+          ⚠ Cảnh báo: Đang mài quá sâu vào cốt gỗ!
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR WORKBENCH CONTROLS -->
+    <aside>
+      <div class="panel-header">
+        <h2>TÙY BIẾN TÁC PHẨM</h2>
+        <p>Điều chỉnh hình thể, chất liệu, hoa văn và khắc chữ</p>
+      </div>
+
+      <div class="panel-body">
+
+        <!-- 0. HÌNH THỂ & KÍCH THƯỚC -->
+        <div class="control-group">
+          <label class="control-label">Hình Thể Tác Phẩm</label>
+          <div class="chips-grid-3" id="shape-chips">
+            <div class="chip active" data-value="Mặt hộp">Mặt hộp</div>
+            <div class="chip" data-value="Mặt khay">Mặt khay</div>
+            <div class="chip" data-value="Mặt tranh">Mặt tranh</div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Quy Cách Kích Thước</label>
+          <div class="chips-grid-3" id="size-chips">
+            <div class="chip" data-value="Nhỏ">Nhỏ (S)</div>
+            <div class="chip active" data-value="Trung">Trung (M)</div>
+            <div class="chip" data-value="Lớn">Lớn (L)</div>
+          </div>
+        </div>
+
+        <!-- 1. NỀN SƠN -->
+        <div class="control-group">
+          <label class="control-label">Nền Sơn Truyền Thống</label>
+          <div class="chips-grid" id="ground-chips">
+            <div class="chip active" data-value="Đỏ son">
+              <span class="color-swatch" style="background:#8c2020"></span> Đỏ son
+            </div>
+            <div class="chip" data-value="Cánh gián">
+              <span class="color-swatch" style="background:#572719"></span> Cánh gián
+            </div>
+            <div class="chip" data-value="Nâu đất">
+              <span class="color-swatch" style="background:#765039"></span> Nâu đất
+            </div>
+            <div class="chip" data-value="Đen then">
+              <span class="color-swatch" style="background:#1a1010"></span> Đen then
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. HỌA TIẾT -->
+        <div class="control-group">
+          <label class="control-label">Họa Tiết Mặt Nắp</label>
+          <div class="chips-grid" id="motif-chips">
+            <div class="chip active" data-value="Hoa sen">Hoa sen</div>
+            <div class="chip" data-value="Kỷ hà">Kỷ hà</div>
+            <div class="chip" data-value="Hoa lá">Hoa lá</div>
+            <div class="chip" data-value="Thêm">Trơn</div>
+          </div>
+        </div>
+
+        <!-- 3. CHẤT LIỆU CẨN -->
+        <div class="control-group">
+          <label class="control-label">Chất Liệu Cẩn Thếp</label>
+          <div class="chips-grid" id="inlay-chips">
+            <div class="chip active" data-value="Vỏ trứng">Vỏ trứng</div>
+            <div class="chip" data-value="Vàng quỳ">Vàng quỳ</div>
+            <div class="chip" data-value="Xà cừ">Xà cừ</div>
+            <div class="chip" data-value="Lớp nền">Lớp nền</div>
+          </div>
+        </div>
+
+        <!-- 4. VIỀN HOA VĂN -->
+        <div class="control-group">
+          <label class="control-label">Đường Diềm Hoa Văn</label>
+          <div class="chips-grid" id="ornament-chips">
+            <div class="chip active" data-value="Viền kép">Viền kép</div>
+            <div class="chip" data-value="Viền kỷ hà">Viền kỷ hà</div>
+            <div class="chip" data-value="Viền chấm">Viền chấm</div>
+            <div class="chip" data-value="Không viền">Không viền</div>
+          </div>
+        </div>
+
+        <!-- 5. KHẮC CHỮ CÁ NHÂN HÓA (FACE ENGRAVING) -->
+        <div class="control-group">
+          <label class="control-label">
+            <span>Khắc Chữ Cá Nhân Hóa</span>
+            <span id="char-count">0/18</span>
+          </label>
+          <input type="text" id="engraving-text" class="text-input" placeholder="Nhập tên hoặc lời chúc (tối đa 18 ký tự)" maxlength="18">
+        </div>
+
+        <!-- 6. ĐỘ SÂU CHẤT LIỆU -->
+        <div class="control-group">
+          <div class="control-label">
+            <span>Độ Sâu Chất Liệu</span>
+            <span id="depth-val">45%</span>
+          </div>
+          <input type="range" id="depth-slider" min="10" max="90" value="45">
+        </div>
+
+        <!-- 7. ĐỘ BÓNG BỀ MẶT -->
+        <div class="control-group">
+          <label class="control-label">Độ Bóng Hoàn Thiện</label>
+          <div class="chips-grid-3" id="finish-chips">
+            <div class="chip active" data-value="Bóng">Gương</div>
+            <div class="chip" data-value="Satin">Satin</div>
+            <div class="chip" data-value="Mờ">Mờ</div>
+          </div>
+        </div>
+
+        <!-- 8. CÔNG ĐOẠN LÀM VÓC -->
+        <div class="control-group">
+          <label class="control-label">Trạng Thái Làm Vóc</label>
+          <div class="chips-grid" id="prep-chips">
+            <div class="chip active" data-value="0">Cốt mộc</div>
+            <div class="chip" data-value="1">Bồi vải</div>
+            <div class="chip" data-value="2">Hom vóc</div>
+            <div class="chip" data-value="3">Vóc đã mài</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel-footer">
+        <button id="export-btn" class="btn active" style="flex: 1; justify-content: center;">
+          ⤓ Tải Ảnh Thành Phẩm PNG
+        </button>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- 3D WORKBENCH ENGINE CORE SCRIPT -->
+  <script>
+    (function() {
+      // =========================================================================
+      // I. WEB AUDIO SYNTHESIZER (DSP PINK NOISE CLASS)
+      // =========================================================================
+      class ProceduralAudioEngine {
+        constructor() {
+          this.ctx = null;
+          this.noiseNode = null;
+          this.highpassNode = null;
+          this.filterNode = null;
+          this.gainNode = null;
+          this.isInitialized = false;
+          this.isMuted = false;
+        }
+
+        init() {
+          if (this.isInitialized) return;
+          try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            this.ctx = new AudioCtx();
+            const sampleRate = this.ctx.sampleRate;
+            const buffer = this.ctx.createBuffer(1, 2 * sampleRate, sampleRate);
+            const data = buffer.getChannelData(0);
+
+            // Paul Kellet 3-pole IIR Pink Noise Generator
+            let b0 = 0, b1 = 0, b2 = 0;
+            for (let i = 0; i < buffer.length; i++) {
+              let white = 2 * Math.random() - 1;
+              b0 = 0.99886 * b0 + 0.0555179 * white;
+              b1 = 0.99332 * b1 + 0.0750759 * white;
+              b2 = 0.96900 * b2 + 0.1538520 * white;
+              data[i] = (b0 + b1 + b2 + 0.5362 * white) * 0.25;
+            }
+
+            this.noiseNode = this.ctx.createBufferSource();
+            this.noiseNode.buffer = buffer;
+            this.noiseNode.loop = true;
+
+            this.highpassNode = this.ctx.createBiquadFilter();
+            this.highpassNode.type = 'highpass';
+            this.highpassNode.frequency.value = 350;
+
+            this.filterNode = this.ctx.createBiquadFilter();
+            this.filterNode.type = 'bandpass';
+            this.filterNode.frequency.value = 1100;
+            this.filterNode.Q.value = 2.2;
+
+            this.gainNode = this.ctx.createGain();
+            this.gainNode.gain.value = 0.0001;
+
+            this.noiseNode.connect(this.highpassNode);
+            this.highpassNode.connect(this.filterNode);
+            this.filterNode.connect(this.gainNode);
+            this.gainNode.connect(this.ctx.destination);
+
+            this.noiseNode.start(0);
+            this.isInitialized = true;
+          } catch(e) {
+            console.warn('Audio Init Error:', e);
+          }
+        }
+
+        startSanding(speed = 1) {
+          if (this.isMuted) return;
+          if (!this.isInitialized) this.init();
+          if (!this.ctx || !this.gainNode || !this.filterNode) return;
+          if (this.ctx.state === 'suspended') this.ctx.resume();
+
+          const t = this.ctx.currentTime;
+          this.filterNode.frequency.cancelScheduledValues(t);
+          this.filterNode.frequency.linearRampToValueAtTime(950 + 400 * Math.random() + 200 * speed, t + 0.04);
+          this.gainNode.gain.cancelScheduledValues(t);
+          this.gainNode.gain.linearRampToValueAtTime(Math.min(0.22, 0.12 + 0.08 * speed), t + 0.05);
+        }
+
+        updateSpeed(speed) {
+          if (!this.ctx || !this.filterNode || this.isMuted) return;
+          const t = this.ctx.currentTime;
+          const targetFreq = Math.min(2200, Math.max(700, 1000 + 1200 * speed));
+          this.filterNode.frequency.setTargetAtTime(targetFreq, t, 0.05);
+        }
+
+        stopSanding() {
+          if (!this.ctx || !this.gainNode) return;
+          const t = this.ctx.currentTime;
+          this.gainNode.gain.cancelScheduledValues(t);
+          this.gainNode.gain.linearRampToValueAtTime(0.0001, t + 0.12);
+        }
+
+        toggleMute() {
+          this.isMuted = !this.isMuted;
+          if (this.isMuted) this.stopSanding();
+          return !this.isMuted;
+        }
+      }
+
+      const audio = new ProceduralAudioEngine();
+
+      // =========================================================================
+      // II. 3D WEBGL SCENE SETUP (THREE.JS)
+      // =========================================================================
+      const container = document.getElementById('viewport-container');
+      const canvas = document.getElementById('webgl-canvas');
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 100);
+      camera.position.set(0, 1.8, 4.4);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.1;
+      renderer.shadowMap.enabled = true;
+
+      const controls = new THREE.OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.minDistance = 2.0;
+      controls.maxDistance = 8.0;
+      controls.maxPolarAngle = Math.PI / 2 + 0.15;
+      controls.target.set(0, 0.2, 0);
+
+      // LIGHTING
+      const ambLight = new THREE.AmbientLight(0xfff8ee, 1.2);
+      scene.add(ambLight);
+
+      const keyLight = new THREE.DirectionalLight(0xfff5ea, 1.8);
+      keyLight.position.set(2.5, 4.0, 3.0);
+      keyLight.castShadow = true;
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xe8eeff, 0.6);
+      fillLight.position.set(-2.0, 1.5, -2.0);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.PointLight(0xffbb10, 1.2, 8);
+      rimLight.position.set(0, 2.5, -2.5);
+      scene.add(rimLight);
+
+      // =========================================================================
+      // III. PROCEDURAL LACQUER ARTWORK & DYNAMIC MASK BUFFERS
+      // =========================================================================
+      const artCanvas = document.createElement('canvas');
+      artCanvas.width = 1530;
+      artCanvas.height = 1054;
+      const artCtx = artCanvas.getContext('2d');
+
+      const maskCanvas = document.createElement('canvas');
+      maskCanvas.width = 512;
+      maskCanvas.height = 512;
+      const maskCtx = maskCanvas.getContext('2d', { willReadFrequently: true });
+      maskCtx.fillStyle = '#000000';
+      maskCtx.fillRect(0, 0, 512, 512);
+
+      const coatCanvas = document.createElement('canvas');
+      coatCanvas.width = 512;
+      coatCanvas.height = 512;
+      const coatCtx = coatCanvas.getContext('2d', { willReadFrequently: true });
+      coatCtx.clearRect(0, 0, 512, 512);
+
+      const artTexture = new THREE.CanvasTexture(artCanvas);
+      const maskTexture = new THREE.CanvasTexture(maskCanvas);
+      maskTexture.minFilter = THREE.LinearFilter;
+      maskTexture.magFilter = THREE.LinearFilter;
+      const coatTexture = new THREE.CanvasTexture(coatCanvas);
+
+      // CONFIGURATION STATE
+      const state = {
+        mode: 'orbit',
+        shape: 'Mặt hộp',
+        size: 'Trung',
+        ground: 'Đỏ son',
+        motif: 'Hoa sen',
+        inlay: 'Vỏ trứng',
+        ornament: 'Viền kép',
+        engravingText: '',
+        depth: 45,
+        finish: 'Bóng',
+        preparationStep: 0,
+        coverage: 0,
+        overSanded: 0,
+        splitPos: 0.5
+      };
+
+      // PROCEDURAL 2D RENDERER (G FUNCTION)
+      function renderArtwork2D() {
+        artCtx.save();
+        artCtx.scale(1.7, 1.7);
+
+        // Ground color
+        const groundColors = {
+          'Đỏ son': '#8c2020',
+          'Cánh gián': '#572719',
+          'Nâu đất': '#765039',
+          'Đen then': '#1a1010'
+        };
+        artCtx.fillStyle = groundColors[state.ground] || '#8c2020';
+        artCtx.fillRect(0, 0, 900, 620);
+
+        // Subtle gradient sheen
+        const grad = artCtx.createLinearGradient(0, 0, 900, 620);
+        grad.addColorStop(0, 'rgba(242, 193, 95, 0.22)');
+        grad.addColorStop(0.5, 'rgba(0, 0, 0, 0)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0.42)');
+        artCtx.fillStyle = grad;
+        artCtx.fillRect(0, 0, 900, 620);
+
+        // Flake Inlays (Park-Miller PRNG)
+        let seed = 271 + 19 * state.ground.length + 11 * state.motif.length + 5 * state.inlay.length;
+        const prng = () => ((seed = (16807 * seed) % 2147483647) - 1) / 2147483646;
+
+        const inlayColor = state.inlay === 'Vàng quỳ' ? '#e4b94e' : state.inlay === 'Xà cừ' ? '#e9d7be' : '#ede5d1';
+        if (state.inlay !== 'Lớp nền') {
+          for (let i = 0; i < 380; i++) {
+            let x = 900 * prng(), y = 620 * prng(), sz = 1.2 + 3.8 * prng();
+            artCtx.globalAlpha = 0.15 + 0.48 * prng();
+            artCtx.fillStyle = inlayColor;
+            artCtx.save();
+            artCtx.translate(x, y);
+            artCtx.rotate(2.4 * prng());
+            artCtx.fillRect(-sz, -sz * 0.5, 2 * sz, sz);
+            artCtx.restore();
+          }
+        }
+        artCtx.globalAlpha = 1.0;
+
+        // Border ornaments
+        artCtx.strokeStyle = inlayColor;
+        artCtx.lineWidth = 2.5;
+        if (state.ornament === 'Viền kép') {
+          artCtx.strokeRect(24, 24, 852, 572);
+          artCtx.strokeRect(34, 34, 832, 552);
+        } else if (state.ornament === 'Viền chấm') {
+          artCtx.save();
+          artCtx.setLineDash([3, 8]);
+          artCtx.strokeRect(28, 28, 844, 564);
+          artCtx.restore();
+        } else if (state.ornament === 'Viền kỷ hà') {
+          artCtx.strokeRect(24, 24, 852, 572);
+          for (let e of [42, 578]) {
+            for (let t = 48; t < 870; t += 28) {
+              artCtx.beginPath();
+              artCtx.moveTo(t, e - 7); artCtx.lineTo(t + 7, e);
+              artCtx.lineTo(t, e + 7); artCtx.lineTo(t - 7, e);
+              artCtx.closePath();
+              artCtx.stroke();
+            }
+          }
+        }
+
+        // Center Motif (Lotus / Geometric procedural fallback)
+        if (state.motif === 'Hoa sen') {
+          artCtx.save();
+          artCtx.translate(450, 310);
+          for (let e = 0; e < 12; e++) {
+            artCtx.save();
+            artCtx.rotate((2 * Math.PI * e) / 12);
+            artCtx.fillStyle = inlayColor;
+            artCtx.strokeStyle = 'rgba(48, 18, 12, 0.75)';
+            artCtx.lineWidth = 3;
+            artCtx.beginPath();
+            artCtx.moveTo(0, 14);
+            artCtx.bezierCurveTo(-66, -55, -50, -133, 0, -184);
+            artCtx.bezierCurveTo(50, -133, 66, -55, 0, 14);
+            artCtx.fill();
+            artCtx.stroke();
+            artCtx.restore();
+          }
+          artCtx.beginPath();
+          artCtx.arc(0, 0, 38, 0, 2 * Math.PI);
+          artCtx.fillStyle = inlayColor;
+          artCtx.fill();
+          artCtx.restore();
+        } else if (state.motif === 'Kỷ hà') {
+          artCtx.save();
+          artCtx.translate(450, 310);
+          artCtx.rotate(Math.PI / 4);
+          artCtx.strokeStyle = inlayColor;
+          artCtx.lineWidth = 5;
+          for (let e = 0; e < 4; e++) {
+            let t = 65 + 24 * e;
+            artCtx.strokeRect(-t, -t, 2 * t, 2 * t);
+          }
+          artCtx.restore();
+        } else if (state.motif === 'Hoa lá') {
+          artCtx.save();
+          artCtx.translate(450, 310);
+          for (let e = 0; e < 8; e++) {
+            artCtx.save();
+            artCtx.rotate((2 * Math.PI * e) / 8);
+            artCtx.fillStyle = inlayColor;
+            artCtx.beginPath();
+            artCtx.moveTo(0, 0);
+            artCtx.quadraticCurveTo(-45, -70, 0, -140);
+            artCtx.quadraticCurveTo(45, -70, 0, 0);
+            artCtx.fill();
+            artCtx.restore();
+          }
+          artCtx.restore();
+        }
+
+        // Custom Text Engraving (Face Engraving)
+        if (state.engravingText && state.engravingText.trim()) {
+          artCtx.save();
+          artCtx.font = 'bold 30px "Noto Serif", Georgia, serif';
+          artCtx.textAlign = 'center';
+          artCtx.textBaseline = 'middle';
+          artCtx.fillStyle = inlayColor;
+          artCtx.shadowColor = 'rgba(0,0,0,0.8)';
+          artCtx.shadowBlur = 6;
+          artCtx.fillText(state.engravingText.trim(), 450, 520);
+          artCtx.restore();
+        }
+
+        artCtx.restore();
+        artTexture.needsUpdate = true;
+      }
+
+      renderArtwork2D();
+
+      // =========================================================================
+      // IV. CUSTOM GLSL PHYSICAL LACQUER SHADER
+      // =========================================================================
+      const vertexShader = `
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+
+        void main() {
+          vUv = uv;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          vViewPosition = -mvPosition.xyz;
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `;
+
+      const fragmentShader = `
+        uniform sampler2D uMaskMap;
+        uniform sampler2D uArtMap;
+        uniform sampler2D uCoatMap;
+        uniform vec3 uTopColor;
+        uniform vec3 uMidColor;
+        uniform vec3 uAmberColor;
+        uniform vec3 uGoldColor;
+        uniform float uMaterialDepth;
+        uniform float uPolishSplit;
+        uniform float uRoughness;
+        uniform float uWaterDroplets;
+        uniform float uTime;
+
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+
+        void main() {
+          float rawDepth = texture2D(uMaskMap, vUv).r;
+          float sandDepth = clamp(rawDepth / (0.6 + uMaterialDepth * 0.8), 0.0, 1.0);
+          vec4 artSample = texture2D(uArtMap, vUv);
+
+          // Reveal layers
+          vec3 upperLayer = mix(uTopColor, mix(uAmberColor, uMidColor, 0.4), smoothstep(0.0, 0.42, sandDepth));
+          vec3 exposedGround = mix(mix(uAmberColor, uMidColor, 0.8), uGoldColor, smoothstep(0.34, 0.82, sandDepth));
+          vec3 baseColor = mix(upperLayer, exposedGround, smoothstep(0.2, 0.55, sandDepth));
+
+          float revealThreshold = 0.33 + uMaterialDepth * 0.28;
+          float artReveal = artSample.a * smoothstep(revealThreshold, revealThreshold + 0.08, rawDepth);
+          baseColor = mix(baseColor, artSample.rgb, artReveal);
+
+          // Over-sanded destruction
+          float worn = smoothstep(0.94, 1.0, rawDepth);
+          float grain = fract(sin(dot(vUv, vec2(127.1, 311.7))) * 43758.5453);
+          baseColor = mix(baseColor, vec3(0.17, 0.085, 0.035) + grain * 0.035, worn * 0.9);
+
+          // Lighting
+          vec3 N = normalize(vNormal);
+          vec3 V = normalize(vViewPosition);
+          vec3 L = normalize(vec3(1.8, 3.5, 2.2));
+          vec3 H = normalize(L + V);
+
+          float NdotL = max(dot(N, L), 0.0);
+          float diffuse = NdotL * 0.8 + 0.2;
+
+          float roughness = vUv.x <= uPolishSplit ? uRoughness : 0.85;
+          float specExponent = mix(180.0, 12.0, clamp(roughness, 0.0, 1.0));
+          float spec = pow(max(dot(N, H), 0.0), specExponent);
+
+          vec3 finalColor = baseColor * diffuse + vec3(spec * 0.45);
+
+          // Water sheen glint
+          if (sandDepth > 0.03 && uWaterDroplets > 0.0) {
+            float ripple = sin(vUv.x * 50.0 + uTime * 4.0) * cos(vUv.y * 50.0 + uTime * 3.0);
+            float waterGlint = max(0.0, ripple) * 0.12 * uWaterDroplets * sandDepth;
+            finalColor += vec3(waterGlint * 0.8, waterGlint * 0.9, waterGlint);
+          }
+
+          gl_FragColor = vec4(finalColor, 1.0);
+        }
+      `;
+
+      const lacquerShaderMaterial = new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms: {
+          uMaskMap: { value: maskTexture },
+          uArtMap: { value: artTexture },
+          uCoatMap: { value: coatTexture },
+          uTopColor: { value: new THREE.Color('#0F0000') },
+          uMidColor: { value: new THREE.Color('#8C0E0E') },
+          uAmberColor: { value: new THREE.Color('#3D1200') },
+          uGoldColor: { value: new THREE.Color('#FFBB10') },
+          uMaterialDepth: { value: 0.45 },
+          uPolishSplit: { value: 1.0 },
+          uRoughness: { value: 0.06 },
+          uWaterDroplets: { value: 0.0 },
+          uTime: { value: 0.0 }
+        }
+      });
+
+      // =========================================================================
+      // V. 3D MODEL LOADING & CONTACT SHADOW
+      // =========================================================================
+      const boxGroup = new THREE.Group();
+      scene.add(boxGroup);
+
+      let sandSurfaceMesh = null;
+
+      // Contact shadow plane
+      const shadowCanvas = document.createElement('canvas');
+      shadowCanvas.width = shadowCanvas.height = 256;
+      const sCtx = shadowCanvas.getContext('2d');
+      const rGrad = sCtx.createRadialGradient(128, 128, 24, 128, 128, 122);
+      rGrad.addColorStop(0, 'rgba(74, 43, 21, 0.25)');
+      rGrad.addColorStop(0.65, 'rgba(74, 43, 21, 0.08)');
+      rGrad.addColorStop(1, 'rgba(74, 43, 21, 0)');
+      sCtx.fillStyle = rGrad;
+      sCtx.fillRect(0, 0, 256, 256);
+
+      const shadowGeo = new THREE.PlaneGeometry(4.4, 3.2);
+      const shadowMat = new THREE.MeshBasicMaterial({
+        map: new THREE.CanvasTexture(shadowCanvas),
+        transparent: true,
+        opacity: 0.6,
+        depthWrite: false
+      });
+      const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
+      shadowMesh.rotation.x = -Math.PI / 2;
+      shadowMesh.position.y = -0.406;
+      boxGroup.add(shadowMesh);
+
+      // Function to apply scale based on state.size
+      function updateBoxScale() {
+        const scaleMap = { 'Nhỏ': 0.84, 'Trung': 1.0, 'Lớn': 1.12 };
+        const s = scaleMap[state.size] || 1.0;
+        boxGroup.scale.set(s, s, s);
+      }
+
+      // Load GLB (Supports Base64 offline bundle or file URL)
+      const loader = new THREE.GLTFLoader();
+      const glbSource = window.LACQUER_BOX_GLB_BASE64 || 'assets/models/vercel-lacquer-box.glb';
+
+      loader.load(glbSource, (gltf) => {
+        const root = gltf.scene;
+        root.scale.setScalar(1.6);
+        root.position.y = -0.4;
+
+        root.traverse((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
+
+        boxGroup.add(root);
+
+        // Overlay sandable mesh on top lid
+        const lidGeo = new THREE.PlaneGeometry(3.15, 2.18, 16, 16);
+        sandSurfaceMesh = new THREE.Mesh(lidGeo, lacquerShaderMaterial);
+        sandSurfaceMesh.rotation.x = -Math.PI / 2;
+        sandSurfaceMesh.position.y = 0.805;
+        boxGroup.add(sandSurfaceMesh);
+
+        updateBoxScale();
+        console.log('Đã nạp thành công mô hình nhị phân 3D vercel-lacquer-box.glb');
+      }, undefined, (err) => {
+        console.warn('Sử dụng bộ tạo hình hộp thủ công (fallback) do giới hạn tệp cục bộ:', err);
+
+        const bodyGeo = new THREE.BoxGeometry(3.2, 0.848, 2.24);
+        const bodyMat = new THREE.MeshStandardMaterial({
+          color: 0x140a08,
+          roughness: 0.22,
+          metalness: 0.05
+        });
+        const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+        bodyMesh.position.y = 0;
+        boxGroup.add(bodyMesh);
+
+        const lidGeo = new THREE.PlaneGeometry(3.18, 2.22, 16, 16);
+        sandSurfaceMesh = new THREE.Mesh(lidGeo, lacquerShaderMaterial);
+        sandSurfaceMesh.rotation.x = -Math.PI / 2;
+        sandSurfaceMesh.position.y = 0.428;
+        boxGroup.add(sandSurfaceMesh);
+
+        const claspGeo = new THREE.BoxGeometry(0.35, 0.22, 0.08);
+        const claspMat = new THREE.MeshStandardMaterial({
+          color: 0xffbb10,
+          roughness: 0.3,
+          metalness: 0.8
+        });
+        const clasp = new THREE.Mesh(claspGeo, claspMat);
+        clasp.position.set(0, 0.15, 1.14);
+        boxGroup.add(clasp);
+
+        updateBoxScale();
+      });
+
+      // =========================================================================
+      // VI. INTERACTIVE SANDING & UV RAYCASTING
+      // =========================================================================
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      let isDrawing = false;
+      let lastPoint = null;
+
+      function getUV(e) {
+        if (!sandSurfaceMesh) return null;
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+        const hits = raycaster.intersectObject(sandSurfaceMesh);
+        return hits.length > 0 ? hits[0].uv : null;
+      }
+
+      function drawStroke(p1, p2) {
+        const steps = Math.max(1, Math.ceil(512 * p1.distanceTo(p2) / 5));
+        const r = state.mode === 'coat' ? 28 : 22;
+        const targetCtx = state.mode === 'coat' ? coatCtx : maskCtx;
+
+        for (let i = 0; i <= steps; i++) {
+          const t = i / steps;
+          const x = 512 * (p1.x + (p2.x - p1.x) * t);
+          const y = 512 * (1 - (p1.y + (p2.y - p1.y) * t));
+          const opacity = state.mode === 'coat' ? 0.15 : 0.02 + state.depth / 1500;
+
+          const grad = targetCtx.createRadialGradient(x, y, 1, x, y, r);
+          grad.addColorStop(0, `rgba(255, 255, 255, ${opacity})`);
+          grad.addColorStop(0.7, `rgba(255, 255, 255, ${opacity * 0.75})`);
+          grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+          targetCtx.fillStyle = grad;
+          targetCtx.fillRect(x - r, y - r, 2 * r, 2 * r);
+        }
+
+        maskTexture.needsUpdate = true;
+        coatTexture.needsUpdate = true;
+        evaluateMetrics();
+      }
+
+      function evaluateMetrics() {
+        const imgData = maskCtx.getImageData(0, 0, 512, 512).data;
+        let revealed = 0, overSanded = 0;
+        const total = imgData.length / 4;
+        const threshold = (0.33 + 0.28 * (state.depth / 100)) * 255;
+
+        for (let i = 0; i < imgData.length; i += 4) {
+          if (imgData[i] >= threshold) revealed++;
+          if (imgData[i] > 242) overSanded++;
+        }
+
+        state.coverage = Math.round((revealed / total) * 100);
+        state.overSanded = Math.round((overSanded / total) * 100);
+
+        document.getElementById('coverage-pct').textContent = state.coverage + '%';
+        document.getElementById('hud-progress').style.width = state.coverage + '%';
+
+        const alertEl = document.getElementById('hud-alert');
+        if (state.overSanded > 0) {
+          alertEl.style.display = 'block';
+        } else {
+          alertEl.style.display = 'none';
+        }
+      }
+
+      // POINTER EVENTS ON CANVAS
+      canvas.addEventListener('pointerdown', (e) => {
+        if (state.mode === 'sand' || state.mode === 'coat') {
+          controls.enabled = false;
+          const uv = getUV(e);
+          if (uv) {
+            isDrawing = true;
+            lastPoint = uv;
+            drawStroke(uv, uv);
+            if (state.mode === 'sand') {
+              audio.startSanding(1.2);
+              lacquerShaderMaterial.uniforms.uWaterDroplets.value = 0.8;
+            }
+          }
+        }
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (isDrawing && (state.mode === 'sand' || state.mode === 'coat')) {
+          const uv = getUV(e);
+          if (uv && lastPoint) {
+            drawStroke(lastPoint, uv);
+            lastPoint = uv;
+            audio.updateSpeed(1.5);
+          }
+        }
+      });
+
+      window.addEventListener('pointerup', () => {
+        if (isDrawing) {
+          isDrawing = false;
+          lastPoint = null;
+          audio.stopSanding();
+          lacquerShaderMaterial.uniforms.uWaterDroplets.value = 0.0;
+        }
+        if (state.mode === 'orbit') {
+          controls.enabled = true;
+        }
+      });
+
+      // =========================================================================
+      // VII. 360° OPTICAL PHOTOGRAMMETRY TURNTABLE
+      // =========================================================================
+      const turntableEl = document.getElementById('optical-turntable');
+      const opticalImg = document.getElementById('optical-img');
+      const opticalFrames = [
+        'box-1.jpg', 'box-5.jpg', 'box-6.jpg', 'box-7.jpg',
+        'box-8.jpg', 'box-12.jpg', 'box-14.jpg', 'box-15.jpg',
+        'box-16.jpg', 'box-17.jpg', 'box-18.jpg', 'box-19.jpg',
+        'box-20.jpg', 'box-21.jpg', 'box-22.jpg', 'box-23.jpg'
+      ];
+      let opticalAngle = 0;
+      let isTurntableDragging = false;
+      let startX = 0;
+
+      turntableEl.addEventListener('pointerdown', (e) => {
+        isTurntableDragging = true;
+        startX = e.clientX;
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (isTurntableDragging && state.mode === 'optical') {
+          const dx = e.clientX - startX;
+          startX = e.clientX;
+          opticalAngle += dx * 0.01;
+          if (opticalAngle < 0) opticalAngle += 2 * Math.PI;
+          const frameIdx = Math.floor((opticalAngle / (2 * Math.PI)) * opticalFrames.length) % opticalFrames.length;
+          opticalImg.src = `assets/story-assets/${opticalFrames[frameIdx]}`;
+        }
+      });
+
+      window.addEventListener('pointerup', () => {
+        isTurntableDragging = false;
+      });
+
+      // =========================================================================
+      // VIII. MODE SWITCHER & UI LISTENERS
+      // =========================================================================
+      document.querySelectorAll('.mode-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.mode = btn.dataset.mode;
+
+          const splitContainer = document.getElementById('split-slider-container');
+          turntableEl.style.display = 'none';
+          splitContainer.style.display = 'none';
+          controls.enabled = false;
+          container.classList.remove('sanding-mode');
+
+          if (state.mode === 'orbit') {
+            controls.enabled = true;
+          } else if (state.mode === 'sand' || state.mode === 'coat') {
+            container.classList.add('sanding-mode');
+          } else if (state.mode === 'split') {
+            splitContainer.style.display = 'block';
+            lacquerShaderMaterial.uniforms.uPolishSplit.value = state.splitPos;
+          } else if (state.mode === 'optical') {
+            turntableEl.style.display = 'flex';
+          }
+        });
+      });
+
+      // CHIPS SELECTION
+      function setupChips(containerId, stateKey, callback) {
+        const container = document.getElementById(containerId);
+        container.querySelectorAll('.chip').forEach(chip => {
+          chip.addEventListener('click', () => {
+            container.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            state[stateKey] = chip.dataset.value;
+            if (callback) callback(chip.dataset.value);
+          });
+        });
+      }
+
+      setupChips('shape-chips', 'shape', (val) => {
+        console.log('Chuyển hình thể:', val);
+      });
+      setupChips('size-chips', 'size', () => updateBoxScale());
+      setupChips('ground-chips', 'ground', () => renderArtwork2D());
+      setupChips('motif-chips', 'motif', () => renderArtwork2D());
+      setupChips('inlay-chips', 'inlay', () => renderArtwork2D());
+      setupChips('ornament-chips', 'ornament', () => renderArtwork2D());
+      setupChips('finish-chips', 'finish', (val) => {
+        const roughness = val === 'Mờ' ? 0.72 : val === 'Satin' ? 0.35 : 0.06;
+        lacquerShaderMaterial.uniforms.uRoughness.value = roughness;
+      });
+      setupChips('prep-chips', 'preparationStep', (step) => {
+        const roughnessArr = [1.0, 0.98, 0.96, 0.84];
+        lacquerShaderMaterial.uniforms.uRoughness.value = roughnessArr[parseInt(step)] || 0.06;
+      });
+
+      // ENGRAVING TEXT INPUT
+      const textInput = document.getElementById('engraving-text');
+      const charCount = document.getElementById('char-count');
+      textInput.addEventListener('input', (e) => {
+        state.engravingText = e.target.value;
+        charCount.textContent = `${e.target.value.length}/18`;
+        renderArtwork2D();
+      });
+
+      // SLIDERS
+      const depthSlider = document.getElementById('depth-slider');
+      depthSlider.addEventListener('input', (e) => {
+        state.depth = parseInt(e.target.value);
+        document.getElementById('depth-val').textContent = state.depth + '%';
+        lacquerShaderMaterial.uniforms.uMaterialDepth.value = state.depth / 100;
+        evaluateMetrics();
+      });
+
+      // RESET
+      document.getElementById('reset-btn').addEventListener('click', () => {
+        maskCtx.fillStyle = '#000000';
+        maskCtx.fillRect(0, 0, 512, 512);
+        coatCtx.clearRect(0, 0, 512, 512);
+        maskTexture.needsUpdate = true;
+        coatTexture.needsUpdate = true;
+        textInput.value = '';
+        state.engravingText = '';
+        charCount.textContent = '0/18';
+        renderArtwork2D();
+        evaluateMetrics();
+      });
+
+      // AUDIO TOGGLE
+      const audioBtn = document.getElementById('audio-toggle');
+      audioBtn.addEventListener('click', () => {
+        const active = audio.toggleMute();
+        if (active) {
+          audioBtn.classList.remove('muted');
+          document.getElementById('audio-label').textContent = 'Âm Thanh: Bật';
+        } else {
+          audioBtn.classList.add('muted');
+          document.getElementById('audio-label').textContent = 'Âm Thanh: Tắt';
+        }
+      });
+
+      // EXPORT PNG
+      document.getElementById('export-btn').addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.href = artCanvas.toDataURL('image/png');
+        a.download = 'lop-sac-cua-ban.png';
+        a.click();
+      });
+
+      // SPLIT SLIDER DRAG
+      const splitHandle = document.querySelector('.split-handle');
+      let isSplitDragging = false;
+      splitHandle.addEventListener('pointerdown', () => isSplitDragging = true);
+      window.addEventListener('pointermove', (e) => {
+        if (isSplitDragging) {
+          const rect = container.getBoundingClientRect();
+          const pos = Math.max(0.05, Math.min(0.95, (e.clientX - rect.left) / rect.width));
+          state.splitPos = pos;
+          document.querySelector('.split-line').style.left = (pos * 100) + '%';
+          lacquerShaderMaterial.uniforms.uPolishSplit.value = pos;
+        }
+      });
+      window.addEventListener('pointerup', () => isSplitDragging = false);
+
+      // RESIZE
+      window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+
+      // ANIMATION LOOP
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+        const elapsedTime = clock.getElapsedTime();
+        lacquerShaderMaterial.uniforms.uTime.value = elapsedTime;
+
+        if (state.mode === 'orbit') {
+          controls.update();
+        }
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    })();
+  </script>
+</body>
+</html>

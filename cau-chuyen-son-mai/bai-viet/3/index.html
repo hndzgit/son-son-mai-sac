@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charSet="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mỹ thuật Đông Dương: Bước ngoặt đầu thế kỷ XX | Câu chuyện sơn mài</title>
+  <meta name="description" content="Đọc chuyên sâu tư liệu dòng thời gian sơn mài: Bước ngoặt đầu thế kỷ XX. Dự án Sơn Son Mài Sắc."/>
+  
+  <link rel="stylesheet" href="/_next/static/css/58e70d5489b56972.css?v=27"/>
+  <link rel="stylesheet" href="/_next/static/css/3d939b8161363d36.css?v=27"/>
+  <link rel="stylesheet" href="/_next/static/css/e133a03ebd4e8d3a.css"/>
+
+  <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" type="image/png" sizes="180x180"/>
+
+  <style>
+
+/* ===== EDITORIAL NEWSPAPER READER STYLES ===== */
+:root {
+  --site-paper-surface: linear-gradient(#fff3d4ad, #fff3d4ad), url(/story-assets/backgrounds/gold-foundation-v2.webp);
+  --reader-paper: #faf4e9;
+  --reader-ink: #1e1711;
+  --reader-secondary: #574637;
+  --reader-accent: #8c0e0e;
+  --reader-gold: #c59b48;
+  --reader-border: rgba(160, 130, 80, 0.22);
+}
+
+/* Thanh tiến độ đọc */
+#reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #8c0e0e 0%, #d4a757 100%);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* Bố cục trang bài viết */
+.reader-page-wrapper {
+  background: var(--site-paper-surface, linear-gradient(#fff3d4ad, #fff3d4ad), url(/story-assets/backgrounds/gold-foundation-v2.webp)) center / 600px 600px repeat !important;
+  min-height: 100vh;
+  padding: clamp(24px, 4vw, 56px) max(4vw, 20px) 90px;
+  color: var(--reader-ink);
+}
+
+/* Thanh điều hướng nhanh phía trên */
+.reader-top-bar {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 20px;
+  background: rgba(250, 244, 233, 0.96);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--reader-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+}
+
+.reader-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--reader-accent);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.reader-back-btn:hover {
+  transform: translateX(-3px);
+  color: #630808;
+}
+
+.reader-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reader-tool-btn {
+  background: transparent;
+  border: 1px solid var(--reader-border);
+  color: var(--reader-secondary);
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reader-tool-btn:hover {
+  background: #fdf5e2;
+  border-color: var(--reader-gold);
+  color: var(--reader-accent);
+}
+
+/* Ruy băng chuyển mốc 6 bài viết (Milestone Switcher Ribbon) */
+.milestone-switcher {
+  max-width: 900px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  background: rgba(250, 244, 233, 0.95);
+  padding: 8px;
+  border: 1px solid var(--reader-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+}
+
+.milestone-tab {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 10px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.22s ease;
+  color: #554433;
+}
+
+.milestone-tab .m-num {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #8c0e0e;
+  margin-bottom: 2px;
+}
+
+.milestone-tab .m-name {
+  display: block;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.milestone-tab:hover {
+  background: rgba(140, 14, 14, 0.06);
+  border-color: rgba(140, 14, 14, 0.2);
+}
+
+.milestone-tab.active {
+  background: #8c0e0e;
+  color: #fff4d9;
+  border-color: #8c0e0e;
+  box-shadow: 0 4px 12px rgba(140, 14, 14, 0.25);
+}
+
+.milestone-tab.active .m-num {
+  color: #ffde8a;
+}
+
+/* Khung bài viết dạng báo chí / Editorial Paper Card */
+.newspaper-card {
+  max-width: 860px;
+  margin: 0 auto 48px;
+  background: var(--reader-paper);
+  border: 1px solid var(--reader-border);
+  border-top: 5px solid var(--reader-accent);
+  border-radius: 3px;
+  padding: clamp(32px, 6vw, 68px) clamp(24px, 5.5vw, 64px);
+  box-shadow: 0 16px 50px rgba(35, 20, 10, 0.08);
+  transition: opacity 0.25s ease;
+}
+
+.newspaper-card.fading {
+  opacity: 0.35;
+}
+
+/* Đầu trang báo chí */
+.article-header {
+  text-align: center;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--reader-border);
+  padding-bottom: 24px;
+}
+
+.article-kicker {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--reader-accent);
+  background: #fbf0ec;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 14, 14, 0.18);
+  margin-bottom: 16px;
+}
+
+.article-title {
+  font-family: "Project Display", "Playfair Display", "Noto Serif", Georgia, serif !important;
+  font-size: clamp(30px, 4.2vw, 46px) !important;
+  line-height: 1.18 !important;
+  font-weight: 700 !important;
+  color: #170e08 !important;
+  margin: 0 0 14px 0 !important;
+  text-wrap: balance;
+}
+
+.article-subtitle {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-style: italic;
+  line-height: 1.6;
+  color: #63503e;
+  margin: 0 0 18px 0;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.article-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 13px;
+  color: #796653;
+  margin-top: 14px;
+}
+
+.article-meta-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Khung hiện vật tư liệu (Ảnh + Huy hiệu bảo tàng như Image 2) */
+.artifact-showcase {
+  text-align: center;
+  margin: 0 auto 36px;
+  background: #f4ecdc;
+  border: 1px solid rgba(160, 130, 80, 0.28);
+  border-radius: 4px;
+  padding: 24px 20px 20px;
+}
+
+.artifact-image-frame {
+  max-width: 100%;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artifact-image-frame img {
+  max-height: 440px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* Huy hiệu bảo tàng / Đơn vị tư liệu chuẩn Image 2 */
+.museum-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  background: #fffdf8;
+  border: 1px solid rgba(160, 130, 80, 0.32);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.museum-emblem {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.museum-info {
+  text-align: left;
+}
+
+.museum-org {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #a87922;
+  line-height: 1.25;
+}
+
+.museum-sub {
+  display: block;
+  font-size: 11px;
+  color: #75624e;
+  line-height: 1.25;
+}
+
+.museum-tick {
+  width: 2px;
+  height: 20px;
+  background: #c59b48;
+  margin: 16px auto 8px;
+}
+
+.artifact-caption {
+  font-size: 13px;
+  font-style: italic;
+  color: #725f4b;
+  margin: 6px 0 0 0;
+  line-height: 1.5;
+}
+
+/* Thân bài viết đọc báo (Article Body) */
+.article-body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--reader-ink);
+  letter-spacing: -0.01em;
+}
+
+.article-body p {
+  margin: 0 0 24px 0;
+  text-align: justify;
+}
+
+/* Drop-cap chữ cái đầu tiên phong cách tạp chí cổ điển */
+.article-body p:first-of-type::first-letter {
+  font-family: "Project Display", "Playfair Display", Georgia, serif;
+  float: left;
+  font-size: 56px;
+  line-height: 48px;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  color: var(--reader-accent);
+  font-weight: 700;
+}
+
+/* Khối trích dẫn nổi bật (Pull Quote) */
+.editorial-pullquote {
+  position: relative;
+  margin: 36px 0;
+  padding: 22px 28px;
+  background: #f1e4c9;
+  border: 1px solid rgba(160, 130, 80, 0.25);
+  border-left: 4px solid var(--reader-accent);
+  border-radius: 0 6px 6px 0;
+}
+
+.editorial-pullquote p {
+  font-family: "Noto Serif", Georgia, serif !important;
+  font-size: clamp(18px, 1.6vw, 22px) !important;
+  font-style: italic !important;
+  line-height: 1.65 !important;
+  color: #721619 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+/* Hoa văn kết thúc bài viết */
+.article-endmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 40px 0 28px;
+  color: var(--reader-gold);
+}
+
+.article-endmark::before,
+.article-endmark::after {
+  content: "";
+  height: 1px;
+  width: 60px;
+  background: var(--reader-border);
+}
+
+/* Điều hướng Mốc trước / Mốc sau */
+.article-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--reader-border);
+}
+
+.pager-btn {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  background: #f5eedf;
+  border: 1px solid var(--reader-border);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--reader-ink);
+  transition: all 0.25s ease;
+}
+
+.pager-btn:hover {
+  background: #eedebd;
+  border-color: var(--reader-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.pager-btn.prev {
+  text-align: left;
+}
+
+.pager-btn.next {
+  text-align: right;
+}
+
+.pager-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--reader-accent);
+  margin-bottom: 4px;
+}
+
+.pager-title {
+  font-family: "Project Display", "Playfair Display", Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.pager-btn:disabled,
+.pager-btn.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Khối hành động cuối trang */
+.reader-bottom-actions {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.reader-bottom-actions .btn {
+  font-size: 13px;
+  padding: 12px 24px;
+}
+
+/* Toast sao chép */
+#copy-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1a0f07;
+  color: #fff4d9;
+  border: 1px solid var(--reader-gold);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+#copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive cho thiết bị di động */
+@media (max-width: 768px) {
+  .milestone-switcher {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .article-pager {
+    grid-template-columns: 1fr;
+  }
+  .article-body {
+    font-size: 16.5px;
+    line-height: 1.85;
+  }
+  .article-body p {
+    text-align: left;
+  }
+  .newspaper-card {
+    padding: 28px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .milestone-switcher {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .reader-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans">
+  <div id="reading-progress-bar"></div>
+  <a href="#article-content" class="skip-link">Bỏ qua điều hướng</a>
+
+  <header class="Navbar_header__UKF8E"><a aria-label="Sơn Son Mài Sắc — Trang chủ" class="Navbar_brand__ViMyA" href="/"><span class="BrandMark_mark__I_sjn brand-mark" role="img" aria-label="Sơn Son Mài Sắc"><img src="/story-assets/brand-9782.png" alt="" width="880" height="560"/></span></a><nav id="primary-navigation" class="Navbar_nav___WITp " aria-label="Điều hướng chính"><a class="Navbar_homeLink__UIij_" href="/">Trang chủ</a><details class="Navbar_group__cCL2W"><summary>Khám phá<span aria-hidden="true">⌄</span></summary><div class="Navbar_panel__ZqH74 "><p class="Navbar_caption__Q_d_z">Khám phá</p><ul><li><a href="/kham-pha#son-mai-la-gi">Sơn mài là gì?</a></li><li><a href="/kham-pha#5-cong-doan">5 chặng tạo tác</a><ul class="Navbar_children__8PiOb"><li><a href="/kham-pha#cong-doan-1">1. Chuẩn bị cốt</a></li><li><a href="/kham-pha#cong-doan-2">2. Làm vóc</a></li><li><a href="/kham-pha#cong-doan-3">3. Sơn nền</a></li><li><a href="/kham-pha#cong-doan-4">4. Tạo hình và trang trí</a></li><li><a href="/kham-pha#cong-doan-5">5. Phủ, mài và hoàn thiện</a></li></ul></li><li><a href="/kham-pha#process-workshop-panel">Tự tạo một bề mặt sơn mài</a></li></ul></div></details><details class="Navbar_group__cCL2W"><summary class="Navbar_current__I_Gc8">Câu chuyện sơn mài<span aria-hidden="true">⌄</span></summary><div class="Navbar_panel__ZqH74 "><p class="Navbar_caption__Q_d_z">Câu chuyện sơn mài</p><ul><li><a href="/cau-chuyen-son-mai#timeline-tab-0">Lịch sử</a></li><li><a href="/cau-chuyen-son-mai#timeline-tab-1">Văn hoá</a></li><li><a href="/cau-chuyen-son-mai#timeline-tab-3">Chất liệu</a></li><li><a href="/cau-chuyen-son-mai#timeline-tab-4">Nghệ nhân</a></li><li><a href="/cau-chuyen-son-mai#timeline-tab-5">Sơn mài hôm nay</a></li></ul></div></details><details class="Navbar_group__cCL2W"><summary>Tin tức &amp; sự kiện<span aria-hidden="true">⌄</span></summary><div class="Navbar_panel__ZqH74 "><p class="Navbar_caption__Q_d_z">Tin tức &amp; sự kiện</p><ul><li><a href="/tin-tuc-su-kien#upcoming-ssms">Upcoming SSMS</a></li><li><a href="/tin-tuc-su-kien#su-kien">Sự kiện nổi bật</a></li><li><a href="/tin-tuc-su-kien#tin-son-mai">Tin sơn mài hôm nay</a></li></ul></div></details><details class="Navbar_group__cCL2W"><summary>Về dự án<span aria-hidden="true">⌄</span></summary><div class="Navbar_panel__ZqH74 Navbar_lastPanel__tvAjj"><p class="Navbar_caption__Q_d_z">Về dự án</p><ul><li><a href="/ve-du-an#son-son-mai-sac">Sơn Son Mài Sắc</a></li><li><a href="/ve-du-an#su-menh">Sứ mệnh</a></li><li><a href="/ve-du-an#doi-ngu">Đội ngũ</a></li><li><a href="/ve-du-an#lien-he">Liên hệ</a></li></ul></div></details></nav><button class="Navbar_toggle__eiZd0" aria-controls="primary-navigation" aria-label="Mở menu" aria-expanded="false">☰</button></header>
+
+  <main id="main-content" class="flex-1 main-content" style="padding-top: 88px;">
+    <div class="reader-page-wrapper">
+      
+      <!-- Thanh điều hướng và tiện ích đọc -->
+      <div class="reader-top-bar">
+        <a id="btn-back-timeline" href="/cau-chuyen-son-mai#timeline-tab-2" class="reader-back-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Quay lại Câu chuyện sơn mài
+        </a>
+
+        <div class="reader-tools">
+          <button type="button" class="reader-tool-btn" onclick="adjustFontSize(-1)" title="Giảm cỡ chữ">A-</button>
+          <button type="button" class="reader-tool-btn" onclick="adjustFontSize(1)" title="Tăng cỡ chữ">A+</button>
+          <button type="button" class="reader-tool-btn" onclick="copyArticleLink()" title="Sao chép liên kết">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Chia sẻ
+          </button>
+          <span id="art-readtime" style="font-size: 12px; color: #796653;">⏱ 3 phút đọc</span>
+        </div>
+      </div>
+
+      <!-- Ruy băng chuyển đổi nhanh 6 mốc -->
+      <nav class="milestone-switcher" aria-label="Chọn mốc thời gian">
+        
+        <a href="/cau-chuyen-son-mai/bai-viet/1" class="milestone-tab " data-id="0" onclick="switchArticle(0, true); return false;">
+          <span class="m-num">01</span>
+          <span class="m-name">Đời sống &amp; tín ngưỡng</span>
+        </a>
+        
+        <a href="/cau-chuyen-son-mai/bai-viet/2" class="milestone-tab " data-id="1" onclick="switchArticle(1, true); return false;">
+          <span class="m-num">02</span>
+          <span class="m-name">Nghề thủ công</span>
+        </a>
+        
+        <a href="/cau-chuyen-son-mai/bai-viet/3" class="milestone-tab active" data-id="2" onclick="switchArticle(2, true); return false;">
+          <span class="m-num">03</span>
+          <span class="m-name">Mỹ thuật Đông Dương</span>
+        </a>
+        
+        <a href="/cau-chuyen-son-mai/bai-viet/4" class="milestone-tab " data-id="3" onclick="switchArticle(3, true); return false;">
+          <span class="m-num">04</span>
+          <span class="m-name">Nghệ thuật hiện đại</span>
+        </a>
+        
+        <a href="/cau-chuyen-son-mai/bai-viet/5" class="milestone-tab " data-id="4" onclick="switchArticle(4, true); return false;">
+          <span class="m-num">05</span>
+          <span class="m-name">Làng nghề</span>
+        </a>
+        
+        <a href="/cau-chuyen-son-mai/bai-viet/6" class="milestone-tab " data-id="5" onclick="switchArticle(5, true); return false;">
+          <span class="m-num">06</span>
+          <span class="m-name">Vươn ra thế giới</span>
+        </a>
+        
+      </nav>
+
+      <!-- Khung bài viết dạng báo chí mỹ thuật -->
+      <article class="newspaper-card" id="article-content">
+        <header class="article-header">
+          <span class="article-kicker" id="art-kicker">KỲ 03 / 06 · MỸ THUẬT ĐÔNG DƯƠNG</span>
+          <h1 class="article-title" id="art-heading">Bước ngoặt đầu thế kỷ XX</h1>
+          <p class="article-subtitle" id="art-subtitle">Mỹ thuật Đông Dương · Tư liệu theo mạch lịch sử và đời sống di sản</p>
+          
+          <div class="article-meta-row">
+            <span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              Sơn Son Mài Sắc Biên Soạn
+            </span>
+            <span>·</span>
+            <span id="art-badge-name">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span id="art-date-val">Giai đoạn: 1925</span>
+            </span>
+            <span>·</span>
+            <span>Tư liệu bảo tồn di sản</span>
+          </div>
+        </header>
+
+        <!-- Khung ảnh hiện vật tư liệu & Huy hiệu bảo tàng -->
+        <div class="artifact-showcase" id="art-showcase">
+          <div class="artifact-image-frame">
+            <img id="art-img" src="/story-assets/flow-13.jpg" alt="Mỹ thuật Đông Dương" loading="eager"/>
+          </div>
+
+          <div class="museum-badge" id="art-badge">
+            <div class="museum-emblem">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="11" fill="#8c0e0e"/>
+                <path d="M12 4L6 8v2h12V8l-6-4zM7 11v6h2v-6H7zm4 0v6h2v-6h-2zm4 0v6h2v-6h-2zM5 18v2h14v-2H5z" fill="#f6d37a"/>
+              </svg>
+            </div>
+            <div class="museum-info">
+              <strong class="museum-org" id="art-badge-org">TRƯỜNG CAO ĐẲNG MỸ THUẬT ĐÔNG DƯƠNG</strong>
+              <span class="museum-sub" id="art-badge-sub">Tư liệu lưu trữ lịch sử thành lập năm 1925 tại Hà Nội</span>
+            </div>
+          </div>
+
+          <div class="museum-tick"></div>
+
+          <p class="artifact-caption" id="art-caption">Tòa nhà Trường Mỹ thuật Đông Dương tại Hà Nội – Cuộc gặp gỡ lịch sử giữa chất liệu sơn ta bản địa và ngôn ngữ tạo hình hiện đại</p>
+        </div>
+
+        <!-- Thân bài viết đọc báo -->
+        <div class="article-body" id="art-body">
+          <p>Trong nhiều thế kỷ, sơn chủ yếu tồn tại trong thế giới của đồ vật, kiến trúc và nghề thủ công. Đến đầu thế kỷ XX, dòng chảy ấy bắt đầu gặp một môi trường hoàn toàn khác. Năm 1925, Trường Cao đẳng Mỹ thuật Đông Dương được thành lập tại Hà Nội. Đây là thời điểm những phương pháp đào tạo mỹ thuật theo mô hình phương Tây gặp những chất liệu và kỹ thuật đã tồn tại lâu đời trong đời sống Việt Nam.</p>
+<p>Sơn là một trong những vật liệu được đưa vào quá trình nghiên cứu và thử nghiệm. Ở đây xuất hiện một cuộc gặp gỡ quan trọng. Người thợ hiểu vật liệu bằng kinh nghiệm của nghề. Họ biết cách chuẩn bị cốt, tạo vóc, phủ sơn, xử lý bề mặt và hoàn thiện sản phẩm. Những người học hội họa lại mang đến một hệ thống câu hỏi khác. Họ quan tâm đến bố cục, hình thể, ánh sáng, không gian, màu sắc và khả năng biểu đạt của hình ảnh.</p>
+
+            <blockquote class="editorial-pullquote">
+              <p>“Nếu mài vốn là một bước xử lý bề mặt, liệu người nghệ sĩ có thể dùng chính việc mài để tạo nên hình ảnh? Những câu hỏi ấy mở ra một giai đoạn thử nghiệm đầy tính khám phá.”</p>
+            </blockquote>
+            <p>Khi hai cách nhìn gặp nhau, sơn bắt đầu được đặt trước một câu hỏi mới. Nếu trước đây sơn thường được dùng để hoàn thiện một đồ vật, liệu chính bề mặt sơn có thể trở thành nơi để tạo nên một bức tranh? Nếu vàng, bạc hay vỏ trứng từng được sử dụng để trang trí, liệu chúng có thể trở thành một phần của ngôn ngữ hội họa? Nếu mài vốn là một bước xử lý bề mặt, liệu người nghệ sĩ có thể dùng chính việc mài để tạo nên hình ảnh?</p>
+<p>Những câu hỏi ấy mở ra một giai đoạn thử nghiệm kéo dài và đầy tính khám phá.</p>
+
+        </div>
+
+        <!-- Dấu kết thúc bài viết -->
+        <div class="article-endmark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+          </svg>
+        </div>
+
+        <!-- Phân trang mốc trước / mốc sau -->
+        <footer class="article-pager" id="art-pager">
+          
+        <a href="/cau-chuyen-son-mai/bai-viet/2" class="pager-btn prev" onclick="switchArticle(1, true); return false;">
+          <span class="pager-label">← Mốc trước (02)</span>
+          <span class="pager-title">Nghề thủ công</span>
+        </a>
+        
+          
+        <a href="/cau-chuyen-son-mai/bai-viet/4" class="pager-btn next" onclick="switchArticle(3, true); return false;">
+          <span class="pager-label">Mốc tiếp theo (04) →</span>
+          <span class="pager-title">Nghệ thuật hiện đại</span>
+        </a>
+        
+        </footer>
+      </article>
+
+      <!-- Các liên kết chuyển tiếp cuối trang -->
+      <div class="reader-bottom-actions">
+        <a id="btn-bottom-back" class="btn outline" href="/cau-chuyen-son-mai#timeline-tab-2">
+          ← Quay lại Câu chuyện sơn mài
+        </a>
+        <a class="btn red" href="/kham-pha#5-cong-doan">
+          Khám phá 5 chặng tạo tác →
+        </a>
+        <a class="btn outline" href="/trai-nghiem#simulator">
+          Tự tạo một bề mặt sơn mài 3D →
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="Footer_footer__eNA9m">
+  <div class="Footer_mainGrid">
+    <!-- Cột 1: Thương hiệu (Logo ở trên, Khẩu hiệu ngay dưới, Mạng xã hội dạng pill) -->
+    <div class="Footer_brandBlock">
+      <div class="Footer_brandHeader">
+        <a aria-label="Sơn Son Mài Sắc — Trang chủ" class="Footer_logoLink" href="/">
+          <span class="BrandMark_mark__I_sjn brand-mark" role="img" aria-label="Sơn Son Mài Sắc">
+            <img src="/story-assets/brand-9782.png" alt="Logo Sơn Son Mài Sắc" width="880" height="560"/>
+          </span>
+        </a>
+        <div class="Footer_identity__K9hsK">
+          <p class="Footer_tagline__WuViG">Đi Qua Từng Đường Mài<br/>Khám Phá Giá Trị Việt</p>
+        </div>
+      </div>
+
+      <!-- Mạng xã hội dạng pill sang trọng đặt ngay dưới -->
+      <nav class="Footer_socials__SOcMQ" aria-label="Kết nối với Sơn Son Mài Sắc">
+        <a href="https://www.facebook.com/Sonsonmaisac2026/" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          Facebook
+        </a>
+        <a href="https://www.tiktok.com/@sonsonmaisac.official" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music2" aria-hidden="true"><circle cx="8" cy="18" r="4"></circle><path d="M12 18V2l7 4"></path></svg>
+          TikTok
+        </a>
+        <a href="https://www.threads.com/@Sonsonmaisac" target="_blank" rel="noopener noreferrer">
+          Threads
+        </a>
+      </nav>
+    </div>
+
+    <!-- Cột 2: Khám phá -->
+    <div class="Footer_navCol">
+      <h3 class="Footer_colTitle">Khám phá</h3>
+      <ul class="Footer_linkList">
+        <li><a href="/son-mai-la-gi">Sơn mài là gì ?</a></li>
+        <li><a href="/kham-pha#5-cong-doan">5 chặng tạo tác</a></li>
+        <li><a href="/kham-pha#process-workshop-panel">Tự tạo 1 bề mặt sơn mài</a></li>
+      </ul>
+    </div>
+
+    <!-- Cột 3: Câu chuyện sơn mài -->
+    <div class="Footer_navCol">
+      <h3 class="Footer_colTitle">Câu chuyện sơn mài</h3>
+      <ul class="Footer_linkList">
+        <li><a href="/cau-chuyen-son-mai#timeline-tab-0">Lịch sử</a></li>
+        <li><a href="/cau-chuyen-son-mai#timeline-tab-1">Văn hoá</a></li>
+        <li><a href="/cau-chuyen-son-mai#timeline-tab-3">Chất liệu</a></li>
+        <li><a href="/cau-chuyen-son-mai#timeline-tab-4">Nghệ nhân</a></li>
+        <li><a href="/cau-chuyen-son-mai#timeline-tab-5">Sơn mài hôm nay</a></li>
+      </ul>
+    </div>
+
+    <!-- Cột 4: Tin tức sự kiện -->
+    <div class="Footer_navCol">
+      <h3 class="Footer_colTitle">Tin tức sự kiện</h3>
+      <ul class="Footer_linkList">
+        <li><a href="/tin-tuc-su-kien#upcoming-ssms">Up coming SSMS</a></li>
+        <li><a href="/tin-tuc-su-kien#su-kien">Sự kiện nổi bật</a></li>
+        <li><a href="/tin-tuc-su-kien#tin-son-mai">Tin sơn mài hôm nay</a></li>
+      </ul>
+    </div>
+
+    <!-- Cột 5: Về Dự án -->
+    <div class="Footer_navCol">
+      <h3 class="Footer_colTitle">Về Dự án</h3>
+      <ul class="Footer_linkList">
+        <li><a href="/ve-du-an#son-son-mai-sac">Sơn Son Mài Sắc</a></li>
+        <li><a href="/ve-du-an#doi-ngu">Đội ngũ</a></li>
+        <li><a href="/ve-du-an#lien-he">Liên hệ</a></li>
+      </ul>
+    </div>
+
+    <!-- Cột 6: Liên hệ + Đặt hình bản đồ địa chỉ Google Maps trực tiếp dưới địa chỉ -->
+    <div class="Footer_navCol Footer_contactCol">
+      <h3 class="Footer_colTitle">Liên hệ</h3>
+      <ul class="Footer_contactList">
+        <li><span>Đại diện dự án:</span> Đỗ Nguyễn Đan Lê</li>
+        <li><span>Email:</span> <a href="mailto:sonsonmaisac.contact@gmail.com">sonsonmaisac.contact@gmail.com</a></li>
+        <li><span>Số điện thoại:</span> <a href="tel:0963354111">0963354111</a></li>
+        <li><span>Địa chỉ:</span> Trường Đại Học FPT</li>
+      </ul>
+
+      <!-- Hình bản đồ địa chỉ Google Maps đặt ngay dưới thông tin địa chỉ -->
+      <a href="https://maps.app.goo.gl/YB2ycNHNqmumrPDd9" target="_blank" rel="noopener noreferrer" class="Footer_mapCard" aria-label="Xem bản đồ Trường Đại học FPT Hà Nội trên Google Maps">
+        <div class="Footer_mapFrame">
+          <img src="/story-assets/fpt-university-map.webp" alt="Bản đồ Trường Đại học FPT Hà Nội" width="280" height="130" loading="lazy"/>
+          <div class="Footer_mapBadgeTop">
+            <span>Maps</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <div class="Footer_mapPin">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="#d93025">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+            </svg>
+            <span class="Footer_mapPinText">Trường Đại học FPT Hà Nội</span>
+          </div>
+          <div class="Footer_mapBadgeBottom">
+            <span>Mở Google Maps ↗</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Đường kẻ phân cách -->
+  <div class="Footer_divider"></div>
+
+  <!-- Dòng dưới cùng: Bản quyền ©2026 Sơn Son Mài Sắc -->
+  <div class="Footer_bottomBar">
+    <p class="Footer_copyright">©2026 Sơn Son Mài Sắc</p>
+  </div>
+</footer>
+
+  <div id="copy-toast">Đã sao chép liên kết bài viết!</div>
+
+  <!-- Dữ liệu bài viết để client chuyển mốc tức thì không cần tải lại trang -->
+  <script id="articles-json" type="application/json">
+[{"id": 0, "slug": "doi-song-tin-nguong", "title": "Đời sống & tín ngưỡng", "heading": "Từ một lớp sơn bảo vệ đến một phần của đời sống", "date": "TRƯỚC HỘI HỌA", "kicker": "KỲ 01 / 06 · ĐỜI SỐNG & TÍN NGƯỠNG", "badge_org": "BẢO TÀNG LỊCH SỬ QUỐC GIA", "badge_sub": "Vietnam National Museum of History", "image": "/story-assets/flow-11.jpg", "caption": "Hộp gỗ sơn khắc hoa văn & Ngai thờ thếp vàng thời Lê – Nguyễn lưu giữ tại Bảo tàng Lịch sử Quốc gia", "pull_quote": "Thưởng thức sơn mài vì thế không chỉ là nhìn một hình ảnh. Đó còn là nhìn cách thời gian, vật liệu và bàn tay con người được giữ lại trên bề mặt.", "read_time": "4 phút đọc", "paragraphs": ["Từ lâu, người Việt đã biết sử dụng nhựa cây sơn để phủ lên đồ vật. Sau khi được xử lý đúng cách, sơn tạo thành một lớp bề mặt kín, có độ bóng và giúp bảo vệ phần cốt bên trong. Trong giai đoạn đầu, giá trị của sơn gắn nhiều với công năng ấy. Con người cần một vật liệu có thể bao phủ bề mặt, giúp đồ vật bền hơn trong quá trình sử dụng. Từ nhu cầu rất thực tế đó, người thợ dần nhận ra thêm những khả năng khác của sơn.", "Một bề mặt được phủ kỹ không chỉ được bảo vệ tốt hơn, nó còn có thể trở nên đẹp hơn. Sơn có thể tạo ra những sắc độ khác nhau, có thể trở nên sâu, bóng và giàu cảm giác thị giác. Khi kết hợp cùng son, vàng, bạc, trai và những vật liệu trang trí khác, bề mặt của đồ vật bắt đầu mang thêm một giá trị mới. Từ đây, câu hỏi không còn chỉ là làm thế nào để giữ cho đồ vật bền hơn.", "Người ta bắt đầu nghĩ đến việc làm thế nào để đồ vật ấy đẹp hơn, trang trọng hơn và phù hợp hơn với không gian mà nó xuất hiện. Sơn dần đi sâu vào đời sống văn hóa. Nó xuất hiện trên tượng, đồ thờ, hoành phi, câu đối, ngai, án gian và nhiều cấu kiện kiến trúc. Trong những không gian đình, đền, chùa hay nhà thờ họ, sắc đỏ của son và ánh vàng của vàng thếp không còn là những lớp màu đơn thuần.", "Chúng góp phần tạo nên cảm giác trang nghiêm, ấm áp và giàu tính biểu tượng cho toàn bộ không gian. Một pho tượng được sơn và thếp vàng không chỉ là một vật thể được hoàn thiện kỹ lưỡng. Nó hiện diện trong đời sống tín ngưỡng. Một bức hoành phi hay câu đối không chỉ có chữ, mà còn mang theo màu sắc, ánh sáng và cách xử lý bề mặt thể hiện tay nghề của người thợ.", "Trước khi con người đến bảo tàng để nhìn một bức tranh sơn mài, họ đã sống cùng sơn trong nhiều hình thức khác. Họ gặp sơn trong một pho tượng. Trong một bức hoành phi. Trong đồ thờ. Trong đồ dùng. Trong kiến trúc. Trong những vật thể hiện diện trong đời sống hằng ngày hoặc những không gian mang ý nghĩa tinh thần.", "Sơn từng là thứ được nhìn, được chạm và được sử dụng trước khi trở thành thứ để đứng trước và thưởng thức như một tác phẩm độc lập. Khi hội họa sơn mài phát triển, cách nhìn cũng dần thay đổi. Người xem có thể đứng xa để cảm nhận bố cục tổng thể. Khi tiến gần hơn, một thế giới khác bắt đầu xuất hiện. Một vùng sáng tưởng như chỉ có màu trắng có thể chứa hàng chục đường rạn nhỏ của vỏ trứng.", "Một mảng đen tưởng như phẳng có thể được tạo nên từ nhiều lớp nâu và đen khác nhau. Một vùng vàng thay đổi độ sáng khi người xem dịch chuyển vị trí. Một sắc đỏ có thể hiện rõ ở nơi này và chìm sâu ở nơi khác. Càng nhìn gần, người ta càng nhận ra rằng bề mặt tưởng như phẳng ấy chứa cả một chiều sâu bên trong. Thưởng thức sơn mài vì thế không chỉ là nhìn một hình ảnh.", "Đó còn là nhìn cách thời gian, vật liệu và bàn tay con người được giữ lại trên bề mặt."]}, {"id": 1, "slug": "nghe-thu-cong", "title": "Nghề thủ công", "heading": "Tri thức nghề được truyền qua nhiều thế hệ", "date": "TRI THỨC QUA THẾ HỆ", "kicker": "KỲ 02 / 06 · NGHỀ THỦ CÔNG", "badge_org": "KỸ NGHỆ SƠN TA TRUYỀN THỐNG", "badge_sub": "Tri thức lưu truyền qua các thế hệ nghệ nhân", "image": "/story-assets/flow-27.jpg", "caption": "Bức hoành phi cổ sơn son thếp vàng – Nơi hội tụ tinh hoa chạm khắc và kỹ nghệ phủ sơn truyền thống Việt Nam", "pull_quote": "Mỗi lớp là một thời điểm. Mỗi lần phủ là một lần hình ảnh thay đổi. Mỗi lần mài là một lần quá khứ của bề mặt được gọi trở lại.", "read_time": "4 phút đọc", "paragraphs": ["Một đồ vật được sơn vì thế dần trở thành nơi hội tụ của công năng, thẩm mỹ và những giá trị tinh thần. Càng được sử dụng rộng rãi, nghề sơn càng đòi hỏi nhiều kinh nghiệm hơn. Người thợ phải hiểu phần cốt bên dưới, biết cách chuẩn bị bề mặt, biết khi nào một lớp sơn đã đạt trạng thái phù hợp, biết kết hợp vật liệu và biết làm thế nào để lớp sau không phá hỏng những gì đã được tạo ra trước đó.", "Những tri thức ấy không thể hình thành trong một vài lần thực hành. Chúng được tích lũy qua nhiều năm, qua những lần làm đúng, những lần làm sai, qua quan sát và sự truyền nghề giữa các thế hệ. Khi nhiều người cùng sống với nghề, những tri thức ấy dần bám rễ vào từng cộng đồng, từng gia đình và từng địa phương. Các làng nghề hình thành, trở thành nơi giữ lại những kinh nghiệm mà sách vở khó có thể ghi đầy đủ.", "Từ đây, một giá trị khác của sơn mài ngày càng trở nên rõ ràng: thời gian. Một bức tranh có thể được nhìn trong vài giây. Quá trình tạo nên nó lại kéo dài qua rất nhiều lần tạo lớp, chờ, xử lý và tiếp tục tạo lớp mới. Có những chi tiết vừa hoàn thành đã bị phủ kín. Có những màu sắc chỉ xuất hiện trở lại sau nhiều công đoạn. Người làm phải tiếp tục làm việc khi kết quả cuối cùng vẫn chưa hiện ra trước mắt.", "Điều đó đòi hỏi một kiểu kiên nhẫn rất riêng. Người nghệ sĩ không chỉ nhìn vào những gì đang có trên bề mặt. Họ phải nhớ những gì đang nằm bên dưới. Phải hình dung lớp nào sẽ xuất hiện khi mài sâu thêm. Phải biết nơi nào nên tiếp tục và nơi nào cần dừng lại. Có thể nói, trong sơn mài, thời gian không chỉ là khoảng thời gian cần để hoàn thành tác phẩm. Nó nằm ngay trong cấu trúc vật chất của tác phẩm. Mỗi lớp là một thời điểm.", "Mỗi lần phủ là một lần hình ảnh thay đổi. Mỗi lần mài là một lần quá khứ của bề mặt được gọi trở lại. Chính vì vậy, sơn mài mang trong mình một giá trị tinh thần rất đặc biệt. Nó gắn với sự nhẫn nại, khả năng quan sát, sự ghi nhớ và một niềm tin rằng những gì chưa nhìn thấy vẫn đang tồn tại bên dưới."]}, {"id": 2, "slug": "my-thuat-dong-duong", "title": "Mỹ thuật Đông Dương", "heading": "Bước ngoặt đầu thế kỷ XX", "date": "1925", "kicker": "KỲ 03 / 06 · MỸ THUẬT ĐÔNG DƯƠNG", "badge_org": "TRƯỜNG CAO ĐẲNG MỸ THUẬT ĐÔNG DƯƠNG", "badge_sub": "Tư liệu lưu trữ lịch sử thành lập năm 1925 tại Hà Nội", "image": "/story-assets/flow-13.jpg", "caption": "Tòa nhà Trường Mỹ thuật Đông Dương tại Hà Nội – Cuộc gặp gỡ lịch sử giữa chất liệu sơn ta bản địa và ngôn ngữ tạo hình hiện đại", "pull_quote": "Nếu mài vốn là một bước xử lý bề mặt, liệu người nghệ sĩ có thể dùng chính việc mài để tạo nên hình ảnh? Những câu hỏi ấy mở ra một giai đoạn thử nghiệm đầy tính khám phá.", "read_time": "3 phút đọc", "paragraphs": ["Trong nhiều thế kỷ, sơn chủ yếu tồn tại trong thế giới của đồ vật, kiến trúc và nghề thủ công. Đến đầu thế kỷ XX, dòng chảy ấy bắt đầu gặp một môi trường hoàn toàn khác. Năm 1925, Trường Cao đẳng Mỹ thuật Đông Dương được thành lập tại Hà Nội. Đây là thời điểm những phương pháp đào tạo mỹ thuật theo mô hình phương Tây gặp những chất liệu và kỹ thuật đã tồn tại lâu đời trong đời sống Việt Nam.", "Sơn là một trong những vật liệu được đưa vào quá trình nghiên cứu và thử nghiệm. Ở đây xuất hiện một cuộc gặp gỡ quan trọng. Người thợ hiểu vật liệu bằng kinh nghiệm của nghề. Họ biết cách chuẩn bị cốt, tạo vóc, phủ sơn, xử lý bề mặt và hoàn thiện sản phẩm. Những người học hội họa lại mang đến một hệ thống câu hỏi khác. Họ quan tâm đến bố cục, hình thể, ánh sáng, không gian, màu sắc và khả năng biểu đạt của hình ảnh.", "Khi hai cách nhìn gặp nhau, sơn bắt đầu được đặt trước một câu hỏi mới. Nếu trước đây sơn thường được dùng để hoàn thiện một đồ vật, liệu chính bề mặt sơn có thể trở thành nơi để tạo nên một bức tranh? Nếu vàng, bạc hay vỏ trứng từng được sử dụng để trang trí, liệu chúng có thể trở thành một phần của ngôn ngữ hội họa? Nếu mài vốn là một bước xử lý bề mặt, liệu người nghệ sĩ có thể dùng chính việc mài để tạo nên hình ảnh?", "Những câu hỏi ấy mở ra một giai đoạn thử nghiệm kéo dài và đầy tính khám phá."]}, {"id": 3, "slug": "nghe-thuat-hien-dai", "title": "Nghệ thuật hiện đại", "heading": "Từ nghề sơn đến một ngôn ngữ hội họa", "date": "THẾ KỶ XX", "kicker": "KỲ 04 / 06 · NGHỆ THUẬT HIỆN ĐẠI", "badge_org": "HỘI HỌA SƠN MÀI TIÊN PHONG", "badge_sub": "Kiệt tác Les Fées (1936) · Bộ sưu tập Géraldine Galateau, Paris", "image": "/story-assets/flow-21.jpg", "caption": "Nguyễn Gia Trí – Kiệt tác \"Les Fées\" (Các nàng tiên, c. 1936), Sơn mài trên vóc, 290 × 440 cm", "pull_quote": "Hình ảnh sơn mài từ đó được tạo nên bằng một cách rất đặc biệt: vừa thêm vào, vừa lấy đi. Bề mặt sơn mài từ đây không còn chỉ là một bề mặt. Nó trở thành một không gian được xây dựng theo chiều sâu.", "read_time": "7 phút đọc", "paragraphs": ["Đến thập niên 1930, những thử nghiệm bắt đầu đi xa hơn. Người làm không còn chỉ tạo một lớp nền rồi trang trí trên phần ngoài cùng. Họ bắt đầu suy nghĩ về bề mặt theo chiều sâu. Một lớp màu có thể được tạo trước rồi phủ kín bằng lớp khác. Vàng hoặc bạc có thể nằm sâu phía dưới. Vỏ trứng có thể được cẩn vào bề mặt rồi tiếp tục bị che đi.", "Có thời điểm trong quá trình làm, người nhìn gần như không còn thấy những gì đã được tạo ra từ trước. Tất cả vẫn còn đó, chỉ là đang nằm bên dưới những lớp mới. Đến khi mài, bề mặt bắt đầu thay đổi. Lớp trên được lấy đi từng chút một. Một sắc màu cũ bắt đầu hiện ra. Một vùng vàng từ từ xuất hiện. Những đường rạn của vỏ trứng trở lại. Các lớp được tạo ra ở những thời điểm khác nhau gặp nhau trên cùng một mặt phẳng.", "Chính lúc ấy, mài không còn đơn thuần là thao tác làm cho bề mặt nhẵn hơn. Mài bắt đầu tham gia trực tiếp vào quá trình tạo hình. Người nghệ sĩ phải nhớ mình đã đặt gì ở phía dưới, lớp nào cần được làm lộ, lớp nào chỉ nên xuất hiện một phần và phải dừng lại ở đâu. Chỉ cần đi quá một chút, một chi tiết đã được chuẩn bị từ nhiều công đoạn trước có thể biến mất.", "Hình ảnh sơn mài từ đó được tạo nên bằng một cách rất đặc biệt: vừa thêm vào, vừa lấy đi. Đây cũng là lúc những vật liệu quen thuộc bắt đầu được nhìn bằng một cách hoàn toàn khác. Vàng không còn chỉ để tạo sự sang trọng cho bề mặt. Nó có thể trở thành ánh sáng. Bạc có thể tạo ra một khoảng xa, một lớp không khí hoặc một sắc độ khác. Vỏ trứng không chỉ là một vật liệu sáng màu.", "Những mảnh vỏ, khoảng cách giữa chúng và hệ thống đường rạn có thể trở thành một phần của hình ảnh. Sắc đen không chỉ làm nền. Nó có thể tạo cảm giác chiều sâu. Son đỏ không chỉ có vai trò trang trí. Nó có thể trở thành một mảng màu chính trong bố cục. Điều mới ở đây không nằm ở việc người nghệ sĩ sử dụng thật nhiều chất liệu.", "Điều đáng kể là họ bắt đầu hiểu rằng mỗi vật liệu có thể đóng một vai trò khác trong việc tạo nên hình ảnh. Bề mặt sơn mài từ đây không còn chỉ là một bề mặt. Nó trở thành một không gian được xây dựng theo chiều sâu.", "Cùng với sự phát triển ấy, sơn mài dần bước ra khỏi phạm vi của nghệ thuật trang trí. Những họa sĩ như Trần Quang Trân, Phạm Hậu, Trần Văn Cẩn, Nguyễn Gia Trí cùng nhiều người khác bắt đầu đưa chất liệu vào thế giới hội họa theo những cách ngày càng tự chủ hơn.", "Phong cảnh xuất hiện. Cây cối, làng quê, con người và những khoảng không gian rộng hơn bắt đầu đi vào tranh. Các vật liệu vốn từng gắn với trang trí giờ đây được sử dụng để diễn tả ánh sáng, khoảng cách và cảm giác không gian. Trong những sáng tác của Phạm Hậu, sơn mài cho thấy khả năng diễn tả cảnh vật và nhịp điệu của phong cảnh. Đến Nguyễn Gia Trí, khả năng ấy được đẩy xa hơn nữa.", "Các tác phẩm của Nguyễn Gia Trí cho thấy sơn mài đã có thể tồn tại như một ngôn ngữ hội họa hoàn chỉnh. Vàng, son, đen, nâu, bạc và vỏ trứng không đứng riêng rẽ. Chúng được tổ chức thành từng lớp, phủ chồng lên nhau, được giữ lại hoặc mài đi để tạo nên những không gian có chiều sâu, nhịp điệu và cảm xúc. Ở những tác phẩm như Les Fées vào khoảng năm 1936, người xem không chỉ nhìn thấy một hình ảnh hoàn chỉnh.", "Họ còn có thể cảm nhận được sự vận động của vật liệu trong quá trình tạo nên hình ảnh ấy. Có nơi bề mặt trong hơn, có nơi đục hơn. Có vùng sáng bắt lên từ vàng. Có vùng được tạo nên bởi những đường rạn của vỏ trứng. Những lớp khác nhau không tách khỏi nhau mà liên tục che phủ, làm lộ và thay đổi lẫn nhau. Đây là một trong những thời điểm quan trọng nhất trong lịch sử sơn mài Việt Nam.", "Từ một chất liệu có nguồn gốc trong nghề thủ công, sơn đã trở thành một phương tiện để người nghệ sĩ xây dựng cả một thế giới hội họa. Điều đáng nói là bước chuyển ấy không xóa đi quá khứ của nghề sơn. Ngược lại, chính những tri thức được tích lũy qua nhiều thế hệ đã trở thành nền tảng cho những thử nghiệm mới. Người họa sĩ có thể thay đổi cách sử dụng sơn, vàng hay vỏ trứng. Họ vẫn cần hiểu vật liệu. Họ có thể mở rộng đề tài.", "Họ vẫn phải làm việc với nhiều lớp. Họ có thể sáng tạo về bố cục. Họ vẫn phải biết khi nào một bề mặt đã sẵn sàng để tiếp tục. Sơn mài hiện đại vì thế không hình thành bằng cách cắt đứt với nghề truyền thống. Nó được sinh ra từ chính sự gặp gỡ giữa kinh nghiệm của người thợ và tư duy của người nghệ sĩ.", "Nếu lịch sử là một dòng chảy dài, tác phẩm chính là những nơi giúp ta nhìn thấy dòng chảy ấy đã thay đổi như thế nào. Phong cảnh chùa cổ ở Bắc Bộ của Phạm Hậu, thực hiện năm 1934, cho thấy sơn mài đã có thể bước vào thế giới phong cảnh và xây dựng không gian trên một bình phong lớn.", "Khoảng năm 1936, Les Fées của Nguyễn Gia Trí cho thấy những thử nghiệm với nhiều lớp sơn, vàng và vỏ trứng đã tiến tới một ngôn ngữ hội họa phức tạp hơn. Đến khoảng năm 1940, Landscape of Vietnam tiếp tục cho thấy khả năng tổ chức nhiều kỹ thuật khác nhau trong một không gian phong cảnh thống nhất.", "Nhiều thập niên sau, Vườn xuân Trung Nam Bắc đưa những nghiên cứu lâu dài về chất liệu, màu sắc và cấu trúc nhiều lớp của Nguyễn Gia Trí vào một tác phẩm có quy mô lớn hơn. Đặt những tác phẩm ấy cạnh nhau, người ta không chỉ nhìn thấy phong cách của từng họa sĩ. Người ta nhìn thấy sự trưởng thành của chính chất liệu.", "Từ những thử nghiệm đầu tiên, sơn mài dần đi đến khả năng làm chủ bố cục, không gian, hình ảnh và cảm xúc ở những quy mô ngày càng lớn."]}, {"id": 4, "slug": "lang-nghe", "title": "Làng nghề", "heading": "Hạ Thái – nơi câu chuyện trở về với làng nghề", "date": "TRUYỀN NGHỀ", "kicker": "KỲ 05 / 06 · LÀNG NGHỀ", "badge_org": "LÀNG NGHỀ SƠN MÀI HẠ THÁI", "badge_sub": "Thường Tín, Hà Nội · Đất tổ nghề sơn truyền thống", "image": "/story-assets/flow-32.jpg", "caption": "Nghệ nhân làng nghề Hạ Thái miệt mài thực hiện từng nét vẽ và lớp sơn tỉ mỉ trên vóc truyền thống", "pull_quote": "Một người mang kinh nghiệm của nghề truyền thống bước vào môi trường mỹ thuật. Tại đó, kỹ thuật gặp những thử nghiệm mới. Những điều được học hỏi và phát triển lại quay trở về làng nghề.", "read_time": "3 phút đọc", "paragraphs": ["Sau những bước chuyển lớn của lịch sử, câu chuyện của sơn mài cần trở về với nơi đã giữ cho tri thức ấy tiếp tục tồn tại qua bàn tay của con người. Hạ Thái, thuộc Thường Tín, Hà Nội, là một trong những địa danh gắn với nghề sơn và sơn mài. Từ nền tảng của nghề sơn truyền thống, những người làm nghề ở Hạ Thái tích lũy kinh nghiệm xử lý vật liệu qua nhiều thế hệ.", "Đến giai đoạn những thử nghiệm về sơn mài diễn ra trong môi trường Mỹ thuật Đông Dương, mối quan hệ giữa làng nghề và môi trường mỹ thuật trở nên đặc biệt đáng chú ý. Nghệ nhân Đinh Văn Thành, người xuất thân từ Hạ Thái và làm việc trong môi trường của Trường Cao đẳng Mỹ thuật Đông Dương, thường được nhắc đến như một nhân vật kết nối hai thế giới ấy.", "Một người mang kinh nghiệm của nghề truyền thống bước vào môi trường mỹ thuật. Tại đó, kỹ thuật gặp những thử nghiệm mới. Những điều được học hỏi và phát triển lại quay trở về làng nghề. Sự trao đổi này khiến câu chuyện sơn mài không thể chia thành hai phía hoàn toàn tách biệt, một bên là nghệ nhân và một bên là họa sĩ. Trong nhiều giai đoạn, họ đã cùng tham gia vào quá trình làm thay đổi chất liệu."]}, {"id": 5, "slug": "vuon-ra-the-gioi", "title": "Vươn ra thế giới", "heading": "Khi sơn mài bước vào hiện tại", "date": "ĐƯƠNG ĐẠI", "kicker": "KỲ 06 / 06 · VƯƠN RA THẾ GIỚI", "badge_org": "SƠN MÀI ĐƯƠNG ĐẠI & QUỐC TẾ", "badge_sub": "Không gian nghệ thuật & Đối thoại đương đại", "image": "/story-assets/flow-37.jpg", "caption": "Không gian trưng bày tác phẩm sơn mài tại triển lãm đương đại – Mở rộng không gian ba chiều và đối thoại đa chất liệu", "pull_quote": "Câu chuyện của sơn mài Việt Nam chưa thật sự có một đoạn kết. Nó vẫn đang được viết bằng cách mỗi thế hệ tiếp tục thêm một lớp của mình lên những lớp đã có từ trước.", "read_time": "6 phút đọc", "paragraphs": ["Khi kỹ thuật ngày càng được làm chủ, đề tài của sơn mài cũng tiếp tục mở rộng. Từ phong cảnh, thiếu nữ, cây cối và những hình ảnh giàu tính trang trí, sơn mài dần được sử dụng để kể những câu chuyện rộng hơn về đời sống con người. Các giai đoạn lịch sử khác nhau mang đến những đề tài khác nhau. Lao động, sinh hoạt, chiến tranh, ký ức, những biến chuyển của xã hội và con người Việt Nam lần lượt bước vào tác phẩm.", "Đây là một thay đổi quan trọng. Sơn mài không còn chỉ được nhận diện bởi vẻ đẹp của bề mặt. Chất liệu đã trở thành phương tiện để kể chuyện. Mỗi thế hệ bắt đầu dùng cùng một nền tảng vật liệu để nói về thời đại của chính mình. Bởi vậy, bản sắc của sơn mài Việt Nam không thể thu gọn vào một màu sắc hay một kỹ thuật cố định. Nó được hình thành từ cả một quá trình. Từ cây sơn và nghề sơn truyền thống.", "Từ những người thợ đã tích lũy kinh nghiệm qua nhiều thế hệ. Từ sơn son, thếp vàng, khảm trai và những kỹ thuật đã đi vào đời sống văn hóa. Từ cuộc gặp gỡ giữa nghề thủ công và môi trường mỹ thuật đầu thế kỷ XX. Từ những thử nghiệm với nhiều lớp, màu sắc, vật liệu và quá trình mài. Rồi từ những thế hệ nghệ sĩ tiếp tục đưa vào đó câu chuyện của thời đại mình. Bản sắc ấy vì thế không phải một thứ đứng yên. Nó luôn được bồi thêm.", "Dẫu vậy, câu chuyện không dừng lại ở những giai đoạn được xem là rực rỡ nhất. Nếu chỉ kể đến đây, sơn mài sẽ rất dễ trở thành một di sản đẹp đẽ nằm yên trong quá khứ. Trong thực tế, những thế hệ sau vẫn tiếp tục thay đổi nó. Bảng màu được mở rộng. Cách xử lý bề mặt thay đổi. Phần cốt thay đổi. Thẩm mỹ thay đổi. Đề tài thay đổi. Một tác phẩm sơn mài không nhất thiết phải luôn mang sắc đỏ, đen và vàng quen thuộc.", "Bề mặt có thể bóng hoặc lì. Có thể phẳng hoặc để lộ cấu trúc. Có thể được xử lý rất mịn hoặc chủ động giữ lại dấu vết của quá trình làm. Đề tài cũng tiếp tục đi xa hơn. Phong cảnh và con người vẫn còn đó, đồng thời xuất hiện thêm những câu chuyện về ký ức cá nhân, bản sắc, đô thị, môi trường, công nghệ và trải nghiệm trong đời sống hiện đại. Chất liệu cũ bắt đầu kể những câu chuyện mới.", "Ngay cả hình thức của tác phẩm cũng không còn bị giới hạn bởi một tấm vóc phẳng. Một số nghệ sĩ đương đại bắt đầu đưa sơn vào các cấu trúc ba chiều, composite, kim loại, kính hoặc những không gian sắp đặt. Phi Phi Oanh là một trong những ví dụ rõ cho hướng tiếp cận này.", "Trong các dự án như Specula, Palimpsest hay Pro Se, sơn mài được đặt trong mối quan hệ với không gian, ánh sáng, cấu trúc ba chiều và cả cách con người tiếp nhận hình ảnh trong thời đại kỹ thuật số. Điều đáng chú ý là những thử nghiệm ấy không nhất thiết phủ nhận truyền thống. Theo một cách nào đó, chúng tiếp tục chính tinh thần từng xuất hiện vào đầu thế kỷ XX.", "Một thế hệ mới đứng trước một chất liệu cũ. Họ nhìn lại những gì đã có. Rồi hỏi nó còn có thể làm được gì nữa. Câu hỏi ấy từng góp phần đưa nghề sơn bước sang hội họa sơn mài. Và đến hôm nay, nó vẫn tiếp tục mở ra những hình thức mới.", "Nhìn lại toàn bộ hành trình, sơn mài đã đi qua rất nhiều thay đổi. Từ một vật liệu bảo vệ đồ vật, sơn bước vào trang trí. Từ trang trí, nó đi vào đời sống văn hóa và không gian tinh thần. Từ nghề thủ công, nó gặp tư duy hội họa. Từ bề mặt của đồ vật, nó trở thành một không gian để tạo hình. Từ những đề tài quen thuộc, nó bắt đầu kể những câu chuyện về xã hội và con người.", "Từ một tấm vóc phẳng, nó tiếp tục bước sang những hình thức đương đại. Qua mỗi lần thay đổi, một số điều cũ mất đi, một số điều được giữ lại và một số điều được hiểu theo cách mới. Có lẽ chính ở đây, lịch sử của sơn mài giống nhất với cách một bề mặt sơn mài được tạo nên. Người ta không xóa sạch lớp cũ để bắt đầu từ đầu. Người ta tiếp tục đặt lớp mới lên những gì đã tồn tại. Có lớp được giữ nguyên. Có lớp bị che đi.", "Có lớp chỉ còn để lại một dấu vết. Và có lớp sau nhiều năm lại được nhìn thấy rõ hơn. Mỗi thế hệ tiếp nhận một bề mặt đã có sẵn. Người nghệ nhân giữ lại kinh nghiệm của bàn tay. Người nghệ sĩ tiếp tục thử nghiệm. Làng nghề giữ những tri thức đã đi qua nhiều đời. Bảo tàng giữ lại những tác phẩm đánh dấu từng giai đoạn. Còn hiện tại lại tiếp tục đặt lên đó những câu hỏi mới.", "Bởi vậy, câu chuyện của sơn mài Việt Nam chưa thật sự có một đoạn kết. Nó vẫn đang được viết. Không phải bằng một trang giấy mới hoàn toàn, mà bằng cách mỗi thế hệ tiếp tục thêm một lớp của mình lên những lớp đã có từ trước. Và chính khi nhìn xuyên qua tất cả những lớp ấy, ta mới có thể thấy được chiều sâu thực sự của sơn mài Việt Nam."]}]
+  </script>
+
+  <script>
+    const articlesData = JSON.parse(document.getElementById('articles-json').textContent);
+    let currentArticleId = 2;
+    let currentFontSize = 18;
+
+    // Cập nhật thanh tiến độ đọc
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('reading-progress-bar');
+      if (bar) bar.style.width = scrolled + '%';
+    });
+
+    // Chuyển đổi cỡ chữ
+    function adjustFontSize(delta) {
+      currentFontSize = Math.min(24, Math.max(15, currentFontSize + delta));
+      const bodyEl = document.getElementById('art-body');
+      if (bodyEl) bodyEl.style.fontSize = currentFontSize + 'px';
+    }
+
+    // Sao chép liên kết
+    function copyArticleLink() {
+      const url = window.location.origin + '/cau-chuyen-son-mai/bai-viet/' + (currentArticleId + 1);
+      navigator.clipboard.writeText(url).then(() => {
+        const toast = document.getElementById('copy-toast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2400);
+        }
+      });
+    }
+
+    // Chuyển đổi bài viết mượt mà
+    function switchArticle(idx, isUserClick = false) {
+      if (idx < 0 || idx >= articlesData.length) return;
+      currentArticleId = idx;
+      const art = articlesData[idx];
+
+      // Đổi URL trên trình duyệt
+      const newUrl = '/cau-chuyen-son-mai/bai-viet/' + (idx + 1);
+      window.history.pushState({ id: idx }, '', newUrl);
+
+      // Cập nhật nút quay lại
+      const btnBackTop = document.getElementById('btn-back-timeline');
+      if (btnBackTop) btnBackTop.href = '/cau-chuyen-son-mai#timeline-tab-' + idx;
+      const btnBackBottom = document.getElementById('btn-bottom-back');
+      if (btnBackBottom) btnBackBottom.href = '/cau-chuyen-son-mai#timeline-tab-' + idx;
+
+      // Cập nhật tab active
+      document.querySelectorAll('.milestone-tab').forEach(tab => {
+        const tabId = Number(tab.getAttribute('data-id'));
+        if (tabId === idx) tab.classList.add('active');
+        else tab.classList.remove('active');
+      });
+
+      // Cập nhật tiêu đề trang
+      document.title = art.title + ': ' + art.heading + ' | Câu chuyện sơn mài';
+
+      // Cập nhật nội dung đầu trang
+      document.getElementById('art-kicker').textContent = art.kicker;
+      document.getElementById('art-heading').textContent = art.heading;
+      document.getElementById('art-subtitle').textContent = art.title + ' · Tư liệu theo mạch lịch sử và đời sống di sản';
+      document.getElementById('art-date-val').textContent = 'Giai đoạn: ' + art.date;
+      document.getElementById('art-readtime').textContent = '⏱ ' + art.read_time;
+
+      // Cập nhật ảnh và huy hiệu
+      const imgEl = document.getElementById('art-img');
+      imgEl.src = art.image;
+      imgEl.alt = art.title;
+      document.getElementById('art-badge-org').textContent = art.badge_org;
+      document.getElementById('art-badge-sub').textContent = art.badge_sub;
+      document.getElementById('art-caption').textContent = art.caption;
+
+      // Cập nhật các đoạn văn bản
+      let bodyHtml = '';
+      art.paragraphs.forEach((p, pIdx) => {
+        bodyHtml += '<p>' + p + '</p>';
+        if (pIdx === 1 && art.pull_quote) {
+          bodyHtml += '<blockquote class="editorial-pullquote"><p>“' + art.pull_quote + '”</p></blockquote>';
+        }
+      });
+      document.getElementById('art-body').innerHTML = bodyHtml;
+
+      // Cập nhật nút phân trang dưới
+      const pagerEl = document.getElementById('art-pager');
+      let prevBtn = '', nextBtn = '';
+      if (idx > 0) {
+        const prevArt = articlesData[idx - 1];
+        prevBtn = '<a href="/cau-chuyen-son-mai/bai-viet/' + idx + '" class="pager-btn prev" onclick="switchArticle(' + (idx - 1) + ', true); return false;"><span class="pager-label">← Mốc trước (0' + idx + ')</span><span class="pager-title">' + prevArt.title + '</span></a>';
+      } else {
+        prevBtn = '<div class="pager-btn prev disabled"><span class="pager-label">Khởi đầu</span><span class="pager-title">Đầu dòng thời gian</span></div>';
+      }
+
+      if (idx < articlesData.length - 1) {
+        const nextArt = articlesData[idx + 1];
+        nextBtn = '<a href="/cau-chuyen-son-mai/bai-viet/' + (idx + 2) + '" class="pager-btn next" onclick="switchArticle(' + (idx + 1) + ', true); return false;"><span class="pager-label">Mốc tiếp theo (0' + (idx + 2) + ') →</span><span class="pager-title">' + nextArt.title + '</span></a>';
+      } else {
+        nextBtn = '<div class="pager-btn next disabled"><span class="pager-label">Tiếp nối</span><span class="pager-title">Hiện tại & Tương lai</span></div>';
+      }
+      pagerEl.innerHTML = prevBtn + nextBtn;
+
+      // Chỉ cuộn nếu người dùng click thủ công
+      if (isUserClick) {
+        const contentEl = document.getElementById('article-content');
+        if (contentEl) {
+          contentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    // Đọc tham số URL khi tải trang lần đầu
+    window.addEventListener('DOMContentLoaded', () => {
+      const path = window.location.pathname;
+      const numMatch = path.match(/\/bai-viet\/([1-6])(?:\/|$)/);
+      if (numMatch) {
+        const targetId = parseInt(numMatch[1], 10) - 1;
+        if (targetId >= 0 && targetId < articlesData.length && targetId !== currentArticleId) {
+          switchArticle(targetId, false);
+          return;
+        }
+      }
+      articlesData.forEach((a, aIdx) => {
+        if (path.includes('/' + a.slug) && aIdx !== currentArticleId) {
+          switchArticle(aIdx, false);
+          return;
+        }
+      });
+      const params = new URLSearchParams(window.location.search);
+      const qId = params.get('id');
+      if (qId !== null && !isNaN(Number(qId))) {
+        let targetId = Number(qId);
+        if (targetId >= 1 && targetId <= 6 && !params.get('zero')) targetId = targetId - 1;
+        if (targetId >= 0 && targetId < articlesData.length && targetId !== currentArticleId) {
+          switchArticle(targetId, false);
+        }
+      }
+    });
+
+    // Bắt sự kiện back/forward của trình duyệt
+    window.addEventListener('popstate', (e) => {
+      const path = window.location.pathname;
+      const numMatch = path.match(/\/bai-viet\/([1-6])(?:\/|$)/);
+      if (numMatch) {
+        const targetId = parseInt(numMatch[1], 10) - 1;
+        if (targetId >= 0 && targetId < articlesData.length) {
+          switchArticle(targetId, false);
+          return;
+        }
+      }
+      if (e.state && typeof e.state.id === 'number') {
+        switchArticle(e.state.id, false);
+      }
+    });
+  </script>
+</body>
+</html>

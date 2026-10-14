@@ -1,0 +1,56 @@
+{
+  "tieu_de": "Báo Cáo Kỹ Thuật Chuyên Sâu: Kiến Trúc Ứng Dụng, Đồ Họa WebGL & Động Cơ Mô Phỏng Sơn Mài",
+  "stack_cong_nghe": {
+    "framework": "Next.js 14+ (App Router)",
+    "runtime": "React 18 / Node.js Vercel Edge Runtime",
+    "hosting": "Vercel Deployment (dpl_6jQJ65uT65LPuzwTmJiqFs1xmLmA)",
+    "ten_mien_chinh": "https://sonsonmaisat.site/",
+    "ten_mien_phu": "https://son-son-mai-sac-storytelling.vercel.app/",
+    "thu_vien_do_hoa": [
+      "Three.js (r128+)",
+      "HTML5 Canvas 2D Dual-Buffer",
+      "SVG Vector Filtering",
+      "CSS Sub-pixel Animation"
+    ],
+    "quan_ly_trang_thai": [
+      "React Hooks (useState, useEffect, useRef, useMemo)",
+      "HTML5 LocalStorage API",
+      "HTML5 Custom Event Dispatcher"
+    ],
+    "nguon_du_lieu": "Google News RSS Live Proxy (/api/news), Static JSON Data Bundles"
+  },
+  "dong_co_do_hoa_mo_phong_son_mai": {
+    "kien_truc_dual_buffer": {
+      "do_phan_giai": "900 x 620 pixels",
+      "buffer_mau_rgb": "HTML5 Canvas (context 'a'): Chịu trách nhiệm hiển thị màu sắc, hoa văn, texture hạt vàng/vỏ trứng và các lớp sơn nền.",
+      "buffer_do_sau_grayscale": "HTML5 Canvas (context 'r'): Chịu trách nhiệm lưu trữ độ sâu vật lý (Depthmap) dưới dạng giá trị xám [0..255] tương ứng với độ mài mòn của nước."
+    },
+    "thuat_toan_ve_vector_procedural": {
+      "hoa_sen": "12 cánh hoa tạo hình bằng đường cong Bézier bậc 3 đối xứng [moveTo(0,14), bezierCurveTo(-53,-38,-47,-110,0,-164), bezierCurveTo(47,-110,53,-38,0,14)] xoay quanh tâm (PI/12 góc lệch) và nhụy hoa hình tròn arc(0,0,23).",
+      "song_nuoc": "7 dải sóng thủy ba song song (e = -3..3, bước nhảy 48px) uốn lượn liên tục qua các điểm điều khiển Bézier [-280, a], [-120, a-54], [100, a+45], [280, a-10].",
+      "may_cuon": "Cụm 4 tầng mây cuộn cổ truyền với các điểm cong liên hoàn [(-235, a+18) -> (-135, a+9) -> (-20, a+8) -> (90, a+12) -> (192, a+22)].",
+      "rong_luon": "Hình thể rồng uốn khúc phức tạp kết hợp thân rồng Bézier, đầu rồng đa giác (Polygon head), râu rồng bậc 2 (Quadratic curve) và 6 vảy rồng hàm sin điều hòa [y = 62 * sin(0.9 * e)]."
+    },
+    "ky_thuat_composite_hoa_tron": {
+      "source_in": "Cắt mặt nạ hoa văn (Stencil Masking) và phủ chất liệu lặp (createPattern texture) vào đúng biên dạng hoa văn.",
+      "destination_in": "Áp dụng mặt nạ hình elip đa điểm [ellipse(690,190), ellipse(245,425)] để mô phỏng các vùng mài khuyết tự nhiên của bàn tay nghệ nhân."
+    },
+    "co_che_mai_nuoc_water_abrasion": {
+      "depth_scale": "Thang đo độ mài phân tầng: 'Mài chưa tới' -> 'Độ sâu phù hợp' (coverage > 12%) -> 'Có nguy cơ mài quá sâu' (overSanded > 0%) -> 'Quá sâu'.",
+      "tinh_toan_xuyen_lop": "Khi người dùng kéo dụng cụ mài, lớp phủ trong suốt bị mòn dần theo hệ số ma sát, so sánh độ sâu hiện tại với Depthmap của từng chất liệu để quyết định phần vỏ trứng hoặc vàng lá nào sẽ lộ ra."
+    }
+  },
+  "trinh_khac_mat_hop_face_engraving_editor": {
+    "mo_hinh_du_lieu": "Lưu trữ 6 mặt hộp [top, bottom, left, right, front, back] độc lập trong LocalStorage key 'ssms-applied-faces-v1'.",
+    "cong_cu_ve": "Cọ vẽ đa chất liệu (Vàng quỳ, Vỏ trứng, Xà cừ) với tùy biến độ dày nét cọ (brush size), độ bóng bề mặt (surface gloss) và khắc văn bản cá nhân hóa (tối đa 18 ký tự)."
+  },
+  "bo_xoay_360_do_quang_hoc": {
+    "so_khung_hinh": 16,
+    "co_che_anh_xa": "Bắt sự kiện pointerdown/pointermove (dragX), chuẩn hóa góc quay [0..2*PI] và ánh xạ vào mảng 16 ảnh quang học thực tế [box-1.jpg .. box-23.jpg]."
+  },
+  "dong_co_do_hoa_webgl_3d": {
+    "mo_hinh_3d": "vercel-lacquer-box.glb (449 KB, 10 meshes, 12 nodes, 4 PBR materials)",
+    "shader_glsl": "Custom Vertex & Fragment Shader với PBR Blinn-Phong, vi phân 4-tap Normal Map, và Water Sheen Physics",
+    "am_thanh_dsp": "Web Audio API Pink Noise Synthesizer (Paul Kellet Filter) biến thiên 700-2200Hz"
+  }
+}

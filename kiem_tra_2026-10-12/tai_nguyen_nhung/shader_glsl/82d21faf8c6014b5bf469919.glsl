@@ -1,0 +1,1 @@
+#define CLEARCOAT_NORMALMAP_UV 

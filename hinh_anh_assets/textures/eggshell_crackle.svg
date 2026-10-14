@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <pattern id="cracklePattern" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 0 10 L 20 25 L 15 50 L 40 60 L 64 45 M 20 25 L 45 15 L 64 20 M 15 50 L 0 64" fill="none" stroke="#2A1212" stroke-width="1.2" opacity="0.6" />
+    </pattern>
+  </defs>
+  <rect width="512" height="512" fill="#EBEAE9" />
+  <rect width="512" height="512" fill="url(#cracklePattern)" />
+</svg>

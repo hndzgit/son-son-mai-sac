@@ -1,0 +1,1 @@
+#define PREMULTIPLIED_ALPHA

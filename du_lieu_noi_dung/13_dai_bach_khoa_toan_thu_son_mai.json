@@ -1,0 +1,50 @@
+{
+  "tieu_de": "Đại Bách Khoa Toàn Thư Sơn Mài Việt Nam: Hóa Học Tự Nhiên, Kỹ Nghệ Gia Truyền & Mỹ Học Di Sản",
+  "hoa_hoc_nhua_son_ta": {
+    "thanh_phan_chinh": {
+      "laccol": "Công thức phân tử C23H36O2 (3-heptadecenyl catechol) chiếm 65-70% trong sơn ta Phú Thọ (Toxicodendron succedaneum). Khác với Urushiol C21H32O2 trong sơn Nhật Bản/Trung Quốc.",
+      "nuoc": "Chiếm 20-25%",
+      "chat_gom_gum": "Chiếm 5-7%",
+      "chat_co_nito": "Chiếm 2-3%",
+      "enzyme_laccase": "Polyphenol oxidase chứa 4 nguyên tử Đồng (Cu), chất xúc tác sinh học quyết định sự đông cứng của mủ sơn."
+    },
+    "co_che_dong_ket_sinh_hoa": "Laccase kích hoạt phản ứng oxy hóa các gốc catechol thành ortho-quinone, sau đó các phân tử laccol tự trùng hợp (radical polymerization) tạo thành màng polyme liên kết không gian 3 chiều cực kỳ bền vững, trơ với axit, kiềm và nước mặn.",
+    "dieu_kien_dong_kho": "Bắt buộc cần độ ẩm 75-85% RH và nhiệt độ 25-30°C. Đây là cơ chế 'khô trong ẩm' độc nhất vô nhị."
+  },
+  "quy_trinh_5_loai_son_pha_che": {
+    "son_song": "Nhựa sơn nguyên chất vừa trích từ cây, chia thành sơn mặt dầu (loại 1) và sơn nhì, sơn ba.",
+    "son_chin_son_quang": "Sơn sống được khuấy đều bằng chày gỗ trong thùng gỗ thông suốt 40-60 giờ để thoát bớt hơi nước, chuyển sang màu nâu cánh gián dẻo quánh.",
+    "son_then": "Sơn chín được đánh kỹ với mạt sắt gỉ hoặc phèn đen trong chậu gang suốt nhiều ngày đêm. Phản ứng giữa ion Fe2+/Fe3+ và phân tử laccol tạo nên phức chất màu đen tuyền sâu thẳm, không bao giờ phai.",
+    "son_canh_gian": "Sơn chín nấu với dầu trẩu (hoặc nhựa thông) tạo thành chất keo trong suốt ánh màu hổ phách, dùng để phủ các lớp cẩn và tạo chiều sâu quang học.",
+    "son_phu_trong": "Lớp bảo vệ cuối cùng, cho phép mài bóng bằng lòng bàn tay và bột than."
+  },
+  "so_tay_ky_thuat_5_cong_doan": {
+    "cong_doan_1_chuan_bi_cot": "Chọn gỗ nhẹ, ít co ngót (dổi, vàng tâm, ngát). Xảm các khe nứt bằng sơn sống trộn mùn cưa mịn.",
+    "cong_doan_2_lam_voc": "Bó hom (phù sa sông Hồng nhào bột đá và sơn sống) -> Bồi vải màn (cotton scrim) -> Hom chèn -> Mài nước bằng đá ráp thô.",
+    "cong_doan_3_son_nen": "Quét 2-3 lượt sơn then hoặc đỏ son, mỗi lượt ủ khô 3-5 ngày trong buồng ủ ẩm (dũ), mài phẳng mịn như lụa.",
+    "cong_doan_4_tao_hinh_va_trang_tri": "Cẩn vỏ trứng (dán từng mảnh vỏ trứng vịt/gà, gõ nhẹ tạo đường rạn), thếp vàng quỳ (dát vàng 24k siêu mỏng đập tay), rắc vàng châm, cẩn xà cừ ngũ sắc.",
+    "cong_doan_5_phu_mai_va_hoan_thien": "Phủ sơn cánh gián kín tranh -> Mài nước bằng than củi xoan, than ổi, tóc rối -> Toát sơn -> Đánh bóng bằng lòng bàn tay miết với bột than lá chuối và bột gan gà."
+  },
+  "ban_do_lang_nghe": [
+    {
+      "ten": "Hạ Thái",
+      "dia_chi": "Thường Tín, Hà Nội",
+      "the_manh": "Cái nôi đồ thủ công sơn son thếp vàng và cung cấp vóc cho họa sĩ mỹ thuật."
+    },
+    {
+      "ten": "Chuyên Mỹ",
+      "dia_chi": "Phú Xuyên, Hà Nội",
+      "the_manh": "Đỉnh cao kỹ nghệ khảm trai xà cừ ngũ sắc truyền thống ngàn năm."
+    },
+    {
+      "ten": "Đình Bảng",
+      "dia_chi": "Từ Sơn, Bắc Ninh",
+      "the_manh": "Làng nghề sơn mài tượng phật, hoành phi câu đối cổ truyền."
+    },
+    {
+      "ten": "Tương Bình Hiệp",
+      "dia_chi": "Thủ Dầu Một, Bình Dương",
+      "the_manh": "Trung tâm sơn mài Nam Bộ với phong cách phóng khoáng, kết hợp kỹ thuật cẩn ốc xà cừ và vẽ phong cảnh tả thực."
+    }
+  ]
+}

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sơn Son Mài Sắc · Cổng Thông Tin & Xưởng Mô Phỏng 3D Local</title>
+  <link rel="icon" type="image/svg+xml" href="hinh_anh_assets/favicon.svg">
+  <style>
+    :root {
+      --bg-dark: #0a0606;
+      --bg-surface: #140b0b;
+      --bg-card: rgba(26, 14, 14, 0.85);
+      --border-gold: rgba(222, 184, 90, 0.28);
+      --border-gold-hover: rgba(255, 187, 16, 0.6);
+      --gold: #deb85a;
+      --gold-bright: #ffbb10;
+      --vermilion: #912723;
+      --vermilion-glow: rgba(145, 39, 35, 0.45);
+      --text-main: #f5ede6;
+      --text-muted: #a69288;
+      --glow: 0 0 25px rgba(222, 184, 90, 0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Serif", serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 80px;
+      overflow-x: hidden;
+    }
+
+    /* BACKGROUND SUBTLE GRAIN */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #201010 0%, #0a0606 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    header {
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-gold);
+      backdrop-filter: blur(12px);
+      background: rgba(10, 6, 6, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand img {
+      height: 44px;
+      object-fit: contain;
+    }
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .brand-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 40px 24px 0;
+    }
+
+    /* HERO FEATURED BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(145, 39, 35, 0.35) 0%, rgba(20, 11, 11, 0.9) 60%),
+                  radial-gradient(circle at top right, rgba(222, 184, 90, 0.25) 0%, transparent 60%);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), var(--glow);
+      margin-bottom: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -80px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 187, 16, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-copy {
+      max-width: 650px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      background: rgba(222, 184, 90, 0.15);
+      border: 1px solid var(--border-gold);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 16px;
+      font-family: "Noto Serif", Georgia, serif;
+    }
+    .hero-desc {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 100%);
+      color: #0a0606;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(255, 187, 16, 0.4);
+      transition: all 0.3s ease;
+      letter-spacing: 0.04em;
+    }
+    .btn-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(255, 187, 16, 0.6);
+      background: #ffc83b;
+    }
+
+    /* SECTION HEADERS */
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Noto Serif", Georgia, serif;
+    }
+    .section-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* GRID LAYOUTS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 22px;
+      margin-bottom: 56px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+    .card:hover {
+      border-color: var(--gold-bright);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), var(--glow);
+    }
+    .card-badge {
+      align-self: flex-start;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: rgba(222, 184, 90, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(222, 184, 90, 0.2);
+      margin-bottom: 14px;
+    }
+    .card-title {
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .card-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card:hover .card-link {
+      color: var(--gold-bright);
+    }
+
+    /* METRICS BADGES ROW */
+    .metrics-bar {
+      display: flex;
+      gap: 16px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .metric-pill {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.4);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .metric-pill strong {
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <img src="hinh_anh_assets/brand-logo-white.png" alt="Sơn Son Mài Sắc" onerror="this.src='ung_dung_3d_offline/assets/brand-logo-white.png'">
+      <div>
+        <div class="brand-title">Sơn Son Mài Sắc</div>
+        <div class="brand-sub">Hệ Thống Trải Nghiệm Di Sản & Xưởng Mô Phỏng 3D Local</div>
+      </div>
+    </div>
+    <div>
+      <a href="ung_dung_3d_offline/index.html" class="btn-hero" style="font-size: 0.9rem; padding: 8px 22px;">
+        ✦ Mở Xưởng 3D
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- HERO FEATURED 3D WORKBENCH -->
+    <div class="hero-banner">
+      <div class="hero-copy">
+        <span class="hero-tag">Đột Phá Công Nghệ WebGL & DSP Audio</span>
+        <h1 class="hero-title">Xưởng Mô Phỏng 3D Tạo Tác Sơn Mài</h1>
+        <p class="hero-desc">
+          Trải nghiệm chân thực mô hình 3D nhị phân <strong>vercel-lacquer-box.glb</strong> (449 KB), cơ chế mài nước bằng cọ bóc tách lớp sơn then theo thời gian thực (Custom GLSL Shader), âm thanh ma sát nước tổng hợp bằng Web Audio API, và bộ xoay quang học 360 độ từ 16 khung ảnh thật.
+        </p>
+        <a href="ung_dung_3d_offline/index.html" class="btn-hero">
+          ▶ Khởi Chạy Xưởng 3D Sơn Mài
+        </a>
+      </div>
+      <div>
+        <img src="hinh_anh_assets/story-assets/finder-box-v5.webp" alt="Hộp sơn mài 3D" style="max-height: 240px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); border: 1px solid var(--border-gold);" onerror="this.src='ung_dung_3d_offline/assets/story-assets/box-1.jpg'">
+      </div>
+    </div>
+
+    <!-- 1. TOÀN BỘ 9 TRANG WEB DI SẢN -->
+    <div class="section-title">
+      <span>🏛</span> Bản Sao Nguyên Bản 9 Tuyến Trang Di Sản (HTML Mirror)
+    </div>
+    <div class="section-desc">
+      Xem lại toàn bộ 9 trang tĩnh đã được kết xuất sẵn từ Next.js App Router với đầy đủ kiểu dáng và hình ảnh:
+    </div>
+
+    <div class="grid">
+      <a href="trang_html_goc/01_trang_chu.html" class="card">
+        <span class="card-badge">Tuyến Trang 01</span>
+        <div class="card-title">Trang Chủ (Home)</div>
+        <div class="card-desc">Định nghĩa sơn mài, khẩu hiệu "Chạm vào từng lớp", 5 công đoạn khởi nguyên và bộ tách 6 lớp vật liệu vĩ mô.</div>
+        <span class="card-link">Khám phá trang chủ →</span>
+      </a>
+
+      <a href="trang_html_goc/02_kham_pha.html" class="card">
+        <span class="card-badge">Tuyến Trang 02</span>
+        <div class="card-title">Khám Phá Kỹ Nghệ (Discovery)</div>
+        <div class="card-desc">Cây sơn ta Phú Thọ, chi tiết 5 công đoạn kỹ thuật hom vóc, mài nước, cùng 5 loại cốt (gỗ, tre, gốm, composite, MDF).</div>
+        <span class="card-link">Xem chi tiết kỹ nghệ →</span>
+      </a>
+
+      <a href="trang_html_goc/03_trai_nghiem.html" class="card">
+        <span class="card-badge">Tuyến Trang 03</span>
+        <div class="card-title">Xưởng Trực Quan (Workshop Intro)</div>
+        <div class="card-desc">Tổng quan về xưởng mô phỏng tạo tác sơn mài, lựa chọn cốt mẫu và công cụ cọ mài.</div>
+        <span class="card-link">Vào xem trải nghiệm →</span>
+      </a>
+
+      <a href="trang_html_goc/04_trai_nghiem_hanh_trinh.html" class="card">
+        <span class="card-badge">Tuyến Trang 04</span>
+        <div class="card-title">Hành Trình 8 Bước (Journey State Machine)</div>
+        <div class="card-desc">Máy trạng thái 8 bước: Chuẩn bị cốt → Hom vóc → Sơn nền → Tạo hình → Cẩn chất liệu → Phủ sơn → Mài nước → Đánh bóng.</div>
+        <span class="card-link">Khám phá hành trình →</span>
+      </a>
+
+      <a href="trang_html_goc/05_tu_chinh.html" class="card">
+        <span class="card-badge">Tuyến Trang 05</span>
+        <div class="card-title">Tùy Chỉnh Hộp Sơn Mài (Customizer)</div>
+        <div class="card-desc">Trình khắc họa tiết mặt nắp FaceEngravingEditor, cá nhân hóa thông điệp chữ Noto Serif và rải vảy vàng.</div>
+        <span class="card-link">Mở studio tùy chỉnh →</span>
+      </a>
+
+      <a href="trang_html_goc/06_cau_chuyen_son_mai.html" class="card">
+        <span class="card-badge">Tuyến Trang 06</span>
+        <div class="card-title">Câu Chuyện Sơn Mài (Heritage Timeline)</div>
+        <div class="card-desc">Dòng thời gian 6 thời kỳ từ Cổ đại đến Đương đại 2026, 12 chuyên luận di sản và lời kể nghệ nhân làng Hạ Thái.</div>
+        <span class="card-link">Đọc câu chuyện di sản →</span>
+      </a>
+
+      <a href="trang_html_goc/07_tin_tuc_su_kien.html" class="card">
+        <span class="card-badge">Tuyến Trang 07</span>
+        <div class="card-title">Tin Tức & Sự Kiện (News & Events)</div>
+        <div class="card-desc">Triển lãm Văn Miếu, Booth ĐH FPT Hòa Lạc, Toong Minh Khai, Biennale Arte 2026 và 12 bài báo live từ API RSS.</div>
+        <span class="card-link">Xem lịch sự kiện →</span>
+      </a>
+
+      <a href="trang_html_goc/08_ve_du_an.html" class="card">
+        <span class="card-badge">Tuyến Trang 08</span>
+        <div class="card-title">Về Dự Án (About SSMS)</div>
+        <div class="card-desc">Tôn chỉ, sứ mệnh, triết lý 4 chữ Sơn - Son - Mài - Sắc và hồ sơ 5 thành viên nhóm sáng lập.</div>
+        <span class="card-link">Gặp gỡ đội ngũ →</span>
+      </a>
+
+      <a href="trang_html_goc/09_san_pham.html" class="card">
+        <span class="card-badge">Tuyến Trang 09</span>
+        <div class="card-title">Mẫu Cốt Tác Phẩm (Product Finder)</div>
+        <div class="card-desc">4 mẫu cốt tiêu biểu (Hộp sen, Hộp đen trơn, Khay sen, Tranh sen) và bộ lọc tìm kiếm sản phẩm theo chất liệu.</div>
+        <span class="card-link">Xem thư viện sản phẩm →</span>
+      </a>
+    </div>
+
+    <!-- 2. TOÀN BỘ 15 CHUYÊN KHẢO DI SẢN & KỸ THUẬT -->
+    <div class="section-title">
+      <span>📖</span> 15 Bộ Chuyên Khảo Di Sản, Mỹ Học & Kỹ Thuật Chuyên Sâu
+    </div>
+    <div class="section-desc">
+      Toàn bộ tài liệu phân tích kỹ thuật giải mã ngược và nghiên cứu học thuật tại thư mục <code>du_lieu_noi_dung/</code>:
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <span class="card-badge">Chuyên Khảo 14</span>
+        <div class="card-title">Tổng Tập 3D & 68 Shader GLSL</div>
+        <div class="card-desc">Toàn bộ 68 Shader GLSL trích xuất được: bóc tách đa tầng, PBR Blinn-Phong, phản xạ màng nước, và Web Audio DSP 700-2200Hz.</div>
+        <div class="metrics-bar">
+          <span class="metric-pill">Tập tin: <strong>14_tong_tap_hieu_ung_3d_va_shader_vat_ly.md</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-badge">Chuyên Khảo 13</span>
+        <div class="card-title">Đại Bách Khoa Toàn Thư Sơn Mài</div>
+        <div class="card-desc">Hóa học Laccol C23H36O2 của cây sơn ta Phú Thọ vs Urushiol C21H32O2, enzyme laccase, sổ tay pha chế 5 loại sơn và bản đồ làng nghề.</div>
+        <div class="metrics-bar">
+          <span class="metric-pill">Tập tin: <strong>13_dai_bach_khoa_toan_thu_son_mai.md</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-badge">Chuyên Khảo 12</span>
+        <div class="card-title">Kiến Trúc Mã Nguồn & Reverse Engineering</div>
+        <div class="card-desc">Giải mã cây thành phần React Next.js 14, Build ID _w6excJGTCRbJVHnNuGcc, PRNG Park-Miller và lược đồ lưu trữ localStorage đa mặt.</div>
+        <div class="metrics-bar">
+          <span class="metric-pill">Tập tin: <strong>12_kien_truc_ma_nguon_va_reverse_engineering.md</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-badge">Chuyên Khảo 11</span>
+        <div class="card-title">Giải Mã Mô Hình 3D glTF & Shader WebGL</div>
+        <div class="card-desc">Khảo sát nhị phân vercel-lacquer-box.glb 449 KB, 12 nodes, 10 meshes, 4 vật liệu PBR, và công thức mài mòn phi tuyến tính.</div>
+        <div class="metrics-bar">
+          <span class="metric-pill">Tập tin: <strong>11_giai_ma_mo_hinh_3d_va_shader_webgl.md</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-badge">Chuyên Khảo 08</span>
+        <div class="card-title">Động Cơ Canvas Dual-Buffer 900x620</div>
+        <div class="card-desc">Kiến trúc 2 Canvas song song Context 'a' (Color) và Context 'r' (Depthmap Grayscale) cùng thuật toán Bézier hoa sen/sóng/mây/rồng.</div>
+        <div class="metrics-bar">
+          <span class="metric-pill">Tập tin: <strong>08_giai_ma_ky_thuat_chuyen_sau.md</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-badge">Chuyên Khảo 09 & 10</span>
+        <div class="card-title">Hệ Thống Thiết Kế & Nhân Học Văn Hóa</div>
+        <div class="card-desc">Bảng màu Tokens CSS, typography Noto Serif/Playfair, bộ lọc SVG fractal noise, và dấu ấn thành lập Trường Mỹ thuật Đông Dương 1925.</div>
+        <div class="metrics-bar">
+          <span class="metric-pill">Tập tin: <strong>09_he_thong_thiet_ke & 10_nghien_cuu_van_hoa</strong></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

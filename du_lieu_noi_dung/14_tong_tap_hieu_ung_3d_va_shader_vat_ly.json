@@ -1,0 +1,66 @@
+{
+  "tieu_de": "Tổng Tập Kỹ Thuật 3D & Shader Vật Lý: Toàn Bộ 68 Mã Nguồn GLSL, Ma Trận PBR, Thuật Toán Bào Mòn & Mô Phỏng Đa Chiều",
+  "mo_hinh_vat_ly": {
+    "ten_tap_tin": "vercel-lacquer-box.glb",
+    "dung_luong": "449,344 bytes (~449 KB)",
+    "dinh_dang": "glTF 2.0 Binary (GLB)",
+    "khong_gian": "3.2 x 2.24 x 0.848 (tỷ lệ chuẩn mực hộp sơn mài hoàng gia)",
+    "so_luong_nodes": 12,
+    "so_luong_meshes": 10,
+    "so_luong_materials": 4
+  },
+  "phan_loai_shader_glsl": {
+    "shader_boc_tach_doc_quyen": {
+      "ten_tep": "0cb9cc9e2e9c40f30189d48f.glsl",
+      "dung_luong": "6,825 bytes",
+      "dac_diem": "Custom Fragment Shader mô phỏng bóc tách từng lớp sơn mài, bào mòn nắp hộp theo thời gian thực (real-time wet sanding), gợn sóng nước vi mô (water sheen ripples), và tính toán lộ họa tiết theo ngưỡng độ sâu."
+    },
+    "shader_chieu_sang_pbr_specular": {
+      "so_luong": 30,
+      "dac_diem": "Mô phỏng phản xạ Blinn-Phong specular, độ bóng men sơn cánh gián hổ phách, ánh kim vàng quỳ Fresnel, và bề mặt mờ nhám của cốt vóc."
+    },
+    "shader_phap_tuyen_tangent_space": {
+      "so_luong": 42,
+      "dac_diem": "Biến đổi vector pháp tuyến, tính vi phân độ chói 4-tap texel (1/1536, 1/1024) để tạo tactile relief bump mapping cho vỏ trứng và vàng lá."
+    },
+    "shader_bong_do_depth_packing": {
+      "so_luong": 10,
+      "dac_diem": "Đóng gói RGBA float depth map, tính toán bóng đổ tiếp xúc (contact shadow) dưới chân đế hộp sơn mài."
+    },
+    "shader_moi_truong_pmrem_cubeuv": {
+      "so_luong": 4,
+      "dac_diem": "Ánh xạ bản đồ môi trường CubeUV / Equirectangular tạo phản chiếu không gian phòng trưng bày triển lãm trên lớp sơn cánh gián."
+    },
+    "shader_khong_gian_mau_tonemapping": {
+      "so_luong": 16,
+      "dac_diem": "Chuyển đổi tuyến tính Linear sRGB sang màn hình hiển thị, hiệu chỉnh Gamma 2.2 mô phỏng quang phổ mắt người."
+    }
+  },
+  "dong_co_am_thanh_dsp": {
+    "cong_nghe": "Web Audio API Procedural Synthesizer",
+    "thuat_toan_pink_noise": "Paul Kellet 3-pole IIR Filter: n=0.99886*n+0.0555*t; i=0.99332*i+0.075*t; l=0.969*l+0.153*t",
+    "dai_tan_so_ma_sat": "700 Hz - 2200 Hz biến thiên theo vận tốc kéo cọ của người dùng"
+  },
+  "bo_xoay_quang_hoc_360": {
+    "so_khung_anh": 16,
+    "tap_tin": [
+      "box-1.jpg",
+      "box-5.jpg",
+      "box-6.jpg",
+      "box-7.jpg",
+      "box-8.jpg",
+      "box-12.jpg",
+      "box-14.jpg",
+      "box-15.jpg",
+      "box-16.jpg",
+      "box-17.jpg",
+      "box-18.jpg",
+      "box-19.jpg",
+      "box-20.jpg",
+      "box-21.jpg",
+      "box-22.jpg",
+      "box-23.jpg"
+    ],
+    "co_che": "Ánh xạ góc quay [0..2*PI] với quán tính hãm đà (inertia damping factor 0.92)"
+  }
+}

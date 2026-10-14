@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="goldPatina" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#FFD369" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#FFBB10" stop-opacity="0.8" />
+      <stop offset="80%" stop-color="#C99200" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#8C0E0E" stop-opacity="0.5" />
+    </radialGradient>
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 0.8 0 0 0  0 0 0.2 0 0  0 0 0 0.6 0" />
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="#1A0A0A" />
+  <rect width="512" height="512" fill="url(#goldPatina)" />
+  <rect width="512" height="512" filter="url(#noiseFilter)" opacity="0.45" />
+</svg>

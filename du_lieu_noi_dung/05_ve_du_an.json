@@ -1,0 +1,62 @@
+{
+  "tieu_de": "Về Dự Án Sơn Son Mài Sắc | Chạm vào di sản",
+  "dinh_vi": "DỰ ÁN TRUYỀN THÔNG VĂN HÓA VỀ NGHỆ THUẬT SƠN MÀI VIỆT NAM",
+  "slogan": "Đi qua từng đường mài, khám phá giá trị Việt.",
+  "mo_ta_tong_quan": "Sơn Son Mài Sắc là dự án truyền thông văn hóa hướng đến việc đưa những giá trị của sơn mài Việt Nam đến gần hơn với người trẻ, đặc biệt là những người đã từng nhìn thấy, từng biết đến sơn mài nhưng chưa có nhiều cơ hội để hiểu sâu về loại hình nghệ thuật và thủ công này.",
+  "cau_chuyen_du_an": {
+    "tieu_de": "Từ thấy 'đẹp' đến hiểu 'đẹp'",
+    "noi_dung": "Đằng sau một bề mặt sơn mài hoàn thiện là nhiều lớp chất liệu, kỹ thuật, thời gian và công sức của người làm nghề. Chính khoảng cách giữa 'thấy đẹp' và 'hiểu vì sao đẹp' khiến nhiều giá trị nằm phía sau thành phẩm như quy trình tạo tác, kỹ nghệ, vai trò của nghệ nhân và chiều sâu văn hóa chưa được nhìn nhận đầy đủ. Dự án sinh ra để bắc cây cầu nối qua khoảng cách ấy.",
+    "noi_dung_day_du": "Đằng sau một bề mặt sơn mài hoàn thiện là nhiều lớp chất liệu, kỹ thuật, thời gian và công sức của người làm nghề. Chính khoảng cách giữa “thấy đẹp” và “hiểu vì sao đẹp” khiến nhiều giá trị nằm phía sau thành phẩm như quy trình tạo tác, kỹ nghệ, vai trò của nghệ nhân và chiều sâu văn hóa chưa được nhận diện đầy đủ. Đây cũng là vấn đề mà dự án xác định cần được giải quyết bằng một cách tiếp cận trực quan và gần gũi hơn với người trẻ. Từ đó, Sơn Son Mài Sắc lựa chọn cách kể “đi từ bề mặt đến chiều sâu – từ thấy đẹp đến hiểu đẹp”, đưa công chúng lần lượt khám phá chất liệu, kỹ thuật, thời gian, con người và những giá trị văn hóa được gửi gắm trong sơn mài Việt Nam."
+  },
+  "su_menh": {
+    "muc_tieu_chinh": "Để sơn mài không chỉ được nhìn thấy, mà được hiểu và trân trọng.",
+    "chi_tiet": "Đưa người trẻ đi từ 'thấy đẹp' đến 'hiểu vì sao đẹp'. Giúp người xem cảm nhận được linh hồn của từng lớp sơn, từng đường mài và sự kiên nhẫn vô tận của người nghệ nhân."
+  },
+  "doi_ngu_thuc_hien": [
+    {
+      "ho_ten": "Đỗ Nguyễn Đan Lê",
+      "ky_hieu": "ĐL",
+      "vai_tro": "Trưởng nhóm",
+      "anh_chan_dung": "/story-assets/team-members/dan-le.jpg"
+    },
+    {
+      "ho_ten": "Đỗ Duy Nghĩa",
+      "ky_hieu": "DN",
+      "vai_tro": "Phụ trách quay dựng",
+      "anh_chan_dung": "/story-assets/team-members/duy-nghia.jpg"
+    },
+    {
+      "ho_ten": "Chu Huyền Trang",
+      "ky_hieu": "HT",
+      "vai_tro": "Phụ trách đối ngoại",
+      "anh_chan_dung": "/story-assets/team-members/huyen-trang.jpg"
+    },
+    {
+      "ho_ten": "Dương Gia Đạt",
+      "ky_hieu": "GĐ",
+      "vai_tro": "Phụ trách tài chính",
+      "anh_chan_dung": "/story-assets/team-members/gia-dat.jpg"
+    },
+    {
+      "ho_ten": "Trần Anh Vũ",
+      "ky_hieu": "AV",
+      "vai_tro": "Phụ trách nội dung",
+      "anh_chan_dung": "/story-assets/team-members/anh-vu.jpg"
+    }
+  ],
+  "thong_diep_ket": "Hãy cùng thêm một lớp. Mỗi sự quan tâm và sẻ chia của bạn là một lớp sắc giữ cho di sản sống mãi.",
+  "y_nghia_ten_goi_bon_chu": {
+    "tieu_de": "Ý NGHĨA TÊN GỌI · Sơn Son Mài Sắc",
+    "loi_dan": "Tên gọi “Sơn Son Mài Sắc” cũng được hình thành từ những yếu tố gắn trực tiếp với nghề:",
+    "cac_chu": {
+      "Sơn": "gợi chất liệu và nghề sơn mài.",
+      "Son": "gợi sắc son và sự bền bỉ.",
+      "Mài": "là kỹ thuật đặc trưng của quá trình tạo tác.",
+      "Sắc": "gợi vẻ đẹp thị giác và rộng hơn là bản sắc văn hóa."
+    },
+    "y_nghia_sau": "Qua bốn chữ ấy, dự án mở ra hành trình từ những gì có thể nhìn thấy trên bề mặt đến những giá trị sâu hơn được tạo nên bởi nghề và người làm nghề.",
+    "ket_luan": "Từ thấy đẹp → đến hiểu đẹp → để thêm trân trọng giá trị Việt."
+  },
+  "tam_nhin_day_du": "Để sơn mài không chỉ được nhìn thấy, mà được hiểu và trân trọng. Sơn Son Mài Sắc hướng tới một cách nhìn gần gũi hơn về sơn mài Việt Nam, nơi những giá trị truyền thống không chỉ được nhắc đến như dấu vết của quá khứ mà tiếp tục được nhận diện, cảm nhận và thưởng thức trong đời sống hôm nay. Dự án mong muốn góp phần để người trẻ nhìn sơn mài như một giá trị văn hóa sống — được hình thành từ chất liệu, kỹ thuật, tư duy thẩm mỹ, tri thức nghề và những con người đang tiếp tục gìn giữ, thực hành và làm mới nghề qua từng thế hệ.",
+  "su_menh_day_du": "Đưa người trẻ đi từ “thấy đẹp” đến “hiểu vì sao đẹp”. Sơn Son Mài Sắc sử dụng ngôn ngữ truyền thông trực quan, đương đại và dễ tiếp cận để mở ra những lớp giá trị phía sau một bề mặt sơn mài. Thông qua việc giải thích chất liệu, quy trình, kỹ thuật, thời gian tạo tác và câu chuyện của người làm nghề, dự án giúp người trẻ có một điểm bắt đầu dễ dàng hơn để khám phá sơn mài, từng bước hình thành hiểu biết, sự quan tâm và khả năng thưởng thức sâu hơn đối với giá trị văn hóa Việt Nam."
+}

@@ -1,0 +1,1 @@
+#define ALPHA_TO_COVERAGE

@@ -1,0 +1,161 @@
+{
+  "tieu_de": "Chuyên Luận Kỹ Thuật 3D: Giải Mã Mô Hình Nhị Phân glTF, Vật Liệu PBR & Bộ Shader GLSL Mô Phỏng Sơn Mài",
+  "mo_hinh_gltf": {
+    "ten_tap_tin": "vercel-lacquer-box.glb",
+    "dung_luong_bytes": 449344,
+    "dinh_dang": "glTF 2.0 Binary (GLB)",
+    "ty_le_vat_ly": {
+      "ty_le_khong_gian": "3.2 (dài) : 2.24 (rộng) : 0.848 (cao)",
+      "y_nghia": "Tỉ lệ chuẩn mực của hộp trang sức sơn mài truyền thống Việt Nam"
+    },
+    "cay_nut_node_hierarchy": [
+      {
+        "nut": "LacquerBox_LOD0",
+        "loai": "Root Group Node",
+        "con": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "nut": "Mesh_BaseBox",
+        "loai": "Mesh Primitive (Thân hộp)",
+        "mesh_id": 0
+      },
+      {
+        "nut": "Mesh_Lid",
+        "loai": "Mesh Primitive (Nắp hộp có 6 primitives)",
+        "mesh_id": 1
+      },
+      {
+        "nut": "Mesh_LidTrim",
+        "loai": "Mesh Primitive (Viền chỉ bo nắp)",
+        "mesh_id": 2
+      },
+      {
+        "nut": "Group_Clasp",
+        "loai": "Transform Group (Cụm khóa đồng cổ)",
+        "con": [
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "nut": "Mesh_ClaspPlate",
+        "loai": "Mesh Primitive (Mề đay khóa gắn thân)",
+        "mesh_id": 3
+      },
+      {
+        "nut": "Mesh_ClaspHasp",
+        "loai": "Mesh Primitive (Móc khóa gài)",
+        "mesh_id": 4
+      },
+      {
+        "nut": "Mesh_ClaspRing",
+        "loai": "Mesh Primitive (Khuyên khóa tròn)",
+        "mesh_id": 5
+      },
+      {
+        "nut": "Mesh_Foot_0",
+        "loai": "Mesh Primitive (Chân quỳ trước trái)",
+        "mesh_id": 6
+      },
+      {
+        "nut": "Mesh_Foot_1",
+        "loai": "Mesh Primitive (Chân quỳ trước phải)",
+        "mesh_id": 7
+      },
+      {
+        "nut": "Mesh_Foot_2",
+        "loai": "Mesh Primitive (Chân quỳ sau trái)",
+        "mesh_id": 8
+      },
+      {
+        "nut": "Mesh_Foot_3",
+        "loai": "Mesh Primitive (Chân quỳ sau phải)",
+        "mesh_id": 9
+      }
+    ],
+    "bang_vat_lieu_pbr": [
+      {
+        "ten": "Mat_BlackLacquer",
+        "base_color_factor": [
+          0.003,
+          0.0027,
+          0.0024,
+          1.0
+        ],
+        "hex_color": "#0f0d0c",
+        "metallic_factor": 0.05,
+        "roughness_factor": 0.18,
+        "mo_ta": "Sơn then đen tuyền bóng mờ với độ phản xạ kim loại tối thiểu (0.05), đặc trưng của men sơn ta truyền thống."
+      },
+      {
+        "ten": "Mat_LidArt",
+        "base_color_factor": [
+          0.006,
+          0.0051,
+          0.0043,
+          1.0
+        ],
+        "hex_color": "#191512",
+        "metallic_factor": 0.12,
+        "roughness_factor": 0.22,
+        "mo_ta": "Mặt tranh nắp hộp nơi chứa các lớp họa tiết cẩn vỏ trứng, thếp vàng quỳ và xà cừ."
+      },
+      {
+        "ten": "Mat_GoldFiligree",
+        "base_color_factor": [
+          0.7379,
+          0.491,
+          0.0865,
+          1.0
+        ],
+        "hex_color": "#bc7d16",
+        "metallic_factor": 0.75,
+        "roughness_factor": 0.28,
+        "mo_ta": "Chất liệu vàng quỳ thếp kim có độ ánh kim cao (0.75), phản chiếu ấm áp dưới ánh sáng môi trường."
+      },
+      {
+        "ten": "Mat_BrassHardware",
+        "base_color_factor": [
+          0.5394,
+          0.3277,
+          0.0395,
+          1.0
+        ],
+        "hex_color": "#8a540a",
+        "metallic_factor": 0.85,
+        "roughness_factor": 0.35,
+        "mo_ta": "Đồng thau đúc cổ điển của cụm khóa và khuyên gài, sắc vàng rêu cổ kính."
+      }
+    ],
+    "bong_tiep_xuc_contact_shadow": {
+      "do_phan_giai": "Canvas 256x256",
+      "thuat_toan": "Radial Gradient từ tâm (128,128, r=24px -> r=122px), độ mờ 0.5, depthWrite=false, vị trí y=-0.006."
+    }
+  },
+  "bo_shader_glsl_vat_ly": {
+    "vertex_shader": "Chuyển đổi tọa độ đỉnh sang View Space và World Space, chuẩn hóa vector pháp tuyến theo normalMatrix.",
+    "fragment_shader_features": {
+      "co_che_mai_xuyen_lop": "rawDepth = texture2D(uMaskMap, vUv).r; sandDepth = clamp(rawDepth / (0.6 + localMaterialDepth * 0.8), 0.0, 1.0)",
+      "nguong_lo_hoa_tiet": "revealThreshold = 0.33 + localMaterialDepth * 0.28; artReveal = artSample.a * smoothstep(revealThreshold, revealThreshold + 0.08, rawDepth)",
+      "mai_pham_cot_go": "worn = smoothstep(0.94, 1.0, rawDepth); baseColor = mix(baseColor, vec3(0.17, 0.085, 0.035) + grain * 0.035, worn * 0.9)",
+      "phap_tuyen_noi_tiep_tuyen": "Tính đạo hàm độ chói (Sobel 4-tap texel 1/1536, 1/1024) của texture tranh để tạo bề mặt nổi sần nhẹ cho vỏ trứng và vàng lá mà không cần bản đồ normal riêng.",
+      "anh_quang_thuy_trieu_nuoc": "ripple = sin(vUv.x * 50.0 + uTime * 4.0) * cos(vUv.y * 50.0 + uTime * 3.0); glint = max(0.0, ripple) * 0.12 * uWaterDroplets * sandDepth",
+      "lop_phu_canh_gian": "coatReflection = pow(max(dot(N, H), 0.0), mix(110.0, 180.0, coatResponse)); edgeReflection = pow(1.0 - NdotV, 5.0)"
+    }
+  },
+  "tong_hop_am_thanh_dsp": {
+    "cong_nghe": "Web Audio API (Không tải tệp âm thanh bên ngoài)",
+    "thuat_toan_pink_noise": "Paul Kellet 3-pole IIR Filter: n=0.99886*n+0.0555*t; i=0.99332*i+0.075*t; l=0.969*l+0.153*t",
+    "loc_tan_so": "BiquadFilter highpass 350Hz + Bandpass 1100Hz (Q=2.2) biến thiên 700Hz - 2200Hz theo vận tốc ma sát chuột/ngón tay."
+  }
+}

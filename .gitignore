@@ -1,0 +1,9 @@
+# System & environment
+.DS_Store
+.env*
+.vercel
+*.log
+
+# Temporary test artifacts
+scratch/
+scripts/*.png

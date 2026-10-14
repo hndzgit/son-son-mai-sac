@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face {
+  font-family: "Project Display";
+  src: url(/story-assets/PlayfairDisplay-Full.ttf) format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+}
+body { margin: 0; background: #f4e8cf; font-family: sans-serif; padding: 30px; }
+.inner {
+  display: grid;
+  align-items: center;
+  gap: clamp(26px,4vw,66px);
+  max-width: 1480px;
+  margin: 0 auto 30px;
+  border: 1px solid #d4c19c;
+  padding: 24px;
+  background: #fdfaf3;
+  grid-template-columns: minmax(285px,.78fr) minmax(0,1.22fr);
+}
+h1 {
+  margin: 0 0 20px;
+  color: #81251e;
+  font-family: "Project Display", Georgia, serif;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  max-width: 580px;
+}
+.s1 { font-size: clamp(46px, 4.6vw, 76px); }
+.s2 { font-size: clamp(50px, 5.2vw, 80px); }
+.s3 { font-size: clamp(52px, 5.8vw, 84px); }
+.box-right { height: 420px; background: #8b2a2a; color: white; display: grid; place-items: center; }
+</style>
+</head>
+<body>
+  <h2>1. clamp(46px, 4.6vw, 76px)</h2>
+  <div class="inner">
+    <div>
+      <h1 class="s1">Đi qua từng đường mài,<br>khám phá giá trị Việt</h1>
+    </div>
+    <div class="box-right">Artwork</div>
+  </div>
+
+  <h2>2. clamp(50px, 5.2vw, 80px)</h2>
+  <div class="inner">
+    <div>
+      <h1 class="s2">Đi qua từng đường mài,<br>khám phá giá trị Việt</h1>
+    </div>
+    <div class="box-right">Artwork</div>
+  </div>
+
+  <h2>3. clamp(52px, 5.8vw, 84px)</h2>
+  <div class="inner">
+    <div>
+      <h1 class="s3">Đi qua từng đường mài,<br>khám phá giá trị Việt</h1>
+    </div>
+    <div class="box-right">Artwork</div>
+  </div>
+</body>
+</html>

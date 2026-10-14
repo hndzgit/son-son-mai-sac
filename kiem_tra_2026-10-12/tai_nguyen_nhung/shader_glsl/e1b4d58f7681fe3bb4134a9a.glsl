@@ -1,0 +1,1 @@
+vec4 ${e}( vec4 value ) { return ${n[0]}( ${n[1]}( value ) ); }

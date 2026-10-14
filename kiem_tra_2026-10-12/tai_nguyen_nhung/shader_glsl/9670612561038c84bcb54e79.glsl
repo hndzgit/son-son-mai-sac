@@ -1,0 +1,1 @@
+#define texture2DLodEXT textureLod

@@ -1,0 +1,1 @@
+#define ROUGHNESSMAP_UV 

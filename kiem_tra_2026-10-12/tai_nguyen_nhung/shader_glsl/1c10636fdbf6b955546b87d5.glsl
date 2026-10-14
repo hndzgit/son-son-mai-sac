@@ -1,0 +1,1 @@
+#define LIGHTMAP_UV 

@@ -1,0 +1,2 @@
+
+#define MEDIUM_PRECISION

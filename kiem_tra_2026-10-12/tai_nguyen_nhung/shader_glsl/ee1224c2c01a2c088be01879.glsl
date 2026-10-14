@@ -1,0 +1,1 @@
+#define FLAT_SHADED
