@@ -20,7 +20,7 @@ import sys
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_ROOT = BASE_DIR
 RSC_DIR = os.path.join(BASE_DIR, 'rsc_payloads')
-LIVE_FALLBACK_URL = "https://son-son-mai-sac-orpin.vercel.app"
+LIVE_FALLBACK_URL = "https://sonsonmaisac.id.vn"
 
 # MIME types chuẩn
 mimetypes.add_type('model/gltf-binary', '.glb')
