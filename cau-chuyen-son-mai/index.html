@@ -139,6 +139,85 @@
   font-weight: 600 !important;
 }
 
+.artisan_meta_bar {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin: 5px 0 4px 0 !important;
+  padding: 3px 10px !important;
+  background: rgba(122, 26, 22, 0.08) !important;
+  border: 1px solid rgba(122, 26, 22, 0.22) !important;
+  border-radius: 4px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 0.76rem !important;
+  line-height: 1.35 !important;
+}
+
+.artisan_lifespan {
+  font-weight: 700 !important;
+  color: #7a1a16 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.artisan_meta_sep {
+  opacity: 0.45 !important;
+  color: #7a1a16 !important;
+  font-weight: 300 !important;
+}
+
+.artisan_hometown {
+  font-weight: 600 !important;
+  color: #3e271a !important;
+}
+
+.artisan_content_header {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px 16px !important;
+  margin-bottom: 4px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px dashed rgba(168, 137, 89, 0.45) !important;
+}
+
+.artisan_content_title {
+  font-family: 'Project Display', 'Playfair Display', Georgia, serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #7a1a16 !important;
+  letter-spacing: 0.02em !important;
+  margin: 0 !important;
+}
+
+.artisan_content_badges {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.artisan_tag_pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: #4a2810 !important;
+  background: #f4e4c3 !important;
+  border: 1px solid rgba(122, 26, 22, 0.2) !important;
+  padding: 3px 10px !important;
+  border-radius: 12px !important;
+}
+
+.artisan_tag_pill.years {
+  color: #7a1a16 !important;
+  font-weight: 700 !important;
+  background: rgba(122, 26, 22, 0.1) !important;
+}
+
 .artisan_content_box {
   flex: 1 !important;
   display: flex !important;
@@ -202,20 +281,32 @@
       <div class="artisan_portrait_box">
         <span class="artisan_num_badge">01</span>
         <div class="artisan_img_wrap">
-          <img src="/story-assets/hoasi-nguyen-gia-tri.webp" alt="Họa sĩ Nguyễn Gia Trí" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
+          <img src="/story-assets/hoasi-nguyen-gia-tri.webp" alt="Danh họa Nguyễn Gia Trí" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Nguyễn Gia Trí</h3>
+          <h3 class="artisan_name">DANH HỌA NGUYỄN GIA TRÍ</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1908–1993</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Chương Mỹ, Hà Nội</span>
+          </div>
           <span class="artisan_role">Bậc thầy sơn mài hiện đại</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">DANH HỌA NGUYỄN GIA TRÍ</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1908–1993</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Chương Mỹ, Hà Nội</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
-          Bậc thầy đặt nền móng và đưa sơn mài Việt Nam từ mỹ nghệ thủ công vươn tầm thành chất liệu hội họa đỉnh cao, với những kiệt tác bất hủ như Vườn xuân Bắc Trung Nam, mỗi nhát mài của nghệ nhân không đơn thuần là kỹ thuật mà là sự lắng nghe bề mặt. Biết dừng đúng lúc khi lớp vàng quỳ vừa ánh lên dưới bóng nước là bí quyết truyền đời của người thợ già.
+          Bậc thầy đặt nền móng và đưa sơn mài Việt Nam từ mỹ nghệ thủ công vươn tầm thành chất liệu hội họa đỉnh cao, với những kiệt tác bất hủ như Vườn xuân Trung Nam Bắc, Les Fées. Mỗi nhát mài của danh họa không đơn thuần là kỹ thuật mà là sự lắng nghe bề mặt; biết dừng đúng lúc khi lớp vàng quỳ vừa ánh lên dưới bóng nước là bí quyết truyền đời.
         </p>
         <p class="artisan_sub_text">
-          Người thợ không chỉ nhớ quy trình, mà phải cảm được độ lì, độ chín của từng lớp sơn ta để giữ trọn cái hồn cốt của nghề.
+          Người nghệ sĩ không chỉ nhớ quy trình, mà phải cảm được độ lì, độ chín của từng lớp sơn ta để giữ trọn cái hồn cốt của dân tộc.
         </p>
       </div>
     </div>
@@ -228,14 +319,26 @@
           <img src="/story-assets/hoasi-pham-hau.webp" alt="Họa sĩ Phạm Hậu" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Phạm Hậu</h3>
+          <h3 class="artisan_name">HỌA SĨ PHẠM HẬU</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1903–1994</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Hà Nội</span>
+          </div>
           <span class="artisan_role">Bậc thầy bình phong</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">HỌA SĨ PHẠM HẬU</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1903–1994</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Hà Nội</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
-          Bậc thầy nghệ thuật bình phong sơn mài, người khai mở kỹ thuật cẩn vỏ trứng, dát vàng bạc và xử lý ánh sáng lung linh, kiến tạo những chuẩn mực tạo hình kinh điển cho mỹ thuật Việt.
+          Bậc thầy nghệ thuật bình phong sơn mài, người khai mở kỹ thuật cẩn vỏ trứng, dát vàng bạc và xử lý ánh sáng lung linh, kiến tạo những chuẩn mực tạo hình kinh điển cho mỹ thuật Việt với các tác phẩm tiêu biểu như Phong cảnh chùa cổ Bắc Bộ.
         </p>
         <p class="artisan_sub_text">
           Mỗi hiện vật sơn mài là một mảnh ghép lịch sử sống động, kể câu chuyện về bàn tay khéo léo và thế giới quan thẩm mỹ của tiền nhân.
@@ -251,11 +354,23 @@
           <img src="/story-assets/hoasi-tran-van-can.webp" alt="Họa sĩ Trần Văn Cẩn" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Trần Văn Cẩn</h3>
+          <h3 class="artisan_name">HỌA SĨ TRẦN VĂN CẨN</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1910–1994</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Hải Phòng</span>
+          </div>
           <span class="artisan_role">Danh họa Việt Nam</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">HỌA SĨ TRẦN VĂN CẨN</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1910–1994</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Hải Phòng</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
           Cây đại thụ của nền hội họa hiện đại Việt Nam, người đã đưa chất liệu sơn ta vào những tác phẩm khắc họa con người và hồn cốt dân tộc với vẻ đẹp giản dị, đằm thắm mà sâu lắng.
@@ -274,17 +389,29 @@
           <img src="/story-assets/hoasi-quang-tran.webp" alt="Họa sĩ Trần Quang Trân" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Trần Quang Trân</h3>
+          <h3 class="artisan_name">HỌA SĨ TRẦN QUANG TRÂN</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1900–1969</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Hà Nội</span>
+          </div>
           <span class="artisan_role">Nghệ sĩ tiên phong</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">HỌA SĨ TRẦN QUANG TRÂN</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1900–1969</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Hà Nội</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
-          Một trong những nghệ sĩ tiên phong đầu tiên thử nghiệm đưa chất liệu sơn ta vào tranh mỹ thuật tại Trường Mỹ thuật Đông Dương, mở ra cuộc chuyển mình lịch sử của sơn mài.
+          Học tại Trường Cao đẳng Mỹ thuật Đông Dương, tốt nghiệp năm 1932. Ông là một trong những nghệ sĩ tiên phong đầu tiên thử nghiệm đưa chất liệu sơn ta vào tranh mỹ thuật, mở ra cuộc chuyển mình lịch sử của sơn mài.
         </p>
         <p class="artisan_sub_text">
-          Mang hơi thở mới mẻ và trẻ trung vào từng đường nét, biến những vật phẩm thường nhật thành tác phẩm nghệ thuật gần gũi.
+          Mang hơi thở mới mẻ và tư duy tạo hình hiện đại vào từng nét vẽ, đưa chất liệu dân gian cổ truyền hòa nhịp vào dòng chảy mỹ thuật thời đại.
         </p>
       </div>
     </div>
@@ -417,20 +544,32 @@
       <div class="artisan_portrait_box">
         <span class="artisan_num_badge">01</span>
         <div class="artisan_img_wrap">
-          <img src="/story-assets/hoasi-nguyen-gia-tri.webp" alt="Họa sĩ Nguyễn Gia Trí" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
+          <img src="/story-assets/hoasi-nguyen-gia-tri.webp" alt="Danh họa Nguyễn Gia Trí" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Nguyễn Gia Trí</h3>
+          <h3 class="artisan_name">DANH HỌA NGUYỄN GIA TRÍ</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1908–1993</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Chương Mỹ, Hà Nội</span>
+          </div>
           <span class="artisan_role">Bậc thầy sơn mài hiện đại</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">DANH HỌA NGUYỄN GIA TRÍ</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1908–1993</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Chương Mỹ, Hà Nội</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
-          Bậc thầy đặt nền móng và đưa sơn mài Việt Nam từ mỹ nghệ thủ công vươn tầm thành chất liệu hội họa đỉnh cao, với những kiệt tác bất hủ như Vườn xuân Bắc Trung Nam, mỗi nhát mài của nghệ nhân không đơn thuần là kỹ thuật mà là sự lắng nghe bề mặt. Biết dừng đúng lúc khi lớp vàng quỳ vừa ánh lên dưới bóng nước là bí quyết truyền đời của người thợ già.
+          Bậc thầy đặt nền móng và đưa sơn mài Việt Nam từ mỹ nghệ thủ công vươn tầm thành chất liệu hội họa đỉnh cao, với những kiệt tác bất hủ như Vườn xuân Trung Nam Bắc, Les Fées. Mỗi nhát mài của danh họa không đơn thuần là kỹ thuật mà là sự lắng nghe bề mặt; biết dừng đúng lúc khi lớp vàng quỳ vừa ánh lên dưới bóng nước là bí quyết truyền đời.
         </p>
         <p class="artisan_sub_text">
-          Người thợ không chỉ nhớ quy trình, mà phải cảm được độ lì, độ chín của từng lớp sơn ta để giữ trọn cái hồn cốt của nghề.
+          Người nghệ sĩ không chỉ nhớ quy trình, mà phải cảm được độ lì, độ chín của từng lớp sơn ta để giữ trọn cái hồn cốt của dân tộc.
         </p>
       </div>
     </div>
@@ -443,14 +582,26 @@
           <img src="/story-assets/hoasi-pham-hau.webp" alt="Họa sĩ Phạm Hậu" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Phạm Hậu</h3>
+          <h3 class="artisan_name">HỌA SĨ PHẠM HẬU</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1903–1994</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Hà Nội</span>
+          </div>
           <span class="artisan_role">Bậc thầy bình phong</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">HỌA SĨ PHẠM HẬU</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1903–1994</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Hà Nội</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
-          Bậc thầy nghệ thuật bình phong sơn mài, người khai mở kỹ thuật cẩn vỏ trứng, dát vàng bạc và xử lý ánh sáng lung linh, kiến tạo những chuẩn mực tạo hình kinh điển cho mỹ thuật Việt.
+          Bậc thầy nghệ thuật bình phong sơn mài, người khai mở kỹ thuật cẩn vỏ trứng, dát vàng bạc và xử lý ánh sáng lung linh, kiến tạo những chuẩn mực tạo hình kinh điển cho mỹ thuật Việt với các tác phẩm tiêu biểu như Phong cảnh chùa cổ Bắc Bộ.
         </p>
         <p class="artisan_sub_text">
           Mỗi hiện vật sơn mài là một mảnh ghép lịch sử sống động, kể câu chuyện về bàn tay khéo léo và thế giới quan thẩm mỹ của tiền nhân.
@@ -466,11 +617,23 @@
           <img src="/story-assets/hoasi-tran-van-can.webp" alt="Họa sĩ Trần Văn Cẩn" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Trần Văn Cẩn</h3>
+          <h3 class="artisan_name">HỌA SĨ TRẦN VĂN CẨN</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1910–1994</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Hải Phòng</span>
+          </div>
           <span class="artisan_role">Danh họa Việt Nam</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">HỌA SĨ TRẦN VĂN CẨN</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1910–1994</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Hải Phòng</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
           Cây đại thụ của nền hội họa hiện đại Việt Nam, người đã đưa chất liệu sơn ta vào những tác phẩm khắc họa con người và hồn cốt dân tộc với vẻ đẹp giản dị, đằm thắm mà sâu lắng.
@@ -489,17 +652,29 @@
           <img src="/story-assets/hoasi-quang-tran.webp" alt="Họa sĩ Trần Quang Trân" loading="eager" style="object-position: center 8% !important; filter: none !important;" />
         </div>
         <div class="artisan_badge_info">
-          <h3 class="artisan_name">Họa sĩ Trần Quang Trân</h3>
+          <h3 class="artisan_name">HỌA SĨ TRẦN QUANG TRÂN</h3>
+          <div class="artisan_meta_bar">
+            <span class="artisan_lifespan">1900–1969</span>
+            <span class="artisan_meta_sep">|</span>
+            <span class="artisan_hometown">Hà Nội</span>
+          </div>
           <span class="artisan_role">Nghệ sĩ tiên phong</span>
         </div>
       </div>
       <div class="artisan_content_box">
+        <div class="artisan_content_header">
+          <h4 class="artisan_content_title">HỌA SĨ TRẦN QUANG TRÂN</h4>
+          <div class="artisan_content_badges">
+            <span class="artisan_tag_pill years">📅 1900–1969</span>
+            <span class="artisan_tag_pill">📍 Quê quán: Hà Nội</span>
+          </div>
+        </div>
         <div class="artisan_quote_mark">“</div>
         <p class="artisan_highlight_text">
-          Một trong những nghệ sĩ tiên phong đầu tiên thử nghiệm đưa chất liệu sơn ta vào tranh mỹ thuật tại Trường Mỹ thuật Đông Dương, mở ra cuộc chuyển mình lịch sử của sơn mài.
+          Học tại Trường Cao đẳng Mỹ thuật Đông Dương, tốt nghiệp năm 1932. Ông là một trong những nghệ sĩ tiên phong đầu tiên thử nghiệm đưa chất liệu sơn ta vào tranh mỹ thuật, mở ra cuộc chuyển mình lịch sử của sơn mài.
         </p>
         <p class="artisan_sub_text">
-          Mang hơi thở mới mẻ và trẻ trung vào từng đường nét, biến những vật phẩm thường nhật thành tác phẩm nghệ thuật gần gũi.
+          Mang hơi thở mới mẻ và tư duy tạo hình hiện đại vào từng nét vẽ, đưa chất liệu dân gian cổ truyền hòa nhịp vào dòng chảy mỹ thuật thời đại.
         </p>
       </div>
     </div>
