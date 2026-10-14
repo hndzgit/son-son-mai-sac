@@ -997,3 +997,209 @@ h1, h2, h3, h4, h5, h6, .font-display, #lacquer-title, #process-heading, .coreIn
   }
 }
 
+
+
+
+/* ==========================================================================
+   PAGE-WIDE PERFECT CENTER & SYMMETRICAL ALIGNMENT (TOÀN TRANG CÂN ĐỐI)
+   ========================================================================== */
+
+/* 1. Khung chứa chính toàn trang (Unified Page Content Container) */
+.main-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+/* 2. Header Navbar: Căn giữa đối xứng chuẩn 1440px */
+.Navbar_header__UKF8E {
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  padding-left: clamp(20px, 3.5vw, 48px) !important;
+  padding-right: clamp(20px, 3.5vw, 48px) !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. Hero Section 1: Mở đầu */
+.homeHero_hero__tom2X {
+  padding-left: clamp(20px, 3.5vw, 48px) !important;
+  padding-right: clamp(20px, 3.5vw, 48px) !important;
+  box-sizing: border-box !important;
+}
+.homeHero_inner__pVJjI,
+.homeHero_featureCards__ZFG_k {
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* 4. Hero Section 2: Sơn mài là gì (#son-mai-la-gi) */
+.coreIntroduction_journey__bHzBt {
+  width: 100% !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+.coreIntroduction_hero__DjkZl {
+  padding: clamp(34px, 4.5vw, 70px) clamp(20px, 3.5vw, 48px) 0 !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+.coreIntroduction_heroGrid__dCgJv {
+  display: grid !important;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(32px, 5vw, 68px) !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+.coreIntroduction_artworkLink {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.coreIntroduction_artwork__cISxc {
+  width: 100% !important;
+  max-width: 540px !important;
+  margin: 0 auto !important;
+}
+
+.coreIntroduction_introCopy__c7o__ {
+  max-width: 600px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 900px) {
+  .coreIntroduction_heroGrid__dCgJv {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* 5. Section 5 Chặng Tạo Tác (#5-cong-doan) - FIX TRIỆT ĐỂ LỆCH TRÁI / GAP PHẢI */
+.coreIntroduction_processSection__4gTz3 {
+  position: relative !important;
+  background: linear-gradient(180deg, rgba(139, 42, 42, 0.05) 0%, rgba(139, 42, 42, 0.09) 50%, rgba(139, 42, 42, 0.05) 100%) !important;
+  border-top: 1px solid rgba(139, 42, 42, 0.22) !important;
+  border-bottom: 1px solid rgba(139, 42, 42, 0.22) !important;
+  border-left: none !important;
+  border-right: none !important;
+  padding: 56px clamp(20px, 3.5vw, 48px) 52px !important;
+  margin-top: 50px !important;
+  margin-bottom: 0 !important;
+  margin-left: calc(clamp(20px, 3.5vw, 48px) * -1) !important;
+  margin-right: calc(clamp(20px, 3.5vw, 48px) * -1) !important;
+  width: calc(100% + (clamp(20px, 3.5vw, 48px) * 2)) !important;
+  max-width: calc(100% + (clamp(20px, 3.5vw, 48px) * 2)) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Tiêu đề mục 5 chặng tạo tác: Căn giữa tuyệt đối */
+.coreIntroduction_processIntro__xmAsV {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto 36px auto !important;
+  max-width: 1440px !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.coreIntroduction_processIntro__xmAsV h3 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.coreIntroduction_processTitle__Y5ZSn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  gap: 12px !important;
+}
+
+/* 5 Card công đoạn: Căn giữa đối xứng hoàn hảo trên Desktop */
+@media (min-width: 1024px) {
+  .coreIntroduction_stageList__aTih3 {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    max-width: 1440px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Nút gộp ở dưới 5 chặng: Căn giữa 100% */
+.coreIntroduction_processMoreWrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin: 32px auto 0 auto !important;
+}
+
+/* 6. Section 3: Giới thiệu các lớp sơn (#gioi-thieu) */
+.core-v4-concept,
+.coreIntroduction_layersSection__G7C0S {
+  padding: clamp(50px, 6vw, 90px) clamp(20px, 3.5vw, 48px) !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.core-v4-concept > div,
+.coreIntroduction_layersSection__G7C0S > div {
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* 7. Section 4: Chạm vào lớp sắc (#cham-vao-lop-sac) */
+.homeSurfaceExperience_section__TQv2Q {
+  padding: 48px clamp(20px, 3.5vw, 48px) !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.homeSurfaceExperience_section__TQv2Q > * {
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* 8. Footer: Căn giữa đối xứng chuẩn 1440px */
+.Footer_mainGrid,
+.Footer_bottomBar {
+  max-width: 1440px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
