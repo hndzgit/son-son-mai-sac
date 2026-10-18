@@ -25,7 +25,9 @@
   <link rel="preload" as="image" href="/story-assets/son-mai-la-gi-mai-nuoc.webp"/>
   <link rel="preload" as="image" href="/story-assets/son-mai-la-gi-nhua-son.webp"/>
   
-  <link rel="stylesheet" href="/_next/static/css/58e70d5489b56972.css?v=28" data-precedence="next"/>
+  <link rel="preload" href="/story-assets/playfair-vietnamese-v40.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+<link rel="preload" href="/story-assets/playfair-latin-v40.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+<link rel="stylesheet" href="/_next/static/css/58e70d5489b56972.css?v=28" data-precedence="next"/>
   <link rel="stylesheet" href="/_next/static/css/3d939b8161363d36.css?v=28" data-precedence="next"/>
   <link rel="stylesheet" href="/_next/static/css/7d5ed180c1fe36fd.css" data-precedence="next"/>
 
@@ -69,7 +71,7 @@
     }
 
     .sonmai-main-title {
-      font-family: 'Project Display', 'Playfair Display', 'Noto Serif', Georgia, serif;
+      font-family: 'Project Display', 'Playfair Display', 'Noto Serif', "Times New Roman", Times, "Noto Serif", serif;
       font-size: clamp(2.5rem, 4.6vw, 3.6rem);
       font-weight: 700;
       color: var(--sonmai-red);
@@ -141,7 +143,7 @@
     }
 
     .sonmai-heading {
-      font-family: 'Project Display', 'Playfair Display', 'Noto Serif', Georgia, serif;
+      font-family: 'Project Display', 'Playfair Display', 'Noto Serif', "Times New Roman", Times, "Noto Serif", serif;
       font-size: clamp(1.6rem, 2.4vw, 2.05rem);
       font-weight: 700;
       color: var(--sonmai-red);
@@ -212,7 +214,7 @@
     }
 
     .sonmai-next-title {
-      font-family: 'Project Display', 'Playfair Display', 'Noto Serif', Georgia, serif;
+      font-family: 'Project Display', 'Playfair Display', 'Noto Serif', "Times New Roman", Times, "Noto Serif", serif;
       font-size: clamp(1.4rem, 2.2vw, 1.8rem);
       color: var(--sonmai-red);
       font-weight: 700;
@@ -296,6 +298,65 @@
       }
     }
   </style>
+<style id="vietnamese-typography-fix">
+
+@font-face {
+  font-family: "Project Display";
+  src: url("/story-assets/playfair-vietnamese-v40.woff2") format("woff2"),
+       url("/story-assets/playfair-latin-v40.woff2") format("woff2"),
+       url("/story-assets/PlayfairDisplay-Full.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/story-assets/playfair-vietnamese-v40.woff2") format("woff2"),
+       url("/story-assets/playfair-latin-v40.woff2") format("woff2"),
+       url("/story-assets/PlayfairDisplay-Full.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Heritage";
+  src: url("/story-assets/playfair-vietnamese-v40.woff2") format("woff2"),
+       url("/story-assets/playfair-latin-v40.woff2") format("woff2"),
+       url("/story-assets/PlayfairDisplay-Full.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ==================== VIETNAMESE TYPOGRAPHY & KERNING ENGINE FIX ==================== */
+h1, h2, h3, h4, h5, h6, .font-display,
+.story_hero__754VY h1,
+.story_storyTitleWide__dDlnR,
+.story_storyTitleNarrow__jseWg,
+.coreIntroduction_processTitle__Y5ZSn,
+#lacquer-title, #process-heading, #layers-title, #core-v4-heritage-title,
+.craftJourney_entry__YVr2U h1, .events_heroTitle__Y1W2y h1,
+.about_heroTitle__Yx78I, .projectIntro_title__oV5wW {
+  font-family: "Project Display", "Playfair Display", "Heritage", "Noto Serif", "Times New Roman", Times, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  font-kerning: normal !important;
+  font-optical-sizing: auto !important;
+  font-feature-settings: "kern" 1, "liga" 1, "ccmp" 1 !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+.story_hero__754VY h1 {
+  font-size: clamp(30px, 4vw, 54px) !important;
+  line-height: 1.16 !important;
+  text-align: center !important;
+  color: #8b2a2a !important;
+}
+
+</style>
 </head>
 <body class="min-h-screen flex flex-col font-sans">
   <a href="#main-content" class="skip-link">Bỏ qua điều hướng</a>

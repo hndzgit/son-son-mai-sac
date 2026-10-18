@@ -6,7 +6,9 @@
   <title>Làng nghề: Hạ Thái – nơi câu chuyện trở về với làng nghề | Câu chuyện sơn mài</title>
   <meta name="description" content="Đọc chuyên sâu tư liệu dòng thời gian sơn mài: Hạ Thái – nơi câu chuyện trở về với làng nghề. Dự án Sơn Son Mài Sắc."/>
   
-  <link rel="stylesheet" href="/_next/static/css/58e70d5489b56972.css?v=28"/>
+  <link rel="preload" href="/story-assets/playfair-vietnamese-v40.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+<link rel="preload" href="/story-assets/playfair-latin-v40.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+<link rel="stylesheet" href="/_next/static/css/58e70d5489b56972.css?v=28"/>
   <link rel="stylesheet" href="/_next/static/css/3d939b8161363d36.css?v=28"/>
   <link rel="stylesheet" href="/_next/static/css/e133a03ebd4e8d3a.css"/>
 
@@ -203,7 +205,7 @@
 }
 
 .article-title {
-  font-family: "Project Display", "Playfair Display", "Noto Serif", Georgia, serif !important;
+  font-family: "Project Display", "Playfair Display", "Noto Serif", "Times New Roman", Times, "Noto Serif", serif !important;
   font-size: clamp(30px, 4.2vw, 46px) !important;
   line-height: 1.18 !important;
   font-weight: 700 !important;
@@ -213,7 +215,7 @@
 }
 
 .article-subtitle {
-  font-family: "Noto Serif", Georgia, serif;
+  font-family: "Noto Serif", "Times New Roman", Times, "Noto Serif", serif;
   font-size: clamp(16px, 1.4vw, 19px);
   font-style: italic;
   line-height: 1.6;
@@ -339,7 +341,7 @@
 
 /* Drop-cap chữ cái đầu tiên phong cách tạp chí cổ điển */
 .article-body p:first-of-type::first-letter {
-  font-family: "Project Display", "Playfair Display", Georgia, serif;
+  font-family: "Project Display", "Playfair Display", "Times New Roman", Times, "Noto Serif", serif;
   float: left;
   font-size: 56px;
   line-height: 48px;
@@ -362,7 +364,7 @@
 }
 
 .editorial-pullquote p {
-  font-family: "Noto Serif", Georgia, serif !important;
+  font-family: "Noto Serif", "Times New Roman", Times, "Noto Serif", serif !important;
   font-size: clamp(18px, 1.6vw, 22px) !important;
   font-style: italic !important;
   line-height: 1.65 !important;
@@ -436,7 +438,7 @@
 }
 
 .pager-title {
-  font-family: "Project Display", "Playfair Display", Georgia, serif;
+  font-family: "Project Display", "Playfair Display", "Times New Roman", Times, "Noto Serif", serif;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.35;
@@ -519,6 +521,65 @@
 }
 
   </style>
+<style id="vietnamese-typography-fix">
+
+@font-face {
+  font-family: "Project Display";
+  src: url("/story-assets/playfair-vietnamese-v40.woff2") format("woff2"),
+       url("/story-assets/playfair-latin-v40.woff2") format("woff2"),
+       url("/story-assets/PlayfairDisplay-Full.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/story-assets/playfair-vietnamese-v40.woff2") format("woff2"),
+       url("/story-assets/playfair-latin-v40.woff2") format("woff2"),
+       url("/story-assets/PlayfairDisplay-Full.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Heritage";
+  src: url("/story-assets/playfair-vietnamese-v40.woff2") format("woff2"),
+       url("/story-assets/playfair-latin-v40.woff2") format("woff2"),
+       url("/story-assets/PlayfairDisplay-Full.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ==================== VIETNAMESE TYPOGRAPHY & KERNING ENGINE FIX ==================== */
+h1, h2, h3, h4, h5, h6, .font-display,
+.story_hero__754VY h1,
+.story_storyTitleWide__dDlnR,
+.story_storyTitleNarrow__jseWg,
+.coreIntroduction_processTitle__Y5ZSn,
+#lacquer-title, #process-heading, #layers-title, #core-v4-heritage-title,
+.craftJourney_entry__YVr2U h1, .events_heroTitle__Y1W2y h1,
+.about_heroTitle__Yx78I, .projectIntro_title__oV5wW {
+  font-family: "Project Display", "Playfair Display", "Heritage", "Noto Serif", "Times New Roman", Times, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  font-kerning: normal !important;
+  font-optical-sizing: auto !important;
+  font-feature-settings: "kern" 1, "liga" 1, "ccmp" 1 !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+.story_hero__754VY h1 {
+  font-size: clamp(30px, 4vw, 54px) !important;
+  line-height: 1.16 !important;
+  text-align: center !important;
+  color: #8b2a2a !important;
+}
+
+</style>
 </head>
 <body class="min-h-screen flex flex-col font-sans">
   <div id="reading-progress-bar"></div>
