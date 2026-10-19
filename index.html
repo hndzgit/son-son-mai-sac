@@ -135,19 +135,36 @@ h1, h2, h3, h4, h5, h6, .font-display,
   transform: scale(1.05) !important;
 }
 
-/* 3. Artisan Artwork Framing & Depth */
+/* 3. Artisan Artwork Framing & Depth (Overflow visible so specimen badges hang out nicely) */
 .coreIntroduction_artwork__cISxc {
   position: relative !important;
-  border-radius: 6px !important;
-  overflow: hidden !important;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease !important;
-  box-shadow: 0 10px 30px rgba(26, 8, 4, 0.14) !important;
-  border: 1px solid rgba(216, 183, 123, 0.22) !important;
+  overflow: visible !important;
+  border-radius: 6px;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 .coreIntroduction_artwork__cISxc:hover {
   transform: translateY(-4px) translateZ(0) !important;
-  box-shadow: 0 18px 45px rgba(26, 8, 4, 0.22), 0 0 24px rgba(216, 183, 123, 0.22) !important;
-  border-color: rgba(216, 183, 123, 0.55) !important;
+}
+.coreIntroduction_painting__V8zp8 {
+  border-radius: 6px !important;
+  box-shadow: 0 12px 35px rgba(26, 8, 4, 0.16) !important;
+  border: 1px solid rgba(216, 183, 123, 0.28) !important;
+  display: block !important;
+  width: 100% !important;
+}
+.coreIntroduction_specimenGold__wN94f,
+.coreIntroduction_specimenShell__l050r {
+  overflow: visible !important;
+  z-index: 10 !important;
+  border: 1px solid rgba(216, 183, 123, 0.55) !important;
+  box-shadow: 0 10px 24px rgba(26, 8, 4, 0.25) !important;
+  border-radius: 3px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.coreIntroduction_specimenGold__wN94f:hover,
+.coreIntroduction_specimenShell__l050r:hover {
+  transform: scale(1.06) translateZ(0) !important;
+  box-shadow: 0 14px 28px rgba(26, 8, 4, 0.32), 0 0 12px rgba(216, 183, 123, 0.4) !important;
 }
 
 /* 4. Traditional Flourish & Stage Hover Effects */
