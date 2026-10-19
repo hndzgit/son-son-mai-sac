@@ -62,12 +62,16 @@ h1, h2, h3, h4, h5, h6, .font-display,
 <script id="ssms-preloader-loader">
 (function() {
   if (typeof document === "undefined") return;
+  try {
+    if (sessionStorage.getItem("ssms-entry-seen") === "1") return;
+  } catch(e) {}
+
   var d = document.createElement("div");
   d.id = "ssms-entry-screen";
   d.className = "entry-screen core-v4-preloader";
-  d.style.cssText = "position:fixed;inset:0;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(#100500bb,#100500dd),url(/story-assets/macro-hires-generated.webp) 50%/cover;transition:opacity 0.6s ease,visibility 0.6s ease;";
+  d.style.cssText = "position:fixed;inset:0;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(#100500bb,#100500dd),url(/story-assets/macro-hires-generated.webp) 50%/cover;transition:opacity 0.35s ease,visibility 0.35s ease;";
   d.setAttribute("aria-label", "Đang tải hành trình di sản Việt");
-  d.innerHTML = '<span class="BrandMark_mark__I_sjn brand-mark" role="img" aria-label="Sơn Son Mài Sắc"><img src="/brand-logo-white.png" alt="Sơn Son Mài Sắc" width="260" style="width:260px;max-width:70vw;"></span><p class="entry-kicker" style="font:400 23px/1.2 Heritage,\"Times New Roman\",Times,\"Noto Serif\",serif;color:#d8b77b;margin:78px 0 0;letter-spacing:.03em;">ĐANG TẢI HÀNH TRÌNH</p><p class="entry-invitation" id="ssms-percent" style="font:400 17px/1.5 Inter,sans-serif;color:#f2eadc;margin:24px 0 0;">DI SẢN VIỆT · 0%</p><div class="entry-progress" role="progressbar" aria-label="Tải hình ảnh đầu trang" style="height:3px;width:260px;background:#4b3520;margin-top:55px;"><i id="ssms-progress-bar" style="height:100%;display:block;background:#e5c585;transition:width .2s ease;width:0%;"></i></div><p class="core-v4-preloader-status" id="ssms-status" style="font-size:12px;color:#e2c99d;margin-top:20px;">Các lớp sắc đang dần hiện ra</p><button type="button" class="entry-skip" id="ssms-skip-btn" style="position:absolute;right:5%;bottom:5%;border:0;background:transparent;color:#ddd0b7;letter-spacing:.06em;font-size:12px;cursor:pointer;">BỎ QUA</button>';
+  d.innerHTML = '<span class="BrandMark_mark__I_sjn brand-mark" role="img" aria-label="Sơn Son Mài Sắc"><img src="/brand-logo-white.png" alt="Sơn Son Mài Sắc" width="260" style="width:260px;max-width:70vw;"></span><p class="entry-kicker" style="font:400 23px/1.2 Heritage,\"Times New Roman\",Times,\"Noto Serif\",serif;color:#d8b77b;margin:78px 0 0;letter-spacing:.03em;">ĐANG TẢI HÀNH TRÌNH</p><p class="entry-invitation" id="ssms-percent" style="font:400 17px/1.5 Inter,sans-serif;color:#f2eadc;margin:24px 0 0;">DI SẢN VIỆT · 0%</p><div class="entry-progress" role="progressbar" aria-label="Tải hình ảnh đầu trang" style="height:3px;width:260px;background:#4b3520;margin-top:55px;"><i id="ssms-progress-bar" style="height:100%;display:block;background:#e5c585;transition:width .12s ease;width:0%;"></i></div><p class="core-v4-preloader-status" id="ssms-status" style="font-size:12px;color:#e2c99d;margin-top:20px;">Các lớp sắc đang dần hiện ra</p><button type="button" class="entry-skip" id="ssms-skip-btn" style="position:absolute;right:5%;bottom:5%;border:0;background:transparent;color:#ddd0b7;letter-spacing:.06em;font-size:12px;cursor:pointer;">BỎ QUA</button>';
 
   if (document.documentElement) {
     document.documentElement.appendChild(d);
@@ -82,29 +86,33 @@ h1, h2, h3, h4, h5, h6, .font-display,
   var pct = d.querySelector("#ssms-percent");
   var skip = d.querySelector("#ssms-skip-btn");
   var timer = setInterval(function() {
-    p += Math.floor(Math.random() * 18) + 12;
+    p += Math.floor(Math.random() * 22) + 20;
     if (p > 100) p = 100;
     if (bar) bar.style.width = p + "%";
     if (pct) pct.textContent = "DI SẢN VIỆT · " + p + "%";
     if (p >= 100) {
       clearInterval(timer);
-      setTimeout(closeEntry, 450);
+      setTimeout(closeEntry, 180);
     }
-  }, 100);
+  }, 35);
 
   function closeEntry() {
     if (!d || d.dataset.closed) return;
     d.dataset.closed = "true";
+    try { sessionStorage.setItem("ssms-entry-seen", "1"); } catch(e) {}
     clearInterval(timer);
     d.style.opacity = "0";
     d.style.pointerEvents = "none";
     setTimeout(function() {
       if (d && d.parentNode) d.parentNode.removeChild(d);
-    }, 600);
+    }, 380);
   }
 
   if (skip) skip.onclick = closeEntry;
-  setTimeout(closeEntry, 3200);
+  window.addEventListener("wheel", closeEntry, { once: true, passive: true });
+  window.addEventListener("touchstart", closeEntry, { once: true, passive: true });
+  window.addEventListener("keydown", closeEntry, { once: true, passive: true });
+  setTimeout(closeEntry, 1400);
 })();
 </script>
 </head><body class="min-h-screen flex flex-col font-sans">
@@ -246,26 +254,26 @@ h1, h2, h3, h4, h5, h6, .font-display,
   }
   window.addEventListener('load', restoreFooter);
 
-  // Quan sát đột biến DOM liên tục (chặn React hydration clobber)
+  // Quan sát đột biến DOM chân trang
   try {
     var obs = new MutationObserver(function() {
       var f = document.querySelector('footer');
-      if (f && (!f.querySelector('.Footer_mainGrid') || false || !f.querySelector('.Footer_contactCol .Footer_mapCard'))) {
+      if (f && (!f.querySelector('.Footer_mainGrid') || !f.querySelector('.Footer_contactCol .Footer_mapCard'))) {
         obs.disconnect();
         f.className = 'Footer_footer__eNA9m';
         f.innerHTML = NEW_HTML;
         if (document.body) {
-          obs.observe(document.body, { childList: true, subtree: true });
+          obs.observe(document.body, { childList: true });
         }
       }
     });
 
     if (document.body) {
-      obs.observe(document.body, { childList: true, subtree: true });
+      obs.observe(document.body, { childList: true });
     } else {
       document.addEventListener('DOMContentLoaded', function() {
         if (document.body) {
-          obs.observe(document.body, { childList: true, subtree: true });
+          obs.observe(document.body, { childList: true });
         }
       });
     }
