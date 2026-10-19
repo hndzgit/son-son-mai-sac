@@ -896,197 +896,7 @@ h1, h2, h3, h4, h5, h6, .font-display, #lacquer-title, #process-heading, .coreIn
 }
 
 
-/* ==================== ARTISAN ZIG-ZAG LAYOUT (100% STABLE) ==================== */
-.story_inspiration__LM_OE {
-  max-width: 1180px !important;
-  margin: 0 auto clamp(60px, 8vw, 110px) !important;
-  padding: clamp(24px, 4vw, 44px) !important;
-  background: transparent !important;
-  border-block: none !important;
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
 
-.artisan_section_title {
-  font-family: 'Project Display', 'Playfair Display', "Times New Roman",Times,"Noto Serif",serif !important;
-  font-size: clamp(2.2rem, 3.8vw, 3rem) !important;
-  color: #7a1a16 !important;
-  margin: 0 0 clamp(24px, 3.5vw, 36px) 0 !important;
-  line-height: 1.25 !important;
-  text-align: left;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.artisan_zigzag_container {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 28px !important;
-  width: 100% !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.artisan_zigzag_card {
-  display: flex !important;
-  align-items: stretch !important;
-  background: #faeed7 !important;
-  background: linear-gradient(135deg, #fdf6e7 0%, #f6e8cc 100%) !important;
-  border: 1px solid rgba(168, 137, 89, 0.4) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 24px rgba(60, 40, 20, 0.06) !important;
-  padding: 24px 32px !important;
-  gap: 36px !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-}
-
-.artisan_zigzag_card:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 12px 32px rgba(60, 40, 20, 0.1) !important;
-  border-color: rgba(168, 137, 89, 0.65) !important;
-}
-
-.artisan_zigzag_card.zig {
-  flex-direction: row !important;
-}
-
-.artisan_zigzag_card.zag {
-  flex-direction: row-reverse !important;
-}
-
-.artisan_portrait_box {
-  width: 210px !important;
-  flex-shrink: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  position: relative !important;
-  background: #f3e1bf !important;
-  padding: 12px !important;
-  border: 1px solid rgba(168, 137, 89, 0.45) !important;
-  border-radius: 6px !important;
-  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.05) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.artisan_num_badge {
-  position: absolute !important;
-  top: 8px !important;
-  left: 8px !important;
-  background: rgba(36, 27, 19, 0.9) !important;
-  color: #dfbe80 !important;
-  font-size: 0.72rem !important;
-  font-weight: 700 !important;
-  padding: 2px 7px !important;
-  border-radius: 3px !important;
-  letter-spacing: 0.05em !important;
-  z-index: 2 !important;
-}
-
-.artisan_img_wrap {
-  width: 100% !important;
-  aspect-ratio: 1 / 1.08 !important;
-  overflow: hidden !important;
-  border-radius: 4px !important;
-  border: 1px solid rgba(100, 70, 40, 0.3) !important;
-  background: #1c150f !important;
-}
-
-.artisan_img_wrap img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: transform 0.4s ease !important;
-}
-
-.artisan_zigzag_card:hover .artisan_img_wrap img {
-  transform: scale(1.05) !important;
-}
-
-.artisan_badge_info {
-  margin-top: 12px !important;
-  text-align: center !important;
-  width: 100% !important;
-}
-
-.artisan_name {
-  font-family: 'Project Display', 'Playfair Display', "Times New Roman",Times,"Noto Serif",serif !important;
-  font-size: 1.18rem !important;
-  font-weight: 600 !important;
-  color: #7a1a16 !important;
-  margin: 0 0 3px 0 !important;
-  line-height: 1.3 !important;
-}
-
-.artisan_role {
-  display: block !important;
-  font-size: 0.8rem !important;
-  color: #8c7354 !important;
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-  font-weight: 600 !important;
-}
-
-.artisan_content_box {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  padding: 6px 12px !important;
-  position: relative !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.artisan_quote_mark {
-  font-family: 'Project Display', 'Playfair Display', "Times New Roman",Times,"Noto Serif",serif !important;
-  font-size: 3.2rem !important;
-  line-height: 1 !important;
-  color: rgba(122, 26, 22, 0.28) !important;
-  margin-bottom: -12px !important;
-}
-
-.artisan_highlight_text {
-  font-family: 'Noto Serif', "Times New Roman",Times,"Noto Serif",serif !important;
-  font-size: 1.08rem !important;
-  line-height: 1.72 !important;
-  color: #2c221a !important;
-  margin-bottom: 10px !important;
-}
-
-.artisan_sub_text {
-  font-size: 0.94rem !important;
-  line-height: 1.62 !important;
-  color: #5c4e40 !important;
-  font-style: italic !important;
-  margin: 0 !important;
-}
-
-@media (max-width: 768px) {
-  .artisan_zigzag_card.zig,
-  .artisan_zigzag_card.zag {
-    flex-direction: column !important;
-    gap: 20px !important;
-    padding: 20px !important;
-  }
-  .artisan_portrait_box {
-    width: 100% !important;
-    max-width: 230px !important;
-    margin: 0 auto !important;
-  }
-  .artisan_content_box {
-    padding: 0 !important;
-    text-align: left !important;
-  }
-}
 
 
 /* Clickable Sơn mài là gì artwork */
@@ -1759,16 +1569,23 @@ html {
   .coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f {
     flex: 1 1 0px !important;
     min-width: 115px !important;
-    height: calc(560px - var(--distance) * 20px) !important;
+    height: 560px !important;
     margin-left: -10px !important;
     border-radius: 8px !important;
-    box-shadow: 0 18px 30px rgba(53, 32, 16, 0.25) !important;
-    transition: flex 0.45s cubic-bezier(0.2, 0.75, 0.25, 1), height 0.45s cubic-bezier(0.2, 0.75, 0.25, 1), transform 0.45s cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 0.35s !important;
+    box-shadow: 0 16px 28px rgba(35, 18, 8, 0.28) !important;
+    transition: flex 0.4s cubic-bezier(0.2, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.25, 1), box-shadow 0.35s ease, filter 0.25s ease !important;
     will-change: flex, transform;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    transform: translateY(calc(var(--distance, 0) * 8px)) translateZ(0) !important;
+    -webkit-transform: translateY(calc(var(--distance, 0) * 8px)) translateZ(0) !important;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    z-index: var(--z, 1) !important;
+    cursor: pointer !important;
+  }
+
+  .core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f:hover,
+  .coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f:hover {
+    filter: brightness(1.08) !important;
   }
 
   .core-v4-concept .materialGallery_cards__zJgmU .materialGallery_card__sP88f:first-child,
@@ -1780,49 +1597,82 @@ html {
   .coreIntroduction_layersSection__G7C0S .materialGallery_cards__zJgmU .materialGallery_card__sP88f[aria-pressed="true"] {
     flex: 2.8 1 0px !important;
     min-width: 280px !important;
-    height: 570px !important;
+    height: 560px !important;
     transform: translateY(-16px) translateZ(0) !important;
     -webkit-transform: translateY(-16px) translateZ(0) !important;
     box-shadow: 0 32px 55px rgba(25, 10, 5, 0.55) !important;
+    z-index: 30 !important;
+    filter: brightness(1) !important;
+  }
+
+  .materialGallery_texture__YaGy0 {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: inherit !important;
+    pointer-events: none !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    background-repeat: no-repeat !important;
   }
 
   .materialGallery_cardCopy__NBeRZ {
     bottom: 28px !important;
     left: 20px !important;
     right: 18px !important;
-    gap: 12px !important;
+    gap: 10px !important;
+    pointer-events: none !important;
   }
 
   .materialGallery_cardCopy__NBeRZ strong {
-    font-size: clamp(20px, 1.6vw, 28px) !important;
+    font-size: clamp(20px, 1.6vw, 26px) !important;
     line-height: 1.15 !important;
     letter-spacing: -0.02em !important;
+    transform-origin: bottom left !important;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.25, 1), color 0.3s ease !important;
+    display: inline-block !important;
+    will-change: transform;
   }
 
   .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardCopy__NBeRZ strong {
-    font-size: clamp(34px, 2.7vw, 46px) !important;
+    transform: scale(1.32) !important;
+    color: #ffffff !important;
   }
 
   .materialGallery_cardCopy__NBeRZ > span {
-    font-size: clamp(12px, 0.95vw, 15px) !important;
+    font-size: clamp(12.5px, 0.95vw, 15px) !important;
     line-height: 1.55 !important;
     display: -webkit-box !important;
-    -webkit-line-clamp: 4 !important;
+    -webkit-line-clamp: 5 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
+    opacity: 0.55 !important;
+    transition: opacity 0.35s ease !important;
+    will-change: opacity;
   }
 
   .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardCopy__NBeRZ > span {
     -webkit-line-clamp: 6 !important;
-    font-size: clamp(13.5px, 1.05vw, 16px) !important;
-    line-height: 1.6 !important;
+    opacity: 1 !important;
   }
 
   .materialGallery_cardNumber__SI1t_ {
     top: 26px !important;
     left: 20px !important;
-    font-size: 30px !important;
+    font-size: 28px !important;
     font-weight: 500 !important;
+    opacity: 0.65 !important;
+    transform-origin: top left !important;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.25, 1), opacity 0.3s ease !important;
+    pointer-events: none !important;
+    will-change: transform, opacity;
+  }
+
+  .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardNumber__SI1t_ {
+    opacity: 1 !important;
+    transform: scale(1.18) !important;
   }
 }
 
@@ -1866,6 +1716,11 @@ html {
     margin-left: 0 !important;
     scroll-snap-align: center !important;
     border-radius: 8px !important;
+    transition: flex 0.4s cubic-bezier(0.2, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.25, 1), box-shadow 0.35s ease !important;
+    will-change: flex, transform;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    cursor: pointer !important;
   }
 
   .materialGallery_card__sP88f:first-child {
@@ -1876,8 +1731,10 @@ html {
     flex: 0 0 260px !important;
     min-width: 260px !important;
     width: 260px !important;
-    height: 440px !important;
-    transform: translateY(-4px) !important;
+    height: 420px !important;
+    transform: translateY(-6px) translateZ(0) !important;
+    -webkit-transform: translateY(-6px) translateZ(0) !important;
+    box-shadow: 0 20px 36px rgba(20, 8, 4, 0.45) !important;
   }
 
   .materialGallery_cardCopy__NBeRZ {
@@ -1885,25 +1742,37 @@ html {
     left: 16px !important;
     right: 14px !important;
     gap: 8px !important;
+    pointer-events: none !important;
   }
 
   .materialGallery_cardCopy__NBeRZ strong {
-    font-size: 22px !important;
+    font-size: 20px !important;
+    transform-origin: bottom left !important;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.25, 1) !important;
+    display: inline-block !important;
   }
 
   .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardCopy__NBeRZ strong {
-    font-size: 28px !important;
+    transform: scale(1.22) !important;
   }
 
   .materialGallery_cardCopy__NBeRZ > span {
     font-size: 12px !important;
     line-height: 1.45 !important;
+    opacity: 0.6 !important;
+    transition: opacity 0.35s ease !important;
+  }
+
+  .materialGallery_card__sP88f[data-active="true"] .materialGallery_cardCopy__NBeRZ > span {
+    opacity: 1 !important;
   }
 
   .materialGallery_cardNumber__SI1t_ {
     top: 20px !important;
     left: 16px !important;
     font-size: 24px !important;
+    opacity: 0.7 !important;
+    pointer-events: none !important;
   }
 }
 
@@ -1948,6 +1817,197 @@ html {
   margin-left: auto !important;
   margin-right: auto !important;
   box-sizing: border-box !important;
+}
+
+/* ==================== ARTISAN ZIG-ZAG LAYOUT (100% STABLE) ==================== */
+.story_inspiration__LM_OE {
+  max-width: 1180px !important;
+  margin: 0 auto clamp(60px, 8vw, 110px) !important;
+  padding: clamp(24px, 4vw, 44px) !important;
+  background: transparent !important;
+  border-block: none !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.artisan_section_title {
+  font-family: 'Project Display', 'Playfair Display', "Times New Roman",Times,"Noto Serif",serif !important;
+  font-size: clamp(2.2rem, 3.8vw, 3rem) !important;
+  color: #7a1a16 !important;
+  margin: 0 0 clamp(24px, 3.5vw, 36px) 0 !important;
+  line-height: 1.25 !important;
+  text-align: left;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.artisan_zigzag_container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 28px !important;
+  width: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.artisan_zigzag_card {
+  display: flex !important;
+  align-items: stretch !important;
+  background: #faeed7 !important;
+  background: linear-gradient(135deg, #fdf6e7 0%, #f6e8cc 100%) !important;
+  border: 1px solid rgba(168, 137, 89, 0.4) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(60, 40, 20, 0.06) !important;
+  padding: 24px 32px !important;
+  gap: 36px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.artisan_zigzag_card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 32px rgba(60, 40, 20, 0.1) !important;
+  border-color: rgba(168, 137, 89, 0.65) !important;
+}
+.artisan_zigzag_card.zig {
+  flex-direction: row !important;
+}
+.artisan_zigzag_card.zag {
+  flex-direction: row-reverse !important;
+}
+.artisan_portrait_box {
+  width: 210px !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  position: relative !important;
+  background: #f3e1bf !important;
+  padding: 12px !important;
+  border: 1px solid rgba(168, 137, 89, 0.45) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.05) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.artisan_num_badge {
+  position: absolute !important;
+  top: 8px !important;
+  left: 8px !important;
+  background: rgba(36, 27, 19, 0.9) !important;
+  color: #dfbe80 !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 3px !important;
+  letter-spacing: 0.05em !important;
+  z-index: 2 !important;
+}
+.artisan_img_wrap {
+  width: 100% !important;
+  aspect-ratio: 1 / 1.08 !important;
+  overflow: hidden !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(100, 70, 40, 0.3) !important;
+  background: #1c150f !important;
+}
+.artisan_img_wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: transform 0.4s ease !important;
+}
+.artisan_zigzag_card:hover .artisan_img_wrap img {
+  transform: scale(1.05) !important;
+}
+.artisan_badge_info {
+  margin-top: 12px !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+.artisan_name {
+  font-family: 'Project Display', 'Playfair Display', "Times New Roman",Times,"Noto Serif",serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #7a1a16 !important;
+  margin: 0 0 3px 0 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.01em !important;
+}
+.artisan_meta_bar {
+  display: block !important;
+  font-family: 'Project Display', 'Playfair Display', "Times New Roman",Times,"Noto Serif",serif !important;
+  font-style: italic !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  color: #7a1a16 !important;
+  letter-spacing: 0.02em !important;
+  margin: 3px 0 5px 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+}
+.artisan_role {
+  display: block !important;
+  font-size: 0.78rem !important;
+  color: #8c7354 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  margin-top: 2px !important;
+}
+.artisan_content_box {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 6px 12px !important;
+  position: relative !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.artisan_quote_mark {
+  font-family: 'Project Display', 'Playfair Display', "Times New Roman",Times,"Noto Serif",serif !important;
+  font-size: 3.2rem !important;
+  line-height: 1 !important;
+  color: rgba(122, 26, 22, 0.28) !important;
+  margin-bottom: -12px !important;
+}
+.artisan_highlight_text {
+  font-family: 'Noto Serif', "Times New Roman",Times,"Noto Serif",serif !important;
+  font-size: 1.08rem !important;
+  line-height: 1.72 !important;
+  color: #2c221a !important;
+  margin-bottom: 10px !important;
+}
+.artisan_sub_text {
+  font-size: 0.94rem !important;
+  line-height: 1.62 !important;
+  color: #5c4e40 !important;
+  font-style: italic !important;
+  margin: 0 !important;
+}
+@media (max-width: 768px) {
+  .artisan_zigzag_card.zig,
+  .artisan_zigzag_card.zag {
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding: 20px !important;
+  }
+  .artisan_portrait_box {
+    width: 100% !important;
+    max-width: 230px !important;
+    margin: 0 auto !important;
+  }
+  .artisan_content_box {
+    padding: 0 !important;
+    text-align: left !important;
+  }
 }
 
 
