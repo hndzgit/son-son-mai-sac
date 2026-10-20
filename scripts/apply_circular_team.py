@@ -76,14 +76,48 @@ NEW_TEAM_CSS = """
   padding: 0 !important;
   width: 100% !important;
   max-width: 240px !important;
+  overflow: visible !important;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 
 .project_page__UA7p9 .team-portrait-v4-card:hover {
-  transform: translateY(-5px) !important;
+  transform: translateY(-4px) !important;
 }
 
-/* Ảnh chân dung chung & Fallback */
+/* Tắt mọi pseudo-element gây chắn ngang hoặc viền thừa */
+.project_page__UA7p9 .team-portrait-v4-card::before,
+.project_page__UA7p9 .team-portrait-v4-card::after,
+.project_page__UA7p9 .team-portrait-v4-image-wrap::before,
+.project_page__UA7p9 .team-portrait-v4-image-wrap::after,
+.project_page__UA7p9 .team-portrait-v4-chibi {
+  display: none !important;
+  content: none !important;
+}
+
+/* Ẩn fallback layer để không bị chồng lấn hay lộ chữ/màu nền phía sau */
+.project_page__UA7p9 .team-portrait-v4-fallback {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Base khung tròn chứa ảnh: Kích hoạt mask bo tròn chuẩn GPU WebKit/Blink tránh lỗi rách ảnh khi di chuột */
+.project_page__UA7p9 .team-portrait-v4-image-wrap {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  -webkit-mask-image: -webkit-radial-gradient(white, black) !important;
+  mask-image: radial-gradient(white, black) !important;
+  -webkit-mask-composite: source-over !important;
+  mask-composite: add !important;
+  isolation: isolate !important;
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+}
+
+/* Ảnh chân dung: Khóa cố định tỉ lệ tròn, KHÔNG scale khi hover để tránh Blink clipping glitch */
 .project_page__UA7p9 .team-portrait-v4-image {
   position: relative !important;
   z-index: 2 !important;
@@ -94,14 +128,19 @@ NEW_TEAM_CSS = """
   object-fit: cover !important;
   object-position: center 5% !important;
   filter: none !important;
-  transition: transform 0.45s ease !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  transition: none !important;
 }
 
-.project_page__UA7p9 .team-portrait-v4-fallback {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 1 !important;
-  border-radius: 50% !important;
+/* Triệt tiêu triệt để mọi hành vi scale ảnh khi hover hoặc focus */
+.project_page__UA7p9 .team-portrait-v4-card:hover .team-portrait-v4-image,
+.project_page__UA7p9 .team-portrait-v4-card:focus-within .team-portrait-v4-image,
+.project_page__UA7p9 .team-portrait-v4-card.is-featured:hover .team-portrait-v4-image,
+.project_page__UA7p9 .team-portrait-v4-card:not(.is-featured):hover .team-portrait-v4-image,
+.project_page__UA7p9 .team-portrait-v4-image-wrap:hover .team-portrait-v4-image {
+  transform: none !important;
+  -webkit-transform: none !important;
 }
 
 /* --- TRƯỞNG NHÓM (Ở GIỮA HÀNG ĐẦU, Ô TRÒN NỔI BẬT) --- */
@@ -124,16 +163,12 @@ NEW_TEAM_CSS = """
   border: 3.5px solid #d4af37 !important; /* Vành hoàng kim sơn mài */
   box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.25), 0 14px 34px rgba(139, 42, 42, 0.22) !important;
   background: radial-gradient(circle at 50% 35%, #fffbf2, #ebdcc0) !important;
-  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  transition: border-color 0.35s ease, box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 
 .project_page__UA7p9 .team-portrait-v4-card.is-featured:hover .team-portrait-v4-image-wrap {
   border-color: #f3cf65 !important;
   box-shadow: 0 0 0 7px rgba(212, 175, 55, 0.42), 0 18px 40px rgba(139, 42, 42, 0.28) !important;
-}
-
-.project_page__UA7p9 .team-portrait-v4-card.is-featured:hover .team-portrait-v4-image {
-  transform: scale(1.05) !important;
 }
 
 .project_page__UA7p9 .team-portrait-v4-card.is-featured h3 {
@@ -193,16 +228,12 @@ NEW_TEAM_CSS = """
   border: 2.5px solid #c9a96e !important;
   box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.22), 0 8px 22px rgba(60, 30, 15, 0.12) !important;
   background: radial-gradient(circle at 50% 35%, #fffbf2, #ebdcc0) !important;
-  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  transition: border-color 0.35s ease, box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 
 .project_page__UA7p9 .team-portrait-v4-card:not(.is-featured):hover .team-portrait-v4-image-wrap {
   border-color: #d4af37 !important;
-  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.35), 0 12px 28px rgba(139, 42, 42, 0.18) !important;
-}
-
-.project_page__UA7p9 .team-portrait-v4-card:not(.is-featured):hover .team-portrait-v4-image {
-  transform: scale(1.06) !important;
+  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.38), 0 14px 30px rgba(139, 42, 42, 0.2) !important;
 }
 
 .project_page__UA7p9 .team-portrait-v4-card:not(.is-featured) h3 {
@@ -324,11 +355,11 @@ def update_html_version():
     for p in files:
         with open(p, "r", encoding="utf-8") as f:
             c = f.read()
-        c_new = re.sub(r'f7d6d17d52efcb3d\.css\?v=\d+', 'f7d6d17d52efcb3d.css?v=27', c)
+        c_new = re.sub(r'f7d6d17d52efcb3d\.css\?v=\d+', 'f7d6d17d52efcb3d.css?v=29', c)
         if c_new != c:
             with open(p, "w", encoding="utf-8") as f:
                 f.write(c_new)
-            print("Updated CSS version to ?v=27 in", p)
+            print("Updated CSS version to ?v=29 in", p)
         else:
             print("No version bump needed or pattern didn't match in", p)
 
